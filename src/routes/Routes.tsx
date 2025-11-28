@@ -1,19 +1,18 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/home/Home'
 import About from '../pages/about/About'
+import Project from '../pages/project/Project'
+import {MainLayout} from '../layouts/Layout'
 
 export const AppRouter = () => {
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <span> | </span>
-        <Link to="/about">About</Link>
-      </nav>  
-    
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route element={<MainLayout />}> 
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Project />} />
+        </Route>
       </Routes>
     </div>
   )

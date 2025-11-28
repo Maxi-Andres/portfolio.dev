@@ -1,46 +1,60 @@
+/* ====================== Tailwind ====================== */
 @import "tailwindcss";
 
-/* =============== Fonts =============== */
+/* ====================== Fonts ====================== */
 
-/* =============== Variables =============== */
+/* //! todo lo de abajo me estaba cagando el tailwind */
 
-:root {
+
+/* ====================== Variables ====================== */
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   text-rendering: optimizeLegibility;
-}
 
-/* =============== Global =============== */
+  color-scheme: light dark;
+} */
 
-*, *::before, *::after, html, body {
+
+/* ====================== Global Reset ====================== */
+/* Tailwind ya resetea MUCHAS cosas con Preflight */
+
+/* *, *::before, *::after, html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  scrollbar-gutter: auto;
+} */
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* .contenedor::-webkit-scrollbar {
+    display: none; 
+} */
 
-body {
-  margin: 0;
+/* ====================== Body ====================== */
+/* body {
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
-a {
+
+/* ====================== Root ====================== */
+/* #root {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+
+/* ====================== Links ====================== */
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+} */
