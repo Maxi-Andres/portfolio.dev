@@ -20,24 +20,28 @@
 /* ====================== Global Reset ====================== */
 /* Tailwind ya resetea MUCHAS cosas con Preflight */
 
-/* *, *::before, *::after, html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*, *::before, *::after, html, body {
+  /* margin: 0; */
+  /* padding: 0; */
+  /* box-sizing: border-box; */
   scrollbar-gutter: auto;
-} */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
 
 /* .contenedor::-webkit-scrollbar {
     display: none; 
 } */
 
 /* ====================== Body ====================== */
-/* body {
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
+body {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  background: #000;
+  /* max-width: 90%; */
+}
 
 
 /* ====================== Root ====================== */

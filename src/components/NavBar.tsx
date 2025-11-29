@@ -1,28 +1,77 @@
 import { Link } from "react-router-dom"
+import { useState, useRef, type MouseEvent } from "react"
 
 const NavBar = () => {
+  const [hoverStyle, setHoverStyle] = useState({ 
+    left: 0, 
+    width: 0, 
+    height: 0, 
+    opacity: 0 
+  })
+  const navRef = useRef<HTMLUListElement>(null)
+
+  const handleHover = (e: MouseEvent<HTMLAnchorElement>) => {
+    const item = e.currentTarget
+    const nav = navRef.current
+    if (!nav) return // esto es para que no rompa las bolas lo de abajo
+
+    const itemRect = item.getBoundingClientRect()
+    const navRect = nav.getBoundingClientRect()
+
+    setHoverStyle({
+      left: itemRect.left - navRect.left,
+      width: itemRect.width,
+      height: itemRect.height, 
+      opacity: 1
+    })
+  }
+
+  const handleLeave = () => {
+    setHoverStyle((prev) => ({ ...prev, opacity: 0 }))
+  }
+
   return (
-    <header className="fixed left-1/2 top-10 z-999 -translate-x-1/2 w-full md:w-auto">
-      <nav className="relative animate-jump-in animate-once animate-duration-1000">
-        <ul className="relative grid grid-cols-4 items-center justify-center py-2 border border-white/10 
-        backdrop-blur-md rounded-full shadow-lg transition-all duration-200 ease-in-out mx-2 md:mx-0">
+    <header className="fixed top-10 z-999">
+      <nav>
+        <ul 
+          ref={navRef} 
+          className="relative grid grid-cols-4 border border-white/10 backdrop-blur-md rounded-full shadow-lg"
+          onMouseLeave={handleLeave}
+        >
+          <div
+            className="absolute top-1/2 -translate-y-1/2 h-8 bg-white/10 rounded-full duration-300 pointer-events-none"
+            style={{
+              left: hoverStyle.left,
+              width: hoverStyle.width,
+              height: hoverStyle.height,
+              opacity: hoverStyle.opacity,
+            }}
+          />
 
-          <Link to="/" className="relative z-10 px-2 md:px-4 text-center py-2 rounded-full cursor-pointer transition-colors 
-          duration-300 text-neutral-300">Home</Link>
+          <Link to="/" 
+            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            onMouseEnter={handleHover}
+          >Home</Link>
 
-          <Link to="/about" className="relative z-10 px-2 md:px-4 text-center py-2 rounded-full cursor-pointer transition-colors 
-          duration-300 text-neutral-300">About</Link>
+          <Link to="/about" 
+            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            onMouseEnter={handleHover}
+          >About</Link>
 
-          <Link to="/projects" className="relative z-10 px-2 md:px-4 text-center py-2 rounded-full cursor-pointer transition-colors 
-          duration-300 text-neutral-300">Projects</Link>
-{/* hacer los links componentes */}
-          <a href="mailto:max.bianchimano@gmail.com" className="relative z-10 px-2 md:px-4 text-center py-2 rounded-full cursor-pointer transition-colors duration-300 text-neutral-300">Contact</a>
+          <Link  to="/projects" 
+            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            onMouseEnter={handleHover}
+          >Projects</Link>
 
-        <div className="absolute top-0 h-full w-1/4 bg-white/10 rounded-full transition-all duration-300 opacity-0 opacity-0 left-0"></div>
+          <a href="mailto:max.bianchimano@gmail.com" 
+            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            onMouseEnter={handleHover}
+          >Contact</a>
+
         </ul>
       </nav>
     </header>
   )
 }
-{/* importante usar Link para que sea single page aplication */}
+
 export default NavBar
