@@ -38,6 +38,7 @@ const NavBar = () => {
           className="relative grid grid-cols-4 border border-white/10 backdrop-blur-md rounded-full shadow-lg"
           onMouseLeave={handleLeave}
         >
+
           <div
             className="absolute top-1/2 -translate-y-1/2 h-8 bg-white/10 rounded-full duration-300 pointer-events-none"
             style={{
