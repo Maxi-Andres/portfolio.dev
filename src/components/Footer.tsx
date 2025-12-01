@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom"
+import { BackgroundBeams } from "../components/ui/background-beams";
 
 const Footer = () => {
   return (
     <>
       <footer className="w-full py-10">
-        <div className="border border-neutral-800 rounded-2xl p-6 flex flex-col md:flex-row justify-between">
-          
+
+        <div className="relative border border-neutral-800 rounded-2xl p-6 flex flex-col md:flex-row justify-between 
+          overflow-hidden h-80">
+
+          <BackgroundBeams className="scale-[1.5] translate-y-[-5%]" />
+
           <div className="logo flex flex-col justify-end mb-6 md:mb-0">
             <p className="text-4xl">
               Maximiliano<br />

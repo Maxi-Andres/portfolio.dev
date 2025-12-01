@@ -21,7 +21,7 @@ const Home = () => {
       </div>
 
       <div>
-        <div className="header-bg-elipse-3 absolute -right-60 -translate-y-[-140%]"></div>
+        <div className="header-bg-elipse-3 absolute -right-60 -translate-y-[-110%]"></div>
         <div className="header-bg-elipse-3 absolute -left-50 -translate-y-[-130%]"></div>
       </div>
 
