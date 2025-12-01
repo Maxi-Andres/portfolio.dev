@@ -37,7 +37,7 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
   const data = active === "work" ? workExperience : studies
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 pt-8">
       <div className="border-l border-neutral-800">
 
         <div>

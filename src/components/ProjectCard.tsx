@@ -14,7 +14,7 @@ const ProjectCard = ({ image, title, description, tags, link }: ProjectCardProps
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative bg-black border border-neutral-800 rounded-2xl overflow-hidden 
+      className="group relative backdrop-blur-md border border-neutral-800 rounded-2xl overflow-hidden 
         hover:border-neutral-600 transition-all duration-300"
     >
 

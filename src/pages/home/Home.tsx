@@ -1,3 +1,4 @@
+import TechStack from "@/components/TechStack"
 import Experience from "../../components/Experience"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
@@ -26,6 +27,8 @@ const Home = () => {
       </div>
 
       <Projects/>
+
+      <TechStack/>
 
       <Footer/>
 
