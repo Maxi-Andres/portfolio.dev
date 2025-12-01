@@ -8,12 +8,12 @@ const Header = () => {
   return (
     <>
       <div className="py-60 px-4">
-        <main className="max-w-4xl"> 
+        <main className="max-w-4xl flex flex-col justify-center items-center"> 
 
           <div className="relative -z-100"> {/*//? esto para que se ponga atras de todo */}
-            <div className="header-bg-elipse-1 absolute left-0 top-0 translate-x-[66%]"></div>
-            <div className="header-bg-elipse-2 absolute left-0 top-0"></div>
-            <div className="header-bg-elipse-3 absolute right-0 top-0 translate-x-[-66%]"></div>
+            <div className="header-bg-elipse-1 absolute left-0 top-0 translate-x-[0%]"></div>
+            <div className="header-bg-elipse-2 absolute -left-70"></div>
+            <div className="header-bg-elipse-3 absolute right-0 top-0 translate-x-[-0%]"></div>
           </div>
 
           <div className="text-center">

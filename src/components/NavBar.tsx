@@ -59,7 +59,7 @@ const NavBar = () => {
             onMouseEnter={handleHover}
           >About</Link>
 
-          <Link  to="/projects" 
+          <Link to="/projects" 
             className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Projects</Link>
