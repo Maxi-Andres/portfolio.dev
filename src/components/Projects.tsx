@@ -43,7 +43,7 @@ const Projects = () => {
           <Link to="/projects" className="text-xl text-neutral-400 mt-2 hover:text-white">View More</Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}

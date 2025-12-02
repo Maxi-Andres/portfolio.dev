@@ -6,16 +6,14 @@ const Footer = () => {
     <>
       <footer className="w-full py-10">
 
-        <div className="relative border border-neutral-800 rounded-2xl p-6 flex flex-col md:flex-row justify-between 
-          overflow-hidden h-80">
+        <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
+        hover:border-neutral-600 transition-all duration-300 h-80 flex flex-col md:flex-row justify-between">
 
           <BackgroundBeams className="scale-[1.5] translate-y-[-5%]" />
 
           <div className="logo flex flex-col justify-end mb-6 md:mb-0">
             <p className="text-4xl">
-              Maximiliano<br />
-              Andres.
-            </p>
+              Maximiliano Andres.</p>
           </div>
 
           <div className="flex flex-row space-x-12">
@@ -39,38 +37,23 @@ const Footer = () => {
               <h3 className="text-neutral-300 mb-4">Let's Connect</h3>
               <ul className="flex flex-col text-neutral-500 font-light">
                 <li>
-                  <a
-                    href="mailto:contact@maximiliano.dev"
-                    className="hover:underline hover:text-neutral-300"
-                    >
+                  <a href="mailto:contact@maximiliano.dev"
+                    className="hover:underline hover:text-neutral-300">
                     Email
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="https://www.linkedin.com/"
-                    className="hover:underline hover:text-neutral-300"
-                    >
+                  <a href="https://www.linkedin.com/"
+                    className="hover:underline hover:text-neutral-300" >
                     LinkedIn
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="https://github.com/"
-                    className="hover:underline hover:text-neutral-300"
-                    >
+                  <a href="https://github.com/"
+                    className="hover:underline hover:text-neutral-300">
                     GitHub
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="https://www.instagram.com/"
-                    className="hover:underline hover:text-neutral-300"
-                    >
-                    Instagram
                   </a>
                 </li>
 
