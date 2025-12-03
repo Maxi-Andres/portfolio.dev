@@ -105,22 +105,22 @@ body {
 --color-purple-glow: #6A2FD8;  */
 
 .header-bg-elipse-1 {
-    background: rgba(63, 100, 233, .43);
-    filter: blur(150px);
-    width: 570px;
-    height: 180px;
+  background: rgba(63, 100, 233, .43);
+  filter: blur(150px);
+  width: 570px;
+  height: 180px;
 }
 .header-bg-elipse-2 {
-    background: rgba(63, 233, 196, .43);
-    filter: blur(130px);
-    width: 570px;
-    height: 264px;
+  background: rgba(63, 233, 196, .43);
+  filter: blur(130px);
+  width: 570px;
+  height: 264px;
 }
 .header-bg-elipse-3 {
-    background: rgba(106, 47, 216, .43);
-    filter: blur(130px);
-    width: 570px;
-    height: 140px;
+  background: rgba(106, 47, 216, .43);
+  filter: blur(130px);
+  width: 570px;
+  height: 140px;
 }
 
 /* ====================== Scrollbar ====================== */

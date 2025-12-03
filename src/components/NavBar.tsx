@@ -31,7 +31,7 @@ const NavBar = () => {
   }
 
   return (
-    <header className="fixed top-10 z-999">
+    <header className="fixed top-10 z-999 w-full sm:w-auto">
       <nav>
         <ul 
           ref={navRef} 
