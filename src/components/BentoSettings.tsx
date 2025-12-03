@@ -18,17 +18,17 @@ const BentoSettings = () => {
   ]
 
   return (
-    <div className="flex py-10 flex-col items-center w-full">
+    <div className="flex py-10 flex-col items-center w-full px-5 sm:px-10 lg:px-0">
 
         <div className="flex items-start w-full max-w-6xl mb-6">
-          <h2 className="text-3xl font-semibold text-neutral-400">Choose Your Vibe</h2>
+          <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-400">Choose Your Vibe</h2>
         </div>
 
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
         
         {/* Theme Selector - Ocupa 1 espacio */}
         <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-        hover:border-neutral-600 transition-all duration-300">
+        hover:border-neutral-600 transition-all duration-300 bg-[#1e1e2e]/40">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl"><IconPaint stroke={1.5} /></span>
             <h3 className="text-xl font-semibold text-white">Theme</h3>

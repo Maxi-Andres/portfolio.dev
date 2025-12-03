@@ -36,14 +36,14 @@ const Projects = () => {
 
   return (
     <>
-      <div className="flex py-10 flex-col items-center w-full">
+      <div className="flex py-10 flex-col items-center w-full px-5 sm:px-10 lg:px-0">
 
         <div className="flex items-center w-full mb-6 justify-between">
-          <h2 className="text-3xl font-semibold text-neutral-400"> Featured Projects</h2>
-          <Link to="/projects" className="text-xl text-neutral-400 mt-2 hover:text-white">View More</Link>
+          <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-400"> Featured Projects</h2>
+          <Link to="/projects" className="text-lg lg:text-xl text-neutral-400 mt-2 hover:text-white">View More</Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}

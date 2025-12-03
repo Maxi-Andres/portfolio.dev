@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar"
 
 export const MainLayout = () => {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center max-w-4xl">
+    <main className="min-h-screen w-full flex flex-col items-center justify-center lg:max-w-4xl lg:mx-auto">
       <NavBar />
       <Outlet />
     </main>
