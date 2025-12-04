@@ -31,16 +31,16 @@ const NavBar = () => {
   }
 
   return (
-    <header className="fixed top-10 z-999 w-full sm:w-auto">
+    <header className="fixed bottom-0 z-999 w-full sm:w-auto sm:top-10">
       <nav>
         <ul 
           ref={navRef} 
-          className="relative grid grid-cols-4 border border-white/10 backdrop-blur-md rounded-full shadow-lg"
+          className="relative grid grid-cols-4 border-t sm:border border-white/10 backdrop-blur-md sm:rounded-full shadow-lg bg-[#1e1e2e]/10"
           onMouseLeave={handleLeave}
         >
 
           <div
-            className="absolute top-1/2 -translate-y-1/2 h-8 bg-white/10 rounded-full duration-300 pointer-events-none"
+            className="absolute top-1/2 -translate-y-1/2 h-8 bg-white/10 rounded-none sm:rounded-full duration-300 pointer-events-none"
             style={{
               left: hoverStyle.left,
               width: hoverStyle.width,
@@ -50,22 +50,22 @@ const NavBar = () => {
           />
 
           <Link to="/" 
-            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Home</Link>
 
           <Link to="/about" 
-            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >About</Link>
 
           <Link to="/projects" 
-            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Projects</Link>
 
           <a href="mailto:max.bianchimano@gmail.com" 
-            className="text-center py-4 px-4 rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Contact</a>
 

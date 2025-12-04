@@ -28,7 +28,7 @@ const BentoSettings = () => {
         
         {/* Theme Selector - Ocupa 1 espacio */}
         <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-        hover:border-neutral-600 transition-all duration-300 bg-[#1e1e2e]/40">
+        hover:border-neutral-600 transition-all duration-300 bg-[#1e1e2e]/30">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl"><IconPaint stroke={1.5} /></span>
             <h3 className="text-xl font-semibold text-white">Theme</h3>
