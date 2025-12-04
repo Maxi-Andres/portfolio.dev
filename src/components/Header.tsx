@@ -10,11 +10,11 @@ const Header = () => {
       <div className="py-40 md:py-60 px-4 ">
         <main className="max-w-4xl flex flex-col justify-center items-center"> 
 
-          <div className="relative -z-100 pointer-events-none">
+          {/* <div className="relative -z-100 pointer-events-none">
             <div className="header-bg-elipse-1 absolute left-0 top-0 translate-x-[0%]"></div>
             <div className={`header-bg-elipse-2 absolute -left-20 md:-left-70`}></div> 
             <div className="header-bg-elipse-3 absolute right-0 top-0 translate-x-[-0%]"></div>
-          </div>
+          </div> */}
 
           <div className="text-center">
             <h2 className="text-2xl font-semibold">Hey! I'm Max</h2>
