@@ -22,9 +22,6 @@ const Home = () => {
 
       <Footer/>
 
-      {/*//? esto es por el nav en mobile  */}
-      <div className="mb-20"></div> 
-
     </>
   )
 }

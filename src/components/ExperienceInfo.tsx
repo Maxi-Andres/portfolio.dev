@@ -48,11 +48,11 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
                 <h3 className="text-xl font-semibold text-neutral-200">
                   {item.institution}
                 </h3>
-                <div className="text-neutral-400">
+                <div className="text-neutral-200">
                   {item.position}
                 </div>
                 {item.description && (
-                  <p className="text-neutral-400 text-sm leading-relaxed">
+                  <p className="text-neutral-400 leading-relaxed">
                     {item.description}
                   </p>
                 )}

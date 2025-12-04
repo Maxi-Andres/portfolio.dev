@@ -6,7 +6,7 @@ import TechItem from "./TechItem"
 const TechStack = () => {
   return (
     <>
-      <div className="flex py-10 flex-col items-center w-full">
+      <div className="w-full py-10 px-5 sm:px-10 lg:px-0">
 
         <div className="flex items-start w-full max-w-6xl mb-6">
           <h2 className="text-3xl font-semibold text-neutral-400">Tech Stack</h2>

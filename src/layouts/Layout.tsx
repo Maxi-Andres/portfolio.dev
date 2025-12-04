@@ -65,6 +65,8 @@ export const MainLayout = () => {
         overflow-x-hidden lg:overflow-x-visible">
         {isMobile ? <NavBarMobile /> : <NavBar />}
         <Outlet />
+        {/*//? esto es por el nav en mobile  */}
+        <div className="mb-20"></div> 
       </main>
     </div>
   )
