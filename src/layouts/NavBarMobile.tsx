@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useRef, type MouseEvent } from "react"
 
-const NavBar = () => {
+const NavBarMobile = () => {
   const [hoverStyle, setHoverStyle] = useState({ 
     left: 0, 
     width: 0, 
@@ -30,12 +30,14 @@ const NavBar = () => {
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }))
   }
 
+  //! hacer dos nav es lo unico que se me ocurrio para que no te aparezca el cuadrado azul por el media query que luego no te deja interactuar con los botones
+
   return (
-    <header className="fixed z-9999 w-auto top-10 ">
+    <header className="fixed z-9999 w-[90%] bottom-4">
       <nav>
         <ul 
           ref={navRef} 
-          className="relative grid grid-cols-4 border sm:border border-white/10 backdrop-blur-lg sm:rounded-full shadow-lg bg-white/10 rounded-2xl"
+          className="relative grid grid-cols-4 border sm:border border-white/10 backdrop-blur-md sm:rounded-full shadow-lg bg-gray-600/10 rounded-2xl"
           onMouseLeave={handleLeave}
         >
 
@@ -76,4 +78,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBarMobile

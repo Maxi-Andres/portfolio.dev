@@ -7,9 +7,9 @@ const Footer = () => {
       <footer className="w-full py-10 px-5 sm:px-10 lg:px-0">
 
         <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-        hover:border-neutral-600 transition-all duration-300 h-80 flex flex-col md:flex-row justify-between">
+        hover:border-neutral-600 transition-all duration-300 h-80 flex flex-col md:flex-row justify-between bg-gray-600/10">
 
-          <BackgroundBeams className="scale-[1.5] translate-y-[-5%]" />
+          <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" />
 
           <div className="logo flex flex-col justify-end mb-6 md:mb-0">
             <p className="text-4xl">

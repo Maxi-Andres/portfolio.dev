@@ -7,10 +7,10 @@ import { IconBrandLinkedin } from '@tabler/icons-react';
 const Header = () => {
   return (
     <>
-      <div className="py-40 md:py-60 px-4">
+      <div className="py-40 md:py-60 px-4 ">
         <main className="max-w-4xl flex flex-col justify-center items-center"> 
 
-          <div className="relative -z-100">
+          <div className="relative -z-100 pointer-events-none">
             <div className="header-bg-elipse-1 absolute left-0 top-0 translate-x-[0%]"></div>
             <div className={`header-bg-elipse-2 absolute -left-20 md:-left-70`}></div> 
             <div className="header-bg-elipse-3 absolute right-0 top-0 translate-x-[-0%]"></div>
@@ -27,7 +27,7 @@ const Header = () => {
             <a href="mailto:max.bianchimano@gmail.com" className='rounded-full'>
               <button 
                 className="flex items-center gap-2 text-sm font-medium border px-4 py-2.5 
-                rounded-full duration-500 hover:scale-105 cursor-pointer hover:bg-white/10 mb-2 md:mb-0">
+                rounded-full duration-500 hover:scale-105 cursor-pointer hover:bg-white/10 mb-3.5 md:mb-0">
                 <IconSend stroke={2} size={18} />
                 <span>Contact me</span>
               </button>
