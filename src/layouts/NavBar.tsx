@@ -13,13 +13,13 @@ const NavBar = () => {
   const handleHover = (e: MouseEvent<HTMLAnchorElement>) => {
     const item = e.currentTarget
     const nav = navRef.current
-    if (!nav) return // esto es para que no rompa las bolas lo de abajo
+    if (!nav) return
 
     const itemRect = item.getBoundingClientRect()
     const navRect = nav.getBoundingClientRect()
 
     setHoverStyle({
-      left: itemRect.left - navRect.left,
+      left: itemRect.left - navRect.left - 0.8,
       width: itemRect.width,
       height: itemRect.height, 
       opacity: 1
@@ -31,41 +31,42 @@ const NavBar = () => {
   }
 
   return (
-    <header className="fixed bottom-0 z-999 w-full sm:w-auto sm:top-10">
+    <header className="fixed z-999 bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md sm:w-auto sm:top-10 sm:left-auto sm:translate-x-0">
       <nav>
         <ul 
           ref={navRef} 
-          className="relative grid grid-cols-4 border-t sm:border border-white/10 backdrop-blur-md sm:rounded-full shadow-lg bg-[#1e1e2e]/10"
+          className="relative grid grid-cols-4 border sm:border border-white/10 backdrop-blur-md sm:rounded-full shadow-lg bg-[#1e1e2e]/10 rounded-2xl"
           onMouseLeave={handleLeave}
         >
 
           <div
-            className="absolute top-1/2 -translate-y-1/2 h-8 bg-white/10 rounded-none sm:rounded-full duration-300 pointer-events-none"
+            className="absolute top-0 bg-white/10 rounded-xl sm:rounded-full pointer-events-none transition-all duration-300"
             style={{
               left: hoverStyle.left,
               width: hoverStyle.width,
               height: hoverStyle.height,
               opacity: hoverStyle.opacity,
+              transitionDelay: hoverStyle.opacity === 0 ? '0.2s' : '0s',
             }}
           />
 
           <Link to="/" 
-            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Home</Link>
 
           <Link to="/about" 
-            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >About</Link>
 
           <Link to="/projects" 
-            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Projects</Link>
 
           <a href="mailto:max.bianchimano@gmail.com" 
-            className="text-center p-6 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
+            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
             onMouseEnter={handleHover}
           >Contact</a>
 
