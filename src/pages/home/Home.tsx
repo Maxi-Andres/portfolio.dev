@@ -17,7 +17,6 @@ const Home = () => {
 
       <Projects/>
 
-      {/* <TechStack/> */}
       <BentoSettings/>
 
       <Footer/>
