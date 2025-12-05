@@ -7,18 +7,14 @@ type TechItemProps = {
 
 const TechItem = ({ title, icon, children, href }: TechItemProps) => {
   const content = (
-    <div className="relative group/item">
-      <div
-        className="w-11 h-11 bg-white/5 rounded-xl flex items-center justify-center text-2xl 
-        hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-      >
+    <div className="group/item relative">
+      <div className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl bg-white/5 text-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
         {children ? children : icon}
       </div>
-      
+
       {/* Tooltip */}
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity 
-        duration-200 pointer-events-none whitespace-nowrap">
-        <div className="bg-[#1e1e2e]/90 backdrop-blur-md border border-neutral-700 rounded-lg px-3 py-1.5">
+      <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover/item:opacity-100">
+        <div className="rounded-lg border border-white/10 bg-black/92 px-3 py-1.5 backdrop-blur-lg">
           <span className="text-sm text-white">{title}</span>
         </div>
       </div>

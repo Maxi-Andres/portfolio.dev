@@ -1,0 +1,48 @@
+// components/shared/Section.tsx
+import { type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+
+interface SectionProps {
+  children: ReactNode
+  title?: string
+  viewMoreLink?: string
+  viewMoreText?: string
+  className?: string
+  titleClassName?: string
+}
+
+const Section = ({
+  children,
+  title,
+  viewMoreLink,
+  viewMoreText = 'View More',
+  className = '',
+  titleClassName = '',
+}: SectionProps) => {
+  return (
+    <div
+      className={`flex w-full flex-col items-center px-10 py-10 sm:px-15 lg:px-0 ${className}`}
+    >
+      {title && (
+        <div className="mb-6 flex w-full items-center justify-between">
+          <h2
+            className={`text-2xl font-semibold text-neutral-400 lg:text-3xl ${titleClassName}`}
+          >
+            {title}
+          </h2>
+          {viewMoreLink && (
+            <Link
+              to={viewMoreLink}
+              className="mt-2 text-lg text-neutral-400 hover:text-white lg:text-xl"
+            >
+              {viewMoreText}
+            </Link>
+          )}
+        </div>
+      )}
+      {children}
+    </div>
+  )
+}
+
+export default Section

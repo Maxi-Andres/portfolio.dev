@@ -1,30 +1,28 @@
-
-import NeonBackgroundEffect from "../components/backgrounds/NeonBackground"
-import LightPillar from "@/components/backgrounds/LightPillar"
-import { ShootingStars } from "@/components/backgrounds/shooting-stars";
-import { StarsBackground } from "@/components/backgrounds/stars-background";
+import NeonBackgroundEffect from '../components/backgrounds/NeonBackground'
+// import LightPillar from '@/components/backgrounds/LightPillar'
+// import { ShootingStars } from '@/components/backgrounds/shooting-stars'
+// import { StarsBackground } from '@/components/backgrounds/stars-background'
 
 export const MainBackground = () => {
-
   return (
     <>
       {/*//? esto ponele un condicional */}
 
-      <NeonBackgroundEffect/> 
+      <NeonBackgroundEffect />
 
-        {/* <LightPillar
-          topColor="#5227FF"
-          bottomColor="#FF9FFC"
-          intensity={1.5}
-          rotationSpeed={0.2}
-          glowAmount={0.001}
-          pillarWidth={8.3}
-          pillarHeight={1.6}
-          noiseIntensity={1.5}
-          pillarRotation={25}
-          interactive={false}
-          mixBlendMode="normal"
-        /> */}
+      {/* <LightPillar
+        topColor="#5227FF"
+        bottomColor="#FF9FFC"
+        intensity={1.5}
+        rotationSpeed={0.2}
+        glowAmount={0.001}
+        pillarWidth={8.3}
+        pillarHeight={1.6}
+        noiseIntensity={1.5}
+        pillarRotation={25}
+        interactive={false}
+        mixBlendMode="normal"
+      /> */}
 
       {/* <ShootingStars
         minSpeed={10}
@@ -46,7 +44,6 @@ export const MainBackground = () => {
         maxTwinkleSpeed={1}
         className=""
       /> */}
-
     </>
   )
 }

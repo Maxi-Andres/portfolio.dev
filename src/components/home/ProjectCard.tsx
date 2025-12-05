@@ -1,4 +1,3 @@
-
 type ProjectCardProps = {
   image: string
   title: string
@@ -7,45 +6,48 @@ type ProjectCardProps = {
   link: string
 }
 
-const ProjectCard = ({ image, title, description, tags, link }: ProjectCardProps) => {
-
+const ProjectCard = ({
+  image,
+  title,
+  description,
+  tags,
+  link,
+}: ProjectCardProps) => {
   return (
-    <a 
+    <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative glass-effect border border-neutral-800 rounded-2xl overflow-hidden 
-        hover:border-neutral-600 transition-all duration-300"
+      className="group glass-effect relative overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:border-white/40"
     >
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
 
-        <div className="relative h-48 overflow-hidden">
-          <img 
-            src={image} 
-            alt={title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+      <div className="p-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-xl font-semibold text-white">{title}</h3>
         </div>
 
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold text-white">{title}</h3>
-          </div>
+        <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+          {description}
+        </p>
 
-          <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
-            {description}
-          </p>
-
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <span 
-                key={index}
-                className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-neutral-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="border-app rounded-full bg-white/5 px-3 py-1 text-xs text-neutral-300"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
+      </div>
     </a>
   )
 }

@@ -1,27 +1,34 @@
-import { Link } from "react-router-dom"
-import { useState, useRef, type MouseEvent } from "react"
+import { Link } from 'react-router-dom'
+import { useState, useRef, type MouseEvent } from 'react'
 
 interface NavBarProps {
   variant?: 'desktop' | 'mobile'
 }
 
 const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
-  const [hoverStyle, setHoverStyle] = useState({ 
-    left: 0, 
-    width: 0, 
-    height: 0, 
-    opacity: 0 
+  const [hoverStyle, setHoverStyle] = useState({
+    left: 0,
+    width: 0,
+    height: 0,
+    opacity: 0,
   })
+
   const navRef = useRef<HTMLUListElement>(null)
 
-  const navItemClasses = "relative text-center text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full"
-  const hoverElementClasses = "absolute top-0 pointer-events-none transition-all duration-300 bg-white/10 rounded-xl sm:rounded-full"
+  const navItemClasses =
+    'text-center relative text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full'
+  const hoverElementClasses =
+    'absolute top-0 pointer-events-none transition-all duration-300 bg-selected-btn rounded-xl sm:rounded-full'
 
   const navItems = [
-    { to: "/", label: "Home", isExternal: false },
-    { to: "/about", label: "About", isExternal: false },
-    { to: "/projects", label: "Projects", isExternal: false },
-    { to: "mailto:max.bianchimano@gmail.com", label: "Contact", isExternal: true },
+    { to: '/', label: 'Home', isExternal: false },
+    { to: '/about', label: 'About', isExternal: false },
+    { to: '/projects', label: 'Projects', isExternal: false },
+    {
+      to: 'mailto:max.bianchimano@gmail.com',
+      label: 'Contact',
+      isExternal: true,
+    },
   ]
 
   const handleHover = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -35,8 +42,8 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
     setHoverStyle({
       left: itemRect.left - navRect.left - 0.8,
       width: itemRect.width,
-      height: itemRect.height, 
-      opacity: 1
+      height: itemRect.height,
+      opacity: 1,
     })
   }
 
@@ -45,16 +52,17 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
   }
 
   // config segun variant para no repetir porque si no con el media query lo rompe
-  const headerClasses = variant === 'mobile' 
-    ? "fixed bottom-4 z-9999 w-[90%]"
-    : "fixed top-10 z-9999 w-auto"
+  const headerClasses =
+    variant === 'mobile'
+      ? 'fixed bottom-4 z-9999 w-[90%]'
+      : 'fixed top-10 z-9999 w-auto'
 
   return (
     <header className={headerClasses}>
       <nav>
-        <ul 
-          ref={navRef} 
-          className="glass-effect relative grid grid-cols-4 rounded-2xl border-app shadow-lg sm:rounded-full"
+        <ul
+          ref={navRef}
+          className="glass-effect border-app relative grid grid-cols-4 rounded-2xl shadow-lg sm:rounded-full"
           onMouseLeave={handleLeave}
         >
           <div
@@ -68,9 +76,9 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
             }}
           />
 
-          {navItems.map((item) => (
+          {navItems.map((item) =>
             item.isExternal ? (
-              <a 
+              <a
                 key={item.label}
                 href={item.to}
                 className={navItemClasses}
@@ -88,7 +96,7 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
                 {item.label}
               </Link>
             )
-          ))}
+          )}
         </ul>
       </nav>
     </header>

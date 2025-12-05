@@ -1,40 +1,44 @@
-import { useState } from "react"
-import ExperienceInfo from "@/components/home/ExperienceInfo"
+import ExperienceInfo from '@/components/home/ExperienceInfo'
+import Section from '../shared/SectionContainer'
+import { useState } from 'react'
 
 const Experience = () => {
-
-  const [active, setActive] = useState<"work" | "studies">("work")
+  const [active, setActive] = useState<'work' | 'studies'>('work')
 
   return (
-    <>
-      <div className="flex py-10 pb-6 flex-col items-center w-full px-5 sm:px-10 lg:px-0">
+    <Section
+      title="Experience"
+      children={
+        <>
+          <div className="w-full">
+            <ul className="glass-effect border-app rounded-app flex w-full shadow-lg">
+              <button
+                className={`rounded-app w-1/2 cursor-pointer px-4 py-2 text-center text-neutral-400 hover:text-white ${
+                  active === 'work'
+                    ? 'border-hover-app bg-selected-btn text-white'
+                    : 'hover:text-neutral-200'
+                }`}
+                onClick={() => setActive('work')}
+              >
+                Work
+              </button>
 
-        <div className="flex items-start w-full mb-6">
-          <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-400">Experience</h2>
-        </div>
-
-        <div className="w-full">
-          <ul className="glass-effect flex border border-neutral-800 rounded-2xl shadow-lg w-full">
-
-            <button
-              className={`text-center py-2 px-4 rounded-2xl hover:text-white cursor-pointer selection:bg-amber-50 w-1/2
-              ${active === "work" ? "text-white bg-white/10 border border-neutral-600" : "text-neutral-400 hover:text-neutral-200"}`}
-              onClick={() => setActive("work")}
-            >Work</button>
-
-            <button
-              className={`text-center py-2 px-4 rounded-2xl hover:text-white cursor-pointer selection:bg-amber-50 w-1/2
-              ${active === "studies" ? "text-white bg-white/10 border border-neutral-600" : "text-neutral-400 hover:text-neutral-200"}`}
-              onClick={() => setActive("studies")}
-            >Studies</button>
-
-          </ul>
-        </div>
-
-        <ExperienceInfo active={active} />
-
-      </div>
-    </>
+              <button
+                className={`rounded-app w-1/2 cursor-pointer px-4 py-2 text-center text-neutral-400 hover:text-white ${
+                  active === 'studies'
+                    ? 'border-hover-app bg-selected-btn text-white'
+                    : 'hover:text-neutral-200'
+                }`}
+                onClick={() => setActive('studies')}
+              >
+                Studies
+              </button>
+            </ul>
+          </div>
+          <ExperienceInfo active={active} />
+        </>
+      }
+    />
   )
 }
 
