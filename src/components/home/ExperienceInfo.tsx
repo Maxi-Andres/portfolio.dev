@@ -37,10 +37,10 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
   const data = active === "work" ? workExperience : studies
 
   return (
-    <div className="w-full p-4 pt-8">
+    <div className="w-full p-4 pt-8 rounded-r-2xl">
       <div className="border-l border-neutral-800">
 
-        <div className="">
+        <div className="glass-effect rounded-r-2xl">
           {data.map((item, index) => (
             <div key={index} className="flex p-6 pb-3 pt-3">
               <div className="flex flex-col">

@@ -47,6 +47,19 @@ body {
 .glass-effect {
   @apply bg-[#1e1e2e]/5 backdrop-blur-md;
 }
+/* bg-[#1e1e2e]/5 */
+
+.rounded-app {
+  @apply rounded-2xl
+}
+
+.border-app {
+  @apply border border-white/10
+}
+
+.border-hover-app {
+  @apply border border-white/10
+} 
 
 /* ====================== Styles ====================== */
 /*! hacer que estos colores los puedan elegir las personas  */

@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <Header/>
 
-      <section className="border-t border-neutral-800 w-screen mb-10"></section>
+      <section className="border-t border-white/20 w-screen mb-10"></section>
 
       <Experience/>
 

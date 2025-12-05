@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom"
-import NavBar from "./NavBar"
-import NavBarMobile from "./NavBarMobile"
 import { useEffect, useState, useRef } from "react"
 import { MainBackground } from "./background"
 import { IconVolumeOff } from '@tabler/icons-react';
 import { IconVolume } from '@tabler/icons-react';
+import NavBar from "./NavBar.tsx"
 
 export const MainLayout = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
@@ -63,7 +62,7 @@ export const MainLayout = () => {
 
       <main className="min-h-screen w-full flex flex-col items-center justify-center lg:max-w-4xl lg:mx-auto 
         overflow-x-hidden lg:overflow-x-visible">
-        {isMobile ? <NavBarMobile /> : <NavBar />}
+        {isMobile ? <NavBar variant="mobile"/> : <NavBar variant="desktop"/>}
         <Outlet />
         {/*//? esto es por el nav en mobile  */}
         <div className="mb-20"></div> 

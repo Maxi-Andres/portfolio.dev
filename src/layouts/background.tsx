@@ -10,9 +10,9 @@ export const MainBackground = () => {
     <>
       {/*//? esto ponele un condicional */}
 
-      {/* <NeonBackgroundEffect/>  */}
+      <NeonBackgroundEffect/> 
 
-        <LightPillar
+        {/* <LightPillar
           topColor="#5227FF"
           bottomColor="#FF9FFC"
           intensity={1.5}
@@ -24,7 +24,7 @@ export const MainBackground = () => {
           pillarRotation={25}
           interactive={false}
           mixBlendMode="normal"
-        />
+        /> */}
 
       {/* <ShootingStars
         minSpeed={10}

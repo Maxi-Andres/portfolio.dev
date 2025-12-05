@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import { useState, useRef, type MouseEvent } from "react"
 
-const NavBar = () => {
+interface NavBarProps {
+  variant?: 'desktop' | 'mobile'
+}
+
+const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
   const [hoverStyle, setHoverStyle] = useState({ 
     left: 0, 
     width: 0, 
@@ -9,6 +13,16 @@ const NavBar = () => {
     opacity: 0 
   })
   const navRef = useRef<HTMLUListElement>(null)
+
+  const navItemClasses = "relative text-center text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full"
+  const hoverElementClasses = "absolute top-0 pointer-events-none transition-all duration-300 bg-white/10 rounded-xl sm:rounded-full"
+
+  const navItems = [
+    { to: "/", label: "Home", isExternal: false },
+    { to: "/about", label: "About", isExternal: false },
+    { to: "/projects", label: "Projects", isExternal: false },
+    { to: "mailto:max.bianchimano@gmail.com", label: "Contact", isExternal: true },
+  ]
 
   const handleHover = (e: MouseEvent<HTMLAnchorElement>) => {
     const item = e.currentTarget
@@ -30,17 +44,21 @@ const NavBar = () => {
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }))
   }
 
+  // config segun variant para no repetir porque si no con el media query lo rompe
+  const headerClasses = variant === 'mobile' 
+    ? "fixed bottom-4 z-9999 w-[90%]"
+    : "fixed top-10 z-9999 w-auto"
+
   return (
-    <header className="fixed z-9999 w-auto top-10 ">
+    <header className={headerClasses}>
       <nav>
         <ul 
           ref={navRef} 
-          className="glass-effect relative grid grid-cols-4 border sm:border border-white/10 sm:rounded-full shadow-lg rounded-2xl"
+          className="glass-effect relative grid grid-cols-4 rounded-2xl border-app shadow-lg sm:rounded-full"
           onMouseLeave={handleLeave}
         >
-
           <div
-            className="absolute top-0 bg-white/10 rounded-xl sm:rounded-full pointer-events-none transition-all duration-300"
+            className={hoverElementClasses}
             style={{
               left: hoverStyle.left,
               width: hoverStyle.width,
@@ -50,26 +68,27 @@ const NavBar = () => {
             }}
           />
 
-          <Link to="/" 
-            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
-            onMouseEnter={handleHover}
-          >Home</Link>
-
-          <Link to="/about" 
-            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
-            onMouseEnter={handleHover}
-          >About</Link>
-
-          <Link to="/projects" 
-            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
-            onMouseEnter={handleHover}
-          >Projects</Link>
-
-          <a href="mailto:max.bianchimano@gmail.com" 
-            className="relative text-center py-5 sm:p-4 rounded-none sm:rounded-full text-neutral-300 hover:text-white transition-colors duration-300"
-            onMouseEnter={handleHover}
-          >Contact</a>
-
+          {navItems.map((item) => (
+            item.isExternal ? (
+              <a 
+                key={item.label}
+                href={item.to}
+                className={navItemClasses}
+                onMouseEnter={handleHover}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={navItemClasses}
+                onMouseEnter={handleHover}
+              >
+                {item.label}
+              </Link>
+            )
+          ))}
         </ul>
       </nav>
     </header>
