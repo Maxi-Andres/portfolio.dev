@@ -10,9 +10,9 @@ const About = () => {
 
           <h1 className="text-4xl font-bold text-white mb-4.5">About Me</h1>
 
-          <div className="flex flex-col md:flex-row gap-10 items-start">
+          <div className="flex flex-col gap-10 items-start">
 
-            <div className="w-full text-neutral-300 leading-relaxed space-y-4">
+            <div className="w-full text-neutral-300 leading-relaxed space-y-4 glass-effect">
 
               <p>
                 Hey! I'm <span className="font-semibold text-white">Maximiliano Andres</span>, 
@@ -33,11 +33,11 @@ const About = () => {
                 Outside of technology, I enjoy riding my bike, going to the gym, cooking, 
                 and spending time with friends. Feel free to contact me anytime!
               </p>
+            </div>
 
               <div className='flex gap-4 pt-2'>
                 <Links />
               </div>
-            </div>
 
           </div>
 

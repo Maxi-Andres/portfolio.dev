@@ -35,7 +35,7 @@ const NavBar = () => {
       <nav>
         <ul 
           ref={navRef} 
-          className="relative grid grid-cols-4 border sm:border border-white/10 backdrop-blur-lg sm:rounded-full shadow-lg bg-white/10 rounded-2xl"
+          className="glass-effect relative grid grid-cols-4 border sm:border border-white/10 sm:rounded-full shadow-lg rounded-2xl"
           onMouseLeave={handleLeave}
         >
 

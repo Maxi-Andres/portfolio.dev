@@ -13,8 +13,8 @@ const Experience = () => {
           <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-400">Experience</h2>
         </div>
 
-        <div className="w-full">
-          <ul className="flex border border-neutral-800 backdrop-blur-md rounded-2xl shadow-lg w-full">
+        <div className="glass-effect w-full">
+          <ul className="flex border border-neutral-800 rounded-2xl shadow-lg w-full">
 
             <button
               className={`text-center py-2 px-4 rounded-2xl hover:text-white cursor-pointer selection:bg-amber-50 w-1/2

@@ -56,7 +56,7 @@ export const MainLayout = () => {
 
       <button
         onClick={toggleMusic}
-        className="fixed bottom-4 right-4 z-50 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition"
+        className="fixed bottom-4 right-4 z-50 glass-effect border border-white/20 rounded-full p-3 hover:bg-white/20 transition"
       >
         {isPlaying ? <IconVolume stroke={1.5} /> : <IconVolumeOff stroke={1.5} />}
       </button>

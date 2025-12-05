@@ -1,6 +1,6 @@
 
 import NeonBackgroundEffect from "../components/backgrounds/NeonBackground"
-// import LightPillar from "@/components/backgrounds/LightPillar"
+import LightPillar from "@/components/backgrounds/LightPillar"
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
@@ -10,9 +10,9 @@ export const MainBackground = () => {
     <>
       {/*//? esto ponele un condicional */}
 
-      <NeonBackgroundEffect/> 
+      {/* <NeonBackgroundEffect/>  */}
 
-        {/* <LightPillar
+        <LightPillar
           topColor="#5227FF"
           bottomColor="#FF9FFC"
           intensity={1.5}
@@ -24,7 +24,7 @@ export const MainBackground = () => {
           pillarRotation={25}
           interactive={false}
           mixBlendMode="normal"
-        /> */}
+        />
 
       {/* <ShootingStars
         minSpeed={10}

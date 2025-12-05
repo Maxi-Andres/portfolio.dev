@@ -19,7 +19,7 @@ const Header = () => {
             
             <a href="mailto:max.bianchimano@gmail.com" className='rounded-full'>
               <button 
-                className="flex items-center gap-2 text-sm font-medium border px-4 py-2.5 
+                className="glass-effect flex items-center gap-2 text-sm font-medium border px-4 py-2.5 
                 rounded-full duration-500 hover:scale-105 cursor-pointer hover:bg-white/10 mb-3.5 md:mb-0">
                 <IconSend stroke={2} size={18} />
                 <span>Contact me</span>

@@ -27,8 +27,8 @@ const BentoSettings = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
         
         {/* Theme Selector - Ocupa 1 espacio */}
-        <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-        hover:border-neutral-600 transition-all duration-300 bg-[#1e1e2e]/30">
+        <div className="glass-effect border border-neutral-800 rounded-2xl p-6 overflow-hidden 
+        hover:border-neutral-600 transition-all duration-300">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl"><IconPaint stroke={1.5} /></span>
             <h3 className="text-xl font-semibold text-white">Theme</h3>
@@ -40,7 +40,7 @@ const BentoSettings = () => {
                 key={t}
                 onClick={() => setTheme(t)}
                 className={`text-center py-2 px-4 rounded-2xl hover:text-white transition-colors duration-300 
-              cursor-pointer selection:bg-amber-50 border ${
+                  cursor-pointer selection:bg-amber-50 border ${
                   theme === t 
                     ? "text-white bg-white/10 border border-neutral-600" 
                     : "text-neutral-400 hover:text-neutral-200 border-neutral-800 "}`}
@@ -76,7 +76,7 @@ const BentoSettings = () => {
         </div>
 
         {/* Let's Connect - Ocupa 1 espacio */}
-        <div className="backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
+        <div className="glass-effect border border-neutral-800 rounded-2xl p-6 overflow-hidden 
         hover:border-neutral-600 transition-all duration-300">
           <div className='flex justify-end'>
             <button className=''><IconInfoCircle stroke={1.5} /></button>
@@ -86,7 +86,7 @@ const BentoSettings = () => {
         </div>
 
         {/* Recent Commits - Ocupa 2 espacios */}
-        <div className="md:col-span-2 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 overflow-hidden 
+        <div className="glass-effect md:col-span-2 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
         hover:border-neutral-600 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">

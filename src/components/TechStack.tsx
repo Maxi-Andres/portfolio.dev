@@ -1,7 +1,31 @@
-import { IconBrandPython } from '@tabler/icons-react';
+import {
+  IconBrandPython,
+  IconBrandCpp,
+  IconCpu,
+  IconBrandKotlin,
+  IconBrandJavascript,
+  IconBrandTypescript,
+  IconBrandHtml5,
+  IconBrandCss3,
+  IconDatabase,
+  IconBrandUber,
+  IconChartBar,
+  IconGridDots,
+  IconRobot,
+  IconBrain,
+  IconCloud,
+  IconRouter,
+  IconTopologyStar3,
+  IconBrandReact,
+  IconBrandSvelte,
+  IconBrandTailwind,
+  IconLeaf,
+  IconBrandGithub,
+  IconBrandGit,
+  IconBrandAnsible,
+} from "@tabler/icons-react";
 
-import TechItem from "./TechItem"
-
+import TechItem from "./TechItem";
 
 const TechStack = () => {
   return (
@@ -12,115 +36,91 @@ const TechStack = () => {
           <h2 className="text-3xl font-semibold text-neutral-400">Tech Stack</h2>
         </div>
 
-        {/* Masonry Layout usando columnas CSS */}
         <div className="w-full max-w-6xl">
           <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
 
             {/* Programming Languages */}
-            <div className="break-inside-avoid group relative bg-neutral-950/60 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-              hover:border-neutral-600 transition-all duration-300 backdrop-blur-sm">
-              
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              
+            <div className="glass-effect break-inside-avoid group relative border border-neutral-800 rounded-2xl p-6
+              hover:border-neutral-600 transition-all duration-300">
+
               <h3 className="text-xl font-semibold text-white mb-2">Programming Languages</h3>
               <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                 Proficient in multiple programming languages for diverse development needs.
               </p>
-              
+
               <div className="flex flex-wrap gap-3 items-center">
-                <TechItem icon="🐍" title="Python"><IconBrandPython stroke={1} /></TechItem>
-                <TechItem icon="⚙️" title="C/C++" />
-                <TechItem icon="🔩" title="Assembly" />
-                <TechItem icon="🅺" title="Kotlin" />
-                <TechItem icon="💛" title="JavaScript" />
-                <TechItem icon="💙" title="TypeScript" />
-                <TechItem icon="🌐" title="HTML" />
-                <TechItem icon="🎨" title="CSS" />
-                <TechItem icon="🗄️" title="SQL" />
+                <TechItem title="Python" href="https://www.python.org/"><IconBrandPython stroke={1} /></TechItem>
+                <TechItem title="C/C++" href="https://isocpp.org/"><IconBrandCpp stroke={1} /></TechItem>
+                <TechItem title="Assembly" href="https://en.wikipedia.org/wiki/Assembly_language"><IconCpu stroke={1} /></TechItem>
+                <TechItem title="Kotlin" href="https://kotlinlang.org/"><IconBrandKotlin stroke={1} /></TechItem>
+                <TechItem title="JavaScript" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><IconBrandJavascript stroke={1} /></TechItem>
+                <TechItem title="TypeScript" href="https://www.typescriptlang.org/"><IconBrandTypescript stroke={1} /></TechItem>
+                <TechItem title="HTML" href="https://developer.mozilla.org/en-US/docs/Web/HTML"><IconBrandHtml5 stroke={1} /></TechItem>
+                <TechItem title="CSS" href="https://developer.mozilla.org/en-US/docs/Web/CSS"><IconBrandCss3 stroke={1} /></TechItem>
+                <TechItem title="SQL" href="https://www.sql.org/"><IconDatabase stroke={1} /></TechItem>
               </div>
             </div>
 
             {/* Data Science & ML */}
-            <div className="break-inside-avoid group relative bg-neutral-950/60 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-              hover:border-neutral-600 transition-all duration-300 backdrop-blur-sm">
-              
-              <div className="absolute top-0 left-0 right-0 h-0.5 via-white/30 to-transparent 
-                -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              
+            <div className="glass-effect break-inside-avoid group relative border border-neutral-800 rounded-2xl p-6
+              hover:border-neutral-600 transition-all duration-300">
               <h3 className="text-xl font-semibold text-white mb-2">Data Science & ML</h3>
               <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                 Analyzing data and building machine learning models.
               </p>
-              
+
               <div className="flex flex-wrap gap-3 items-center">
-                <TechItem icon="📓" title="Jupyter Notebook" />
-                <TechItem icon="🐼" title="Pandas" />
-                <TechItem icon="🔢" title="NumPy" />
-                <TechItem icon="🤖" title="Scikit-learn" />
-                <TechItem icon="🧠" title="Machine Learning" />
+                <TechItem title="Jupyter Notebook" href="https://jupyter.org/"><IconBrandUber stroke={1} /></TechItem>
+                <TechItem title="Pandas" href="https://pandas.pydata.org/"><IconChartBar stroke={1} /></TechItem>
+                <TechItem title="NumPy" href="https://numpy.org/"><IconGridDots stroke={1} /></TechItem>
+                <TechItem title="Scikit-learn" href="https://scikit-learn.org/"><IconRobot stroke={1} /></TechItem>
+                <TechItem title="Machine Learning" href="https://en.wikipedia.org/wiki/Machine_learning"><IconBrain stroke={1} /></TechItem>
               </div>
             </div>
 
             {/* Networking */}
-            <div className="break-inside-avoid group relative bg-neutral-950/60 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-              hover:border-neutral-600 transition-all duration-300 backdrop-blur-sm">
-              
-              <div className="absolute top-0 left-0 right-0 h-0.5  via-white/30 to-transparent 
-                -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              
+            <div className="glass-effect break-inside-avoid group relative border border-neutral-800 rounded-2xl p-6 
+              hover:border-neutral-600 transition-all duration-300 ">
               <h3 className="text-xl font-semibold text-white mb-2">Networking</h3>
               <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                 Network configuration and enterprise solutions.
               </p>
-              
-              <div className="flex flex-wrap gap-2.5 items-center">
-                <div className="px-4 py-2 bg-blue-500/20 border border-blue-500/40 rounded-full text-xs font-medium text-blue-200 
-                  hover:bg-blue-500/30 hover:scale-105 transition-all duration-300 cursor-default">Cumulus Linux</div>
-                <div className="px-4 py-2 bg-blue-500/20 border border-blue-500/40 rounded-full text-xs font-medium text-blue-200 
-                  hover:bg-blue-500/30 hover:scale-105 transition-all duration-300 cursor-default">Cisco IOS</div>
-                <div className="px-4 py-2 bg-blue-500/20 border border-blue-500/40 rounded-full text-xs font-medium text-blue-200 
-                  hover:bg-blue-500/30 hover:scale-105 transition-all duration-300 cursor-default">SDN</div>
+
+              <div className="flex flex-wrap gap-3 items-center">
+                <TechItem title="Cumulus Linux" href="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/"><IconCloud stroke={1} /></TechItem>
+                <TechItem title="Cisco IOS" href="https://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-technologies/index.html"><IconRouter stroke={1} /></TechItem>
+                <TechItem title="SDN" href="https://en.wikipedia.org/wiki/Software-defined_networking"><IconTopologyStar3 stroke={1} /></TechItem>
               </div>
             </div>
 
-
             {/* Frameworks & Libraries */}
-            <div className="break-inside-avoid group relative bg-neutral-950/60 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-              hover:border-neutral-600 transition-all duration-300 backdrop-blur-sm">
-              
-              <div className="absolute top-0 left-0 right-0 h-0.5 t via-white/30 to-transparent 
-                -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              
+            <div className="glass-effect break-inside-avoid group relative border border-neutral-800 rounded-2xl p-6 
+              hover:border-neutral-600 transition-all duration-300 ">
               <h3 className="text-xl font-semibold text-white mb-2">Frameworks & Libraries</h3>
               <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                 Building modern web applications with cutting-edge frameworks.
               </p>
-              
+
               <div className="flex flex-wrap gap-3 items-center">
-                <TechItem icon="⚛️" title="React" />
-                <TechItem icon="🔥" title="Svelte" />
-                <TechItem icon="💨" title="Tailwind" />
-                <TechItem icon="🍃" title="Spring Boot" />
+                <TechItem title="React" href="https://react.dev/"><IconBrandReact stroke={1} /></TechItem>
+                <TechItem title="Svelte" href="https://svelte.dev/"><IconBrandSvelte stroke={1} /></TechItem>
+                <TechItem title="Tailwind" href="https://tailwindcss.com/"><IconBrandTailwind stroke={1} /></TechItem>
+                <TechItem title="Spring Boot" href="https://spring.io/projects/spring-boot"><IconLeaf stroke={1} /></TechItem>
               </div>
             </div>
 
             {/* DevOps & Infrastructure */}
-            <div className="break-inside-avoid group relative bg-neutral-950/60 border border-neutral-800 rounded-2xl p-6 overflow-hidden 
-              hover:border-neutral-600 transition-all duration-300 backdrop-blur-sm">
-              
-              <div className="absolute top-0 left-0 right-0 h-0.5 via-white/30 to-transparent 
-                -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              
+            <div className="glass-effect break-inside-avoid group relative border border-neutral-800 rounded-2xl p-6 
+              hover:border-neutral-600 transition-all duration-300 ">
               <h3 className="text-xl font-semibold text-white mb-2">DevOps & Infrastructure</h3>
               <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
                 Managing infrastructure and automation.
               </p>
-              
+
               <div className="flex flex-wrap gap-3 items-center">
-                <TechItem icon="🐙" title="GitHub" />
-                <TechItem icon="📦" title="Git" />
-                <TechItem icon="🔧" title="Ansible" />
+                <TechItem title="GitHub" href="https://github.com/"><IconBrandGithub stroke={1} /></TechItem>
+                <TechItem title="Git" href="https://git-scm.com/"><IconBrandGit stroke={1} /></TechItem>
+                <TechItem title="Ansible" href="https://www.ansible.com/"><IconBrandAnsible stroke={1} /></TechItem>
               </div>
             </div>
 
@@ -129,7 +129,7 @@ const TechStack = () => {
 
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TechStack
+export default TechStack;

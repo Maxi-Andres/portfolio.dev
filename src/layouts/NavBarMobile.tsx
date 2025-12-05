@@ -37,7 +37,7 @@ const NavBarMobile = () => {
       <nav>
         <ul 
           ref={navRef} 
-          className="relative grid grid-cols-4 border sm:border border-white/10 backdrop-blur-md sm:rounded-full shadow-lg bg-gray-600/10 rounded-2xl"
+          className="glass-effect relative grid grid-cols-4 border sm:border border-white/10 sm:rounded-full shadow-lg rounded-2xl"
           onMouseLeave={handleLeave}
         >
 

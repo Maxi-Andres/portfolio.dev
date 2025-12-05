@@ -40,7 +40,7 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
     <div className="w-full p-4 pt-8">
       <div className="border-l border-neutral-800">
 
-        <div>
+        <div className="">
           {data.map((item, index) => (
             <div key={index} className="flex p-6 pb-3 pt-3">
               <div className="flex flex-col">
