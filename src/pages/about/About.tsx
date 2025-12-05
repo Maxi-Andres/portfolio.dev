@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer";
-import TechStack from "@/components/TechStack";
-import Links from '../../components/links';
+import Footer from "@/components/shared/Footer";
+import TechStack from "@/components/about/TechStack";
+import Links from '@/components/shared/links';
 
 const About = () => {
   return (
@@ -12,7 +12,7 @@ const About = () => {
 
           <div className="flex flex-col gap-10 items-start">
 
-            <div className="w-full text-neutral-300 leading-relaxed space-y-4 glass-effect">
+            <div className="w-full text-neutral-300 leading-relaxed space-y-4">
 
               <p>
                 Hey! I'm <span className="font-semibold text-white">Maximiliano Andres</span>, 

@@ -1,9 +1,9 @@
-import Header from "@/components/Header"
-import Experience from "@/components/Experience"
-import Projects from "@/components/Projects"
+import Header from "@/components/home/Header"
+import Experience from "@/components/home/Experience"
+import Projects from "@/components/home/Projects"
 // import TechStack from "@/components/TechStack"
-import BentoSettings from "@/components/BentoSettings"
-import Footer from "@/components/Footer"
+import BentoSettings from "@/components/home/BentoSettings"
+import Footer from "@/components/shared/Footer"
 
 
 const Home = () => {

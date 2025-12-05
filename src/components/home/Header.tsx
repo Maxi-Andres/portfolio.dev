@@ -1,5 +1,5 @@
 import { IconSend } from '@tabler/icons-react';
-import Links from './links';
+import Links from '@/components/shared/links';
 // import { IconFileDownload } from '@tabler/icons-react';
 
 

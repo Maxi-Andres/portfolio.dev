@@ -1,8 +1,8 @@
 
 import NeonBackgroundEffect from "../components/backgrounds/NeonBackground"
 import LightPillar from "@/components/backgrounds/LightPillar"
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
+import { ShootingStars } from "@/components/backgrounds/shooting-stars";
+import { StarsBackground } from "@/components/backgrounds/stars-background";
 
 export const MainBackground = () => {
 

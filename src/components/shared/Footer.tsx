@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BackgroundBeams } from "../components/ui/background-beams";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 const Footer = () => {
   return (
@@ -9,7 +9,8 @@ const Footer = () => {
         <div className="glass-effect border border-neutral-800 rounded-2xl p-6 overflow-hidden 
         hover:border-neutral-600 transition-all duration-300 h-80 flex flex-col md:flex-row justify-between ">
 
-          <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" />
+          {/* //? no se si me termina de convencer */}
+          {/* <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" /> */}
 
           <div className="logo flex flex-col justify-end mb-6 md:mb-0">
             <p className="text-4xl">
