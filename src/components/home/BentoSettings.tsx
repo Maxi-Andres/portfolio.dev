@@ -84,7 +84,7 @@ const BentoSettings = () => {
                   onClick={() => setTheme(t)}
                   className={`cursor-pointer rounded-2xl px-4 py-2 text-center transition-colors duration-300 hover:text-white ${
                     theme === t
-                      ? 'border-hover-app bg-selected-btn text-white'
+                      ? 'border-hover-app border-border-app bg-selected-btn text-white'
                       : 'border-app text-neutral-400 hover:text-neutral-200'
                   }`}
                 >
@@ -119,10 +119,20 @@ const BentoSettings = () => {
           </GlassCard>
 
           {/* Background - Ocupa 1 espacio */}
-          <GlassCard className="overflow-hidden">
+          <GlassCard className="">
             <div className="mb-4 flex items-center gap-2">
-              <span className="text-2xl">
+              <span className="group/item relative text-2xl">
                 <IconInfoCircle stroke={1.5} />
+
+                {/* Tooltip */}
+                <div className="pointer-events-none absolute -top-18 whitespace-normal opacity-0 transition-opacity duration-200 group-hover/item:opacity-100">
+                  <div className="border-selected-app bg-bg-glass/80 rounded-lg p-1.5 px-3 backdrop-blur-lg">
+                    <div className="w-47 text-xs text-white">
+                      Some backgrounds use Three.js for 3D effects. May cause
+                      performance issues on low-end devices.
+                    </div>
+                  </div>
+                </div>
               </span>
               <h3 className="text-xl font-semibold text-white">Background</h3>
             </div>
@@ -132,9 +142,9 @@ const BentoSettings = () => {
                 <button
                   key={element}
                   onClick={() => setBackground(element)}
-                  className={`cursor-pointer rounded-2xl px-4 py-2 text-center transition-colors duration-300 hover:text-white ${
+                  className={`rounded-app cursor-pointer px-4 py-2 text-center transition-colors duration-300 hover:text-white ${
                     background === element
-                      ? 'border-hover-app bg-selected-btn text-white'
+                      ? 'border-hover-app bg-selected-btn border-border-app text-white'
                       : 'border-app text-neutral-400 hover:text-neutral-200'
                   }`}
                 >
@@ -161,7 +171,7 @@ const BentoSettings = () => {
 
               <button
                 onClick={toggleMusic}
-                className="fixed right-4 bottom-4 cursor-pointer rounded-full border border-white/10 p-3 transition hover:border-white/40 hover:bg-white/10"
+                className="border-app border-hover-app hover:bg-bg-selected/10 cursor-pointer rounded-full p-3 transition"
               >
                 {isPlaying ? (
                   <IconVolume stroke={1.5} />
