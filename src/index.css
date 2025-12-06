@@ -56,8 +56,16 @@ bg-[#1e1e2e]/5 backdrop-blur-md
 border-white/10
 hover:border-white/40
 hover:bg-white/10
+/* ====================== Theme Variables ====================== */
+@theme {
+  /* Borders */
+  --color-border-app: white/10;
+  --color-border-app-hover: white/40;
 
-*/
+  /* Backgrounds */
+  --color-bg-glass: #1e1e2e/5;
+  --color-bg-selected: white/10;
+}
 
 .glass-effect {
   @apply bg-[#1e1e2e]/5 backdrop-blur-md;
@@ -79,7 +87,7 @@ hover:bg-white/10
 }
 
 .border-hover-app {
-  @apply border border-white/40;
+  @apply border hover:border-white/40;
 }
 
 .bg-selected-btn {

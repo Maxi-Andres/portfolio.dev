@@ -1,4 +1,5 @@
 import Section from '../shared/SectionContainer'
+import GlassCard from '../shared/GlassCard'
 import { IconPaint } from '@tabler/icons-react'
 import { IconInfoCircle } from '@tabler/icons-react'
 import { IconVolumeOff } from '@tabler/icons-react'
@@ -68,7 +69,7 @@ const BentoSettings = () => {
       children={
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
           {/* Theme Selector - Ocupa 1 espacio */}
-          <div className="glass-effect overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40">
+          <GlassCard className="overflow-hidden">
             <div className="mb-4 flex items-center gap-2">
               <span className="text-2xl">
                 <IconPaint stroke={1.5} />
@@ -115,10 +116,10 @@ const BentoSettings = () => {
                 Mouse effect {MouseEffect ? 'on' : 'off'}
               </span>
             </button>
-          </div>
+          </GlassCard>
 
           {/* Background - Ocupa 1 espacio */}
-          <div className="glass-effect overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40">
+          <GlassCard className="overflow-hidden">
             <div className="mb-4 flex items-center gap-2">
               <span className="text-2xl">
                 <IconInfoCircle stroke={1.5} />
@@ -141,10 +142,10 @@ const BentoSettings = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </GlassCard>
 
           {/* Recent Commits - Ocupa 2 espacios */}
-          <div className="glass-effect overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40 md:col-span-2">
+          <GlassCard className="overflow-hidden md:col-span-2">
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-semibold text-white">
@@ -169,7 +170,7 @@ const BentoSettings = () => {
                 )}
               </button>
             </div>
-          </div>
+          </GlassCard>
         </div>
       }
     />

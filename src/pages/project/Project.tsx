@@ -1,14 +1,11 @@
-import Footer from "@/components/shared/Footer"
+import Footer from '@/components/home/Footer'
 
 const Project = () => {
   return (
     <>
-      <div className="text-white">
-        Project
-      </div>
+      <div className="text-white">Project</div>
 
-    <Footer/>
-
+      <Footer />
     </>
   )
 }
