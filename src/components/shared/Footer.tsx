@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <Section
         children={
-          <div className="glass-effect flex h-50 w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40 md:flex-row">
+          <div className="glass-effect flex h-70 w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40 md:h-50 md:flex-row">
             {/* //? no se si me termina de convencer */}
             {/* <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" /> */}
 

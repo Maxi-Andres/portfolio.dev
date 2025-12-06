@@ -3,6 +3,7 @@ import { IconPaint } from '@tabler/icons-react'
 import { IconInfoCircle } from '@tabler/icons-react'
 import { IconVolumeOff } from '@tabler/icons-react'
 import { IconVolume } from '@tabler/icons-react'
+import { BACKGROUND_TYPES, useBackground } from '@/context/Context'
 import { useEffect, useRef, useState } from 'react'
 
 const BentoSettings = () => {
@@ -59,6 +60,8 @@ const BentoSettings = () => {
     }
   }
 
+  const { background, setBackground } = useBackground()
+
   return (
     <Section
       title="Choose Your Vibe"
@@ -78,7 +81,7 @@ const BentoSettings = () => {
                 <button
                   key={t}
                   onClick={() => setTheme(t)}
-                  className={`cursor-pointer rounded-2xl px-4 py-2 text-center transition-colors duration-300 selection:bg-amber-50 hover:text-white ${
+                  className={`cursor-pointer rounded-2xl px-4 py-2 text-center transition-colors duration-300 hover:text-white ${
                     theme === t
                       ? 'border-hover-app bg-selected-btn text-white'
                       : 'border-app text-neutral-400 hover:text-neutral-200'
@@ -114,31 +117,30 @@ const BentoSettings = () => {
             </button>
           </div>
 
-          {/* Let's Connect - Ocupa 1 espacio */}
+          {/* Background - Ocupa 1 espacio */}
           <div className="glass-effect overflow-hidden rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:border-white/40">
-            <div className="flex justify-end">
-              <button className="">
+            <div className="mb-4 flex items-center gap-2">
+              <span className="text-2xl">
                 <IconInfoCircle stroke={1.5} />
-              </button>
+              </span>
+              <h3 className="text-xl font-semibold text-white">Background</h3>
             </div>
-            <div> hola </div>
-            <audio ref={audioRef} loop>
-              <source
-                src="/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
 
-            <button
-              onClick={toggleMusic}
-              className="fixed right-4 bottom-4 cursor-pointer rounded-full border border-white/10 p-3 transition hover:border-white/40 hover:bg-white/10"
-            >
-              {isPlaying ? (
-                <IconVolume stroke={1.5} />
-              ) : (
-                <IconVolumeOff stroke={1.5} />
-              )}
-            </button>
+            <div className="mb-4 grid grid-cols-2 gap-2">
+              {BACKGROUND_TYPES.map((element) => (
+                <button
+                  key={element}
+                  onClick={() => setBackground(element)}
+                  className={`cursor-pointer rounded-2xl px-4 py-2 text-center transition-colors duration-300 hover:text-white ${
+                    background === element
+                      ? 'border-hover-app bg-selected-btn text-white'
+                      : 'border-app text-neutral-400 hover:text-neutral-200'
+                  }`}
+                >
+                  {element}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Recent Commits - Ocupa 2 espacios */}
@@ -149,6 +151,23 @@ const BentoSettings = () => {
                   Recent Commits
                 </h3>
               </div>
+              <audio ref={audioRef} loop>
+                <source
+                  src="/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+
+              <button
+                onClick={toggleMusic}
+                className="fixed right-4 bottom-4 cursor-pointer rounded-full border border-white/10 p-3 transition hover:border-white/40 hover:bg-white/10"
+              >
+                {isPlaying ? (
+                  <IconVolume stroke={1.5} />
+                ) : (
+                  <IconVolumeOff stroke={1.5} />
+                )}
+              </button>
             </div>
           </div>
         </div>
