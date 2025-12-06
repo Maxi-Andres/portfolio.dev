@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useState, useRef, type MouseEvent } from 'react'
 
 interface NavBarProps {
@@ -16,18 +15,19 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
   const navRef = useRef<HTMLUListElement>(null)
 
   const navItemClasses =
-    'text-center relative text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full'
+    'text-center relative text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full cursor-pointer'
   const hoverElementClasses =
     'absolute top-0 pointer-events-none transition-all duration-300 bg-selected-btn rounded-xl sm:rounded-full'
 
   const navItems = [
-    { to: '/', label: 'Home', isExternal: false },
-    { to: '/about', label: 'About', isExternal: false },
-    { to: '/projects', label: 'Projects', isExternal: false },
+    { id: 'home', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'about', label: 'About' },
     {
-      to: 'mailto:max.bianchimano@gmail.com',
+      id: 'contact',
       label: 'Contact',
       isExternal: true,
+      href: 'mailto:max.bianchimano@gmail.com',
     },
   ]
 
@@ -49,6 +49,16 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
 
   const handleLeave = () => {
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }))
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
   }
 
   // config segun variant para no repetir porque si no con el media query lo rompe
@@ -80,21 +90,21 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
             item.isExternal ? (
               <a
                 key={item.label}
-                href={item.to}
+                href={item.href}
                 className={navItemClasses}
                 onMouseEnter={handleHover}
               >
                 {item.label}
               </a>
             ) : (
-              <Link
+              <a
                 key={item.label}
-                to={item.to}
+                onClick={() => scrollToSection(item.id)}
                 className={navItemClasses}
                 onMouseEnter={handleHover}
               >
                 {item.label}
-              </Link>
+              </a>
             )
           )}
         </ul>
