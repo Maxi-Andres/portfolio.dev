@@ -3,6 +3,7 @@ import LightPillar from '@/components/backgrounds/LightPillar'
 import { ShootingStars } from '@/components/backgrounds/shooting-stars'
 import { StarsBackground } from '@/components/backgrounds/stars-background'
 import { useBackground } from '@/context/Context'
+import LetterGlitch from '@/components/backgrounds/LetterGlitch'
 
 export const MainBackground = () => {
   // este es el background de el context
@@ -10,16 +11,25 @@ export const MainBackground = () => {
 
   const renderBackground = () => {
     switch (background) {
-      case 'NeonGlow':
+      case 'White':
+        return (
+          <div className="pointer-events-none fixed inset-0 z-0 h-full w-full bg-white/50" />
+        )
+      //! para el modo blanco tenes que poner modo claro y oscuro y cambiar todos los colores de las letras y los bordes
+      case 'Black':
+        return (
+          <div className="pointer-events-none fixed inset-0 z-0 h-full w-full bg-white/5" />
+        )
+      case 'Neon Glow':
         return <NeonBackgroundEffect />
-      case 'ShootingStars':
+      case 'Shooting Stars':
         return (
           <>
             <ShootingStars
               minSpeed={10}
               maxSpeed={30}
-              minDelay={4200}
-              maxDelay={8700}
+              minDelay={3000}
+              maxDelay={4000}
               starColor="#9E00FF"
               trailColor="#2EB9DF"
               starWidth={10}
@@ -36,7 +46,7 @@ export const MainBackground = () => {
             />
           </>
         )
-      case 'LightPillar':
+      case 'Light Pillar':
         return (
           <LightPillar
             topColor="#5227FF"
@@ -50,6 +60,17 @@ export const MainBackground = () => {
             pillarRotation={25}
             interactive={false}
             mixBlendMode="normal"
+          />
+        )
+      case 'Letter Glitch':
+        return (
+          <LetterGlitch
+            glitchSpeed={90}
+            centerVignette={true}
+            outerVignette={true}
+            smooth={true}
+            glitchColors={['#2b4539', '#61dca3', '#61b3dc']}
+            characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789"
           />
         )
       default:

@@ -38,5 +38,5 @@ const Links = () => {
     </>
   )
 }
-
+// en el todo lo que se puede hacer es que te lo descargue o que lo abra en una pestaña para ver o podes poner las dos
 export default Links

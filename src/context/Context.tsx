@@ -1,13 +1,22 @@
 // contexts/BackgroundContext.tsx
 import { createContext, useContext, useState } from 'react'
 
-export type BackgroundType = 'NeonGlow' | 'ShootingStars' | 'LightPillar'
+export type BackgroundType =
+  | 'White'
+  | 'Black'
+  | 'Neon Glow'
+  | 'Shooting Stars'
+  | 'Light Pillar'
+  | 'Letter Glitch'
 
 // esto es para poder iterar despues
 export const BACKGROUND_TYPES: BackgroundType[] = [
-  'NeonGlow',
-  'ShootingStars',
-  'LightPillar',
+  'White',
+  'Black',
+  'Neon Glow',
+  'Shooting Stars',
+  'Light Pillar',
+  'Letter Glitch',
 ]
 
 interface BackgroundContextType {
@@ -25,7 +34,7 @@ export const BackgroundProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [background, setBackground] = useState<BackgroundType>('NeonGlow')
+  const [background, setBackground] = useState<BackgroundType>('Neon Glow')
 
   return (
     <BackgroundContext.Provider value={{ background, setBackground }}>
