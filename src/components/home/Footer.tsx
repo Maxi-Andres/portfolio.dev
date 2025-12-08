@@ -4,6 +4,16 @@ import Section from '../shared/SectionContainer'
 import GlassCard from '../shared/GlassCard'
 
 const Footer = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
+
   return (
     <>
       <Section
@@ -23,28 +33,28 @@ const Footer = () => {
                     <h3 className="mb-4 text-neutral-300">Explore</h3>
                     <ul className="flex flex-col font-light text-neutral-500">
                       <li>
-                        <Link
-                          to="/"
-                          className="hover:text-neutral-300 hover:underline"
+                        <a
+                          onClick={() => scrollToSection('home')}
+                          className="cursor-pointer hover:text-neutral-300 hover:underline"
                         >
                           Home
-                        </Link>
+                        </a>
                       </li>
                       <li>
-                        <Link
-                          to="/about"
-                          className="hover:text-neutral-300 hover:underline"
-                        >
-                          About
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/projects"
-                          className="hover:text-neutral-300 hover:underline"
+                        <a
+                          onClick={() => scrollToSection('projects')}
+                          className="cursor-pointer hover:text-neutral-300 hover:underline"
                         >
                           Projects
-                        </Link>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={() => scrollToSection('about')}
+                          className="cursor-pointer hover:text-neutral-300 hover:underline"
+                        >
+                          About
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -54,7 +64,8 @@ const Footer = () => {
                     <ul className="flex flex-col font-light text-neutral-500">
                       <li>
                         <a
-                          href="mailto:contact@maximiliano.dev"
+                          href="mailto:max.bianchimano@gmail.com"
+                          target="_blank"
                           className="hover:text-neutral-300 hover:underline"
                         >
                           Email
@@ -63,7 +74,8 @@ const Footer = () => {
 
                       <li>
                         <a
-                          href="https://www.linkedin.com/"
+                          href="https://www.linkedin.com/in/maximiliano-andres-bianchimano/"
+                          target="_blank"
                           className="hover:text-neutral-300 hover:underline"
                         >
                           LinkedIn
@@ -72,7 +84,8 @@ const Footer = () => {
 
                       <li>
                         <a
-                          href="https://github.com/"
+                          href="https://github.com/Maxi-Andres"
+                          target="_blank"
                           className="hover:text-neutral-300 hover:underline"
                         >
                           GitHub
