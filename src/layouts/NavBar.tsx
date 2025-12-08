@@ -15,7 +15,7 @@ const NavBar = ({ variant = 'desktop' }: NavBarProps) => {
   const navRef = useRef<HTMLUListElement>(null)
 
   const navItemClasses =
-    'text-center relative text-neutral-300 hover:text-white transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full cursor-pointer'
+    'text-center relative app-nav-text-color transition-colors duration-300 py-5 sm:p-4 rounded-none sm:rounded-full cursor-pointer'
   const hoverElementClasses =
     'absolute top-0 pointer-events-none transition-all duration-300 bg-selected-btn rounded-xl sm:rounded-full'
 

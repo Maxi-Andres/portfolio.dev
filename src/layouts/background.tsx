@@ -13,12 +13,12 @@ export const MainBackground = () => {
     switch (background) {
       case 'White':
         return (
-          <div className="pointer-events-none fixed inset-0 z-0 h-full w-full bg-white/50" />
+          <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-[#fafafa]" />
         )
       //! para el modo blanco tenes que poner modo claro y oscuro y cambiar todos los colores de las letras y los bordes
       case 'Black':
         return (
-          <div className="pointer-events-none fixed inset-0 z-0 h-full w-full bg-white/5" />
+          <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-white/5" />
         )
       case 'Neon Glow':
         return <NeonBackgroundEffect />

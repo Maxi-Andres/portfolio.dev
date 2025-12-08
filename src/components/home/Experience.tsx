@@ -13,10 +13,10 @@ const Experience = () => {
           <div className="w-full">
             <ul className="glass-effect rounded-app border-app flex w-full shadow-lg">
               <button
-                className={`w-1/2 cursor-pointer rounded-2xl px-4 py-2 text-center hover:text-white ${
+                className={`app-button-text w-1/2 cursor-pointer rounded-2xl px-4 py-2 text-center ${
                   active === 'work'
-                    ? 'border-hover-app border-border-app bg-selected-btn text-white'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'border-hover-app border-border-app bg-selected-btn app-button-text-active'
+                    : 'app-button-text-inactive'
                 }`}
                 onClick={() => setActive('work')}
               >
@@ -24,10 +24,10 @@ const Experience = () => {
               </button>
 
               <button
-                className={`w-1/2 cursor-pointer rounded-2xl px-4 py-2 text-center hover:text-white ${
+                className={`app-button-text w-1/2 cursor-pointer rounded-2xl px-4 py-2 text-center ${
                   active === 'studies'
-                    ? 'border-hover-app border-border-app bg-selected-btn text-white'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'border-hover-app border-border-app bg-selected-btn app-button-text-active'
+                    : 'app-button-text-inactive'
                 }`}
                 onClick={() => setActive('studies')}
               >

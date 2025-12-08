@@ -1,6 +1,6 @@
 const NeonBackgroundEffect = () => {
   return (
-    <div className="pointer-events-none absolute top-0 left-0 -z-50 h-full w-screen overflow-hidden">
+    <div className="pointer-events-none absolute top-0 left-0 -z-50 h-full w-screen overflow-hidden bg-black">
       <div className="header-bg-elipse-1 absolute top-40 left-1/2 -translate-x-[10] md:top-60"></div>
       <div className="header-bg-elipse-2 absolute top-40 left-1/2 -translate-x-1/2 md:top-60"></div>
       <div className="header-bg-elipse-3 absolute top-40 right-1/2 translate-x-[10] md:top-60"></div>

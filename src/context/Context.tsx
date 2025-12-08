@@ -15,7 +15,7 @@ export type BackgroundType =
   | 'Letter Glitch'
 
 // export type ThemeName = 'latte' | 'frappe' | 'macchiato' | 'mocha'
-export type ThemeName = 'latte' | 'default' | 'macchiato' | 'mocha'
+export type ThemeName = 'light_mode' | 'dark_mode'
 
 export type AccentColor =
   | 'rosewater'
@@ -77,26 +77,37 @@ export const ACCENT_COLORS: { name: AccentColor; hex: string }[] = [
 
 //? cambiar esto
 export const themes: Record<ThemeName, Theme> = {
-  latte: {
-    // '--color-border-app': '#4c4f69',
+  light_mode: {
+    '--color-border-app': 'black',
     '--color-bg-glass': '#eff1f5',
-    // '--color-bg-selected': '#8839ef',
+    '--color-bg-selected': 'black',
   },
-  default: {
+  dark_mode: {
     '--color-border-app': 'white',
     '--color-bg-glass': '#1e1e2e',
     '--color-bg-selected': 'white',
   },
-  macchiato: {
-    '--color-border-app': '#ff0300',
-    '--color-bg-glass': '#24273a',
-    '--color-bg-selected': '#ffa000',
-  },
-  mocha: {
-    '--color-border-app': '#0006ff',
-    '--color-bg-glass': '#1e1e2e',
-    '--color-bg-selected': '#0006ff',
-  },
+
+  // latte: {
+  //   // '--color-border-app': '#4c4f69',
+  //   '--color-bg-glass': '#eff1f5',
+  //   // '--color-bg-selected': '#8839ef',
+  // },
+  // default: {
+  //   '--color-border-app': 'white',
+  //   '--color-bg-glass': '#1e1e2e',
+  //   '--color-bg-selected': 'white',
+  // },
+  // macchiato: {
+  //   '--color-border-app': '#ff0300',
+  //   '--color-bg-glass': '#24273a',
+  //   '--color-bg-selected': '#ffa000',
+  // },
+  // mocha: {
+  //   '--color-border-app': '#0006ff',
+  //   '--color-bg-glass': '#1e1e2e',
+  //   '--color-bg-selected': '#0006ff',
+  // },
 }
 
 const BackgroundContext = createContext<BackgroundContextType | undefined>(
@@ -110,8 +121,8 @@ interface BackgroundProviderProps {
 
 export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
   const [background, setBackground] = useState<BackgroundType>('Neon Glow')
-  const [themeName, setThemeName] = useState<ThemeName>('mocha')
-  const [accentColor, setAccentColor] = useState<AccentColor>('mauve')
+  const [themeName, setThemeName] = useState<ThemeName>('dark_mode')
+  const [accentColor, setAccentColor] = useState<AccentColor>('white')
 
   // Cargar preferencias desde localStorage
   useEffect(() => {
@@ -140,7 +151,7 @@ export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
 
     localStorage.setItem('theme', themeName)
 
-    if (themeName === 'default') {
+    if (themeName === 'dark_mode') {
       setAccentColor('white')
     }
   }, [themeName])

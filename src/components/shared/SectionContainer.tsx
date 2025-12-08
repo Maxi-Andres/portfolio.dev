@@ -26,14 +26,14 @@ const Section = ({
       {title && (
         <div className="mb-6 flex w-full items-center justify-between">
           <h2
-            className={`text-2xl font-semibold text-neutral-400 lg:text-3xl ${titleClassName}`}
+            className={`app-section-title text-2xl font-semibold lg:text-3xl ${titleClassName}`}
           >
             {title}
           </h2>
           {viewMoreLink && (
             <Link
               to={viewMoreLink}
-              className="mt-2 text-lg text-neutral-400 hover:text-white lg:text-xl"
+              className="app-view-more-link mt-2 text-lg hover:text-white lg:text-xl"
             >
               {viewMoreText}
             </Link>

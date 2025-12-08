@@ -3,7 +3,9 @@
 @plugin 'tailwindcss-animate';
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
+/* Activar dark mode cuando exista la clase `.dark` en <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+/*! si sacas esta linea deja de funcionar dark mode y ligth mode, solo queda el default que es DARK MODE  */
 
 /* ====================== Fonts ====================== */
 
@@ -27,12 +29,13 @@ body {
 }
 
 html {
-  background-color: #000000;
-  color: #ffffff;
+  /* background-color: #000000; */
+  /* color: #ffffff; */
   display: flex;
   justify-content: center;
   overflow-x: hidden; /* esto saca el scroll lateral que me da la linea */
   scrollbar-width: none;
+  color-scheme: dark !important; /*! ESTO ES PARA QUE NO IMPORTA COMO TENGA LA CONFIG MI PAGINA SIEMPRE ESTE EN MODO OSCURO  */
 }
 
 /*! ====================== IMPORTANT ====================== */
@@ -96,7 +99,37 @@ hover:bg-white/10
   @apply bg-bg-selected/10;
 }
 
-/* poner tamaños de fonts y colores */
+/* ================================ Texto para poder tener modo claro y oscuro (sin terminar)  ================================ */
+/* hay que hacer que las clases sean mas reutilizables, es una mierda*/
+.app-text-color {
+  @apply text-black dark:text-white;
+}
+
+.app-nav-text-color {
+  @apply text-neutral-950 hover:text-black dark:text-neutral-300 dark:hover:text-white;
+}
+
+.app-section-title {
+  @apply text-black dark:text-neutral-400;
+}
+
+.app-view-more-link {
+  @apply text-black/55 hover:text-black dark:text-neutral-400 dark:hover:text-white;
+}
+
+.app-button-text {
+  @apply hover:text-black dark:hover:text-white;
+}
+
+.app-button-text-active {
+  @apply text-black dark:text-white;
+}
+
+.app-button-text-inactive {
+  @apply text-neutral-800 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200;
+}
+
+/* ================================ ================================ */
 
 /* ====================== Styles ====================== */
 /*! hacer que estos colores los puedan elegir las personas  */

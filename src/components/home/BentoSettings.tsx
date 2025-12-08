@@ -58,12 +58,15 @@ const BentoSettings = () => {
     }
   }
 
+  // esto es para poder poner nombres pioals
   const themeNames: { key: ThemeName; label: string }[] = [
-    { key: 'latte', label: 'Latte' },
-    { key: 'default', label: 'Default' },
+    { key: 'light_mode', label: 'light mode' },
+    { key: 'dark_mode', label: 'dark mode' },
+    // { key: 'latte', label: 'Latte' },
+    // { key: 'default', label: 'Default' },
     // { key: 'frappe', label: 'Frappe' },
-    { key: 'macchiato', label: 'Macchiato' },
-    { key: 'mocha', label: 'Mocha' },
+    // { key: 'macchiato', label: 'Macchiato' },
+    // { key: 'mocha', label: 'Mocha' },
   ]
 
   return (

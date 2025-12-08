@@ -13,7 +13,7 @@ const Links = () => {
         className="rounded-full hover:bg-white/10"
       >
         <button className="glass-effect flex cursor-pointer items-center gap-2 rounded-full border p-2 text-sm font-medium duration-500 hover:scale-105">
-          <IconBrandLinkedin stroke={1.5} />
+          <IconBrandLinkedin stroke={1.5} className="app-text-color" />
         </button>
       </a>
       <a
@@ -22,7 +22,7 @@ const Links = () => {
         className="rounded-full hover:bg-white/10"
       >
         <button className="glass-effect flex cursor-pointer items-center gap-2 rounded-full border p-2 text-sm font-medium duration-500 hover:scale-105">
-          <IconBrandGithub stroke={1.5} />
+          <IconBrandGithub stroke={1.5} className="app-text-color" />
         </button>
       </a>
       <a
@@ -31,7 +31,7 @@ const Links = () => {
         className="rounded-full hover:bg-white/10"
       >
         <button className="glass-effect flex cursor-pointer items-center gap-2 rounded-full border p-2 text-sm font-medium duration-500 hover:scale-105">
-          <IconFileDownload stroke={1.5} />
+          <IconFileDownload stroke={1.5} className="app-text-color" />
           to do!
         </button>
       </a>
