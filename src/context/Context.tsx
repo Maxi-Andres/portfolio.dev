@@ -13,11 +13,22 @@ export type BackgroundType =
   | 'Shooting Stars'
   | 'Light Pillar'
   | 'Letter Glitch'
+  | 'Color Bends'
+  | 'Dither'
 
-// export type ThemeName = 'latte' | 'frappe' | 'macchiato' | 'mocha'
-export type ThemeName = 'light_mode' | 'dark_mode'
+export const BACKGROUND_TYPES: BackgroundType[] = [
+  'White',
+  'Black',
+  'Neon Glow',
+  'Shooting Stars',
+  'Light Pillar',
+  'Letter Glitch',
+  'Color Bends',
+  'Dither',
+]
 
 export type AccentColor =
+  | 'white'
   | 'rosewater'
   | 'flamingo'
   | 'pink'
@@ -32,33 +43,9 @@ export type AccentColor =
   | 'sapphire'
   | 'blue'
   | 'lavender'
-  | 'white'
-
-interface Theme {
-  '--color-border-app'?: string
-  '--color-bg-glass': string
-  '--color-bg-selected'?: string
-}
-
-interface BackgroundContextType {
-  background: BackgroundType
-  setBackground: (bg: BackgroundType) => void
-  themeName: ThemeName
-  changeTheme: (newTheme: ThemeName) => void
-  accentColor: AccentColor
-  changeAccentColor: (color: AccentColor) => void
-}
-
-export const BACKGROUND_TYPES: BackgroundType[] = [
-  'White',
-  'Black',
-  'Neon Glow',
-  'Shooting Stars',
-  'Light Pillar',
-  'Letter Glitch',
-]
 
 export const ACCENT_COLORS: { name: AccentColor; hex: string }[] = [
+  { name: 'white', hex: '#ffffff' },
   { name: 'rosewater', hex: '#f5e0dc' },
   { name: 'flamingo', hex: '#f2cdcd' },
   { name: 'pink', hex: '#f5c2e7' },
@@ -74,6 +61,15 @@ export const ACCENT_COLORS: { name: AccentColor; hex: string }[] = [
   { name: 'blue', hex: '#89b4fa' },
   { name: 'lavender', hex: '#b4befe' },
 ]
+
+// export type ThemeName = 'latte' | 'frappe' | 'macchiato' | 'mocha'
+export type ThemeName = 'light_mode' | 'dark_mode'
+
+interface Theme {
+  '--color-border-app'?: string
+  '--color-bg-glass': string
+  '--color-bg-selected'?: string
+}
 
 //? cambiar esto
 export const themes: Record<ThemeName, Theme> = {
@@ -110,6 +106,15 @@ export const themes: Record<ThemeName, Theme> = {
   // },
 }
 
+interface BackgroundContextType {
+  background: BackgroundType
+  setBackground: (bg: BackgroundType) => void
+  themeName: ThemeName
+  changeTheme: (newTheme: ThemeName) => void
+  accentColor: AccentColor
+  changeAccentColor: (color: AccentColor) => void
+}
+
 const BackgroundContext = createContext<BackgroundContextType | undefined>(
   undefined
 )
@@ -143,21 +148,6 @@ export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
 
   useEffect(() => {
     const root = document.documentElement
-    const selectedTheme = themes[themeName]
-
-    Object.entries(selectedTheme).forEach(([property, value]) => {
-      root.style.setProperty(property, value)
-    })
-
-    localStorage.setItem('theme', themeName)
-
-    if (themeName === 'dark_mode') {
-      setAccentColor('white')
-    }
-  }, [themeName])
-
-  useEffect(() => {
-    const root = document.documentElement
     const colorData = ACCENT_COLORS.find((c) => c.name === accentColor)
 
     if (colorData) {
@@ -176,6 +166,7 @@ export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
     if (themes[newTheme]) {
       setThemeName(newTheme)
     }
+    setAccentColor('white')
   }
 
   const changeAccentColor = (color: AccentColor) => {

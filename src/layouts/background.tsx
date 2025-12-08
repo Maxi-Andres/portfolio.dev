@@ -4,6 +4,8 @@ import { ShootingStars } from '@/components/backgrounds/shooting-stars'
 import { StarsBackground } from '@/components/backgrounds/stars-background'
 import { useBackground } from '@/context/Context'
 import LetterGlitch from '@/components/backgrounds/LetterGlitch'
+import ColorBends from '@/components/backgrounds/ColorBends'
+import Dither from '@/components/backgrounds/Dither'
 
 export const MainBackground = () => {
   // este es el background de el context
@@ -13,12 +15,12 @@ export const MainBackground = () => {
     switch (background) {
       case 'White':
         return (
-          <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-[#fafafa]" />
+          <div className="pointer-events-none fixed inset-0 -z-100 h-full w-full bg-[#fafafa]" />
         )
       //! para el modo blanco tenes que poner modo claro y oscuro y cambiar todos los colores de las letras y los bordes
       case 'Black':
         return (
-          <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-[#171717]" />
+          <div className="pointer-events-none fixed inset-0 -z-100 h-full w-full bg-[#171717]" />
         )
       case 'Neon Glow':
         return <NeonBackgroundEffect />
@@ -34,7 +36,7 @@ export const MainBackground = () => {
               trailColor="#2EB9DF"
               starWidth={10}
               starHeight={1}
-              className=""
+              className="-z-100"
             />
             <StarsBackground
               starDensity={0.00115}
@@ -42,7 +44,7 @@ export const MainBackground = () => {
               twinkleProbability={0.7}
               minTwinkleSpeed={0.5}
               maxTwinkleSpeed={1}
-              className=""
+              className="-z-100"
             />
           </>
         )
@@ -60,6 +62,7 @@ export const MainBackground = () => {
             pillarRotation={25}
             interactive={false}
             mixBlendMode="normal"
+            className="-z-100"
           />
         )
       case 'Letter Glitch':
@@ -72,6 +75,39 @@ export const MainBackground = () => {
             glitchColors={['#2b4539', '#61dca3', '#61b3dc']}
             characters="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789"
           />
+        )
+      case 'Color Bends':
+        return (
+          <ColorBends
+            rotation={0}
+            speed={0.1}
+            colors={[]}
+            transparent={true}
+            scale={0.9}
+            frequency={1}
+            warpStrength={1}
+            mouseInfluence={1}
+            parallax={0.5}
+            noise={0.1}
+            className=""
+            style={{}}
+          />
+        )
+      case 'Dither':
+        return (
+          <div className="fixed top-0 left-0 -z-1000 h-full w-full">
+            <Dither
+              waveSpeed={0.01}
+              waveFrequency={4}
+              waveAmplitude={0.34}
+              waveColor={[0.5, 0.5, 0.5]}
+              colorNum={3}
+              pixelSize={1}
+              disableAnimation={false}
+              enableMouseInteraction={true}
+              mouseRadius={1}
+            />
+          </div>
         )
       default:
         return <NeonBackgroundEffect />

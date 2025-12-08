@@ -7,7 +7,7 @@ type TechItemProps = {
 
 const TechItem = ({ title, icon, children, href }: TechItemProps) => {
   const content = (
-    <div className="group/item relative">
+    <div className="group/item relative justify-self-center">
       <div className="glass-effect bg-techitem-hover bg-techitem flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl text-2xl transition-all duration-300 hover:-translate-y-1">
         {children ? children : icon}
       </div>

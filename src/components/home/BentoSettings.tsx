@@ -113,19 +113,23 @@ const BentoSettings = () => {
 
             {/* Accent colors */}
             <div className="mb-4 grid grid-cols-7 gap-1">
-              {ACCENT_COLORS.map((color) => (
-                <button
-                  key={color.name}
-                  onClick={() => changeAccentColor(color.name)}
-                  className={`h-12 w-12 cursor-pointer justify-self-center rounded-lg transition-all duration-200 hover:scale-110 ${
-                    accentColor === color.name
-                      ? 'ring-offset-bg-glass ring-border-app ring-1 ring-offset-2'
-                      : ''
-                  }`}
-                  style={{ backgroundColor: color.hex }}
-                  title={color.name}
-                />
-              ))}
+              {ACCENT_COLORS.map((color) => {
+                if (color.name !== 'white') {
+                  return (
+                    <button
+                      key={color.name}
+                      onClick={() => changeAccentColor(color.name)}
+                      className={`h-12 w-12 cursor-pointer justify-self-center rounded-lg transition-all duration-200 hover:scale-110 ${
+                        accentColor === color.name
+                          ? 'ring-offset-bg-glass ring-border-app ring-1 ring-offset-2'
+                          : ''
+                      }`}
+                      style={{ backgroundColor: color.hex }}
+                      title={color.name}
+                    />
+                  )
+                }
+              })}
             </div>
 
             {/* Audio player oculto ???*/}
@@ -211,15 +215,13 @@ const BentoSettings = () => {
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-semibold text-white">
-                  Recent Commits
+                  Play a game
                 </h3>
               </div>
             </div>
 
             {/* Contenido de commits - placeholder */}
-            <p className="text-neutral-400">
-              Recent commit activity will appear here...
-            </p>
+            <p className="text-neutral-400">coming soon...</p>
           </GlassCard>
         </div>
       }
