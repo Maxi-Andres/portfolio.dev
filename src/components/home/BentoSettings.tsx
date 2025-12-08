@@ -15,9 +15,9 @@ import {
 } from '@/context/Context'
 
 const BentoSettings = () => {
-  const [mouseEffect, setMouseEffect] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [volume, setVolume] = useState(0.03)
 
   const {
     background,
@@ -31,7 +31,7 @@ const BentoSettings = () => {
   // Configurar volumen del audio
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.03
+      audioRef.current.volume = 0.02
     }
   }, [])
 
@@ -57,6 +57,12 @@ const BentoSettings = () => {
       }
     }
   }
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+  }, [volume])
 
   // esto es para poder poner nombres pioals
   const themeNames: { key: ThemeName; label: string }[] = [
@@ -85,23 +91,28 @@ const BentoSettings = () => {
 
             {/*//? Themes ver si dejarlo o no */}
             <div className="mb-4 grid grid-cols-2 gap-2">
-              {themeNames.map((theme) => (
-                <button
-                  key={theme.key}
-                  onClick={() => changeTheme(theme.key)}
-                  className={`rounded-app cursor-pointer px-4 py-2 text-center transition-all duration-300 hover:text-white ${
-                    themeName === theme.key
-                      ? 'border-selected-app bg-selected-btn text-white'
-                      : 'border-app text-neutral-400 hover:text-neutral-200'
-                  }`}
-                >
-                  {theme.label}
-                </button>
-              ))}
+              {themeNames.map((theme) => {
+                const isDisabled = theme.key === 'light_mode'
+
+                return (
+                  <button
+                    key={theme.key}
+                    onClick={() => !isDisabled && changeTheme(theme.key)}
+                    disabled={isDisabled}
+                    className={`rounded-app px-4 py-2 text-center transition-all duration-300 ${
+                      themeName === theme.key && !isDisabled
+                        ? 'border-selected-app bg-selected-btn text-white'
+                        : 'border-app text-neutral-400 hover:text-neutral-200'
+                    } ${isDisabled ? 'cursor-default opacity-40 hover:text-neutral-400' : 'border-hover-app cursor-pointer'} `}
+                  >
+                    {theme.label}
+                  </button>
+                )
+              })}
             </div>
 
             {/* Accent colors */}
-            <div className="grid grid-cols-7 gap-1">
+            <div className="mb-4 grid grid-cols-7 gap-1">
               {ACCENT_COLORS.map((color) => (
                 <button
                   key={color.name}
@@ -117,13 +128,41 @@ const BentoSettings = () => {
               ))}
             </div>
 
-            {/* Mouse effect toggle */}
-            <button
-              onClick={() => setMouseEffect(!mouseEffect)}
-              className="mt-4 flex w-full cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 transition-all duration-300 hover:bg-white/10"
-            >
-              <span>Mouse effect {mouseEffect ? 'on' : 'off'}</span>
-            </button>
+            {/* Audio player oculto ???*/}
+            <audio ref={audioRef} loop>
+              <source
+                src="/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3"
+                type="audio/mpeg"
+              />
+            </audio>
+
+            <div className="border-app border-hover-app bg-techitem flex items-center justify-center gap-4 rounded-xl px-4 py-3 backdrop-blur-md">
+              {/* Botón de música */}
+              <button
+                onClick={toggleMusic}
+                className="border-app border-hover-app bg-techitem-hover cursor-pointer rounded-full p-2 transition"
+              >
+                {isPlaying ? (
+                  <IconVolume stroke={1.5} />
+                ) : (
+                  <IconVolumeOff stroke={1.5} />
+                )}
+              </button>
+
+              {/* Volume Slider */}
+              <div className="flex items-center gap-3 px-1">
+                <span className="text-xs text-neutral-400">Vol</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="0.1"
+                  step="0.01"
+                  value={volume}
+                  onChange={(e) => setVolume(parseFloat(e.target.value))}
+                  className="volume-slider"
+                />
+              </div>
+            </div>
           </GlassCard>
 
           {/* Background Selector */}
@@ -134,7 +173,7 @@ const BentoSettings = () => {
 
                 {/* Tooltip */}
                 <div className="pointer-events-none absolute -top-18 left-0 whitespace-normal opacity-0 transition-opacity duration-200 group-hover/item:opacity-100">
-                  <div className="border-selected-app bg-bg-glass/80 rounded-lg p-1.5 px-3 backdrop-blur-lg">
+                  <div className="border-selected-app rounded-lg bg-[#1c1c1c]/96 p-1.5 px-3 backdrop-blur-lg">
                     <div className="w-47 text-xs text-white">
                       Some backgrounds use Three.js for 3D effects. May cause
                       performance issues on low-end devices.
@@ -146,19 +185,24 @@ const BentoSettings = () => {
             </div>
 
             <div className="mb-4 grid grid-cols-2 gap-2">
-              {BACKGROUND_TYPES.map((bg) => (
-                <button
-                  key={bg}
-                  onClick={() => setBackground(bg)}
-                  className={`rounded-app cursor-pointer px-4 py-2 text-center transition-all duration-300 hover:text-white ${
-                    background === bg
-                      ? 'border-selected-app bg-selected-btn text-white'
-                      : 'border-app text-neutral-400 hover:text-neutral-200'
-                  }`}
-                >
-                  {bg}
-                </button>
-              ))}
+              {BACKGROUND_TYPES.map((bg) => {
+                const isDisabled = bg === 'White'
+
+                return (
+                  <button
+                    key={bg}
+                    onClick={() => setBackground(bg)}
+                    disabled={isDisabled}
+                    className={`rounded-app px-4 py-2 text-center transition-all duration-300 ${
+                      background === bg
+                        ? 'border-selected-app bg-selected-btn text-white'
+                        : 'border-app text-neutral-400 hover:text-neutral-200'
+                    } ${isDisabled ? 'cursor-default opacity-40 hover:text-neutral-400' : 'border-hover-app cursor-pointer'} `}
+                  >
+                    {bg}
+                  </button>
+                )
+              })}
             </div>
           </GlassCard>
 
@@ -170,26 +214,6 @@ const BentoSettings = () => {
                   Recent Commits
                 </h3>
               </div>
-
-              {/* Audio player oculto */}
-              <audio ref={audioRef} loop>
-                <source
-                  src="/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3"
-                  type="audio/mpeg"
-                />
-              </audio>
-
-              {/* Botón de música */}
-              <button
-                onClick={toggleMusic}
-                className="border-app border-hover-app hover:bg-bg-selected/10 cursor-pointer rounded-full p-3 transition"
-              >
-                {isPlaying ? (
-                  <IconVolume stroke={1.5} />
-                ) : (
-                  <IconVolumeOff stroke={1.5} />
-                )}
-              </button>
             </div>
 
             {/* Contenido de commits - placeholder */}

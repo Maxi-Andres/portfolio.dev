@@ -39,7 +39,7 @@ const ProjectCard = ({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="border-app rounded-full bg-white/5 px-3 py-1 text-xs text-neutral-300"
+                className="border-app glass-effect bg-selected-btn rounded-full px-3 py-1 text-xs text-neutral-300"
               >
                 {tag}
               </span>

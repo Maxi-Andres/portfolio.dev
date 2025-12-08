@@ -20,11 +20,8 @@ const Header = () => {
               Network Engineer
             </h1>
 
-            <a
-              href="mailto:max.bianchimano@gmail.com"
-              className="rounded-full hover:bg-white/10"
-            >
-              <button className="glass-effect mb-3.5 flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium duration-500 hover:scale-105 md:mb-0">
+            <a href="mailto:max.bianchimano@gmail.com" className="rounded-full">
+              <button className="glass-effect bg-selected-btn border-selected-app mb-3.5 flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium duration-300 hover:scale-105 md:mb-0">
                 <IconSend stroke={2} size={18} className="app-text-color" />
                 <span className="app-text-color">Contact me</span>
               </button>
