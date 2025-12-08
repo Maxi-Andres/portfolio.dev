@@ -4,7 +4,7 @@ import Links from '../shared/Links'
 const Header = () => {
   return (
     <>
-      <div className="px-4 py-40 md:py-60">
+      <div className="z-10 px-4 py-40 md:py-60">
         <main className="flex max-w-4xl flex-col items-center justify-center">
           <div className="text-center">
             <h2 className="app-text-color text-2xl font-semibold">

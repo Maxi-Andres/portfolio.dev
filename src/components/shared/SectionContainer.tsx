@@ -21,7 +21,7 @@ const Section = ({
 }: SectionProps) => {
   return (
     <div
-      className={`flex w-full flex-col items-center px-10 py-10 sm:px-15 lg:px-0 ${className}`}
+      className={`z-10 flex w-full flex-col items-center px-10 py-10 sm:px-15 lg:px-0 ${className}`}
     >
       {title && (
         <div className="mb-6 flex w-full items-center justify-between">

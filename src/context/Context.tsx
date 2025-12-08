@@ -15,6 +15,7 @@ export type BackgroundType =
   | 'Letter Glitch'
   | 'Color Bends'
   | 'Dither'
+  | 'Faulty Terminal'
 
 export const BACKGROUND_TYPES: BackgroundType[] = [
   'White',
@@ -25,6 +26,7 @@ export const BACKGROUND_TYPES: BackgroundType[] = [
   'Letter Glitch',
   'Color Bends',
   'Dither',
+  'Faulty Terminal',
 ]
 
 export type AccentColor =

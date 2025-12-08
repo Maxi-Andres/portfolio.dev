@@ -12,7 +12,7 @@ const Home = () => {
       <section id="home" />
       <Header />
 
-      <section className="border-app-t mb-10 w-screen"></section>
+      <section className="border-app-t z-10 mb-10 w-screen"></section>
 
       <Experience />
 
