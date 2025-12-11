@@ -127,26 +127,21 @@ interface BackgroundProviderProps {
 }
 
 export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
-  const [background, setBackground] = useState<BackgroundType>('Neon Glow')
-  const [themeName, setThemeName] = useState<ThemeName>('dark_mode')
-  const [accentColor, setAccentColor] = useState<AccentColor>('white')
+  // Inicializar desde localStorage SIN effect
+  const [background, setBackground] = useState<BackgroundType>(() => {
+    const saved = localStorage.getItem('background') as BackgroundType
+    return saved && BACKGROUND_TYPES.includes(saved) ? saved : 'Neon Glow'
+  })
 
-  // Cargar preferencias desde localStorage
-  useEffect(() => {
-    const savedBackground = localStorage.getItem('background') as BackgroundType
-    const savedTheme = localStorage.getItem('theme') as ThemeName
-    const savedAccent = localStorage.getItem('accentColor') as AccentColor
+  const [themeName, setThemeName] = useState<ThemeName>(() => {
+    const saved = localStorage.getItem('theme') as ThemeName
+    return saved && themes[saved] ? saved : 'dark_mode'
+  })
 
-    if (savedBackground && BACKGROUND_TYPES.includes(savedBackground)) {
-      setBackground(savedBackground)
-    }
-    if (savedTheme && themes[savedTheme]) {
-      setThemeName(savedTheme)
-    }
-    if (savedAccent) {
-      setAccentColor(savedAccent)
-    }
-  }, [])
+  const [accentColor, setAccentColor] = useState<AccentColor>(() => {
+    const saved = localStorage.getItem('accentColor') as AccentColor
+    return saved || 'white'
+  })
 
   useEffect(() => {
     const root = document.documentElement
