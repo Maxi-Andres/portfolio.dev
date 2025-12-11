@@ -36,6 +36,7 @@ html {
   overflow-x: hidden; /* esto saca el scroll lateral que me da la linea */
   scrollbar-width: none;
   color-scheme: dark !important; /*! ESTO ES PARA QUE NO IMPORTA COMO TENGA LA CONFIG MI PAGINA SIEMPRE ESTE EN MODO OSCURO  */
+  /* font-family: sans-serif; */
 }
 
 /*! ====================== IMPORTANT ====================== */

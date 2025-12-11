@@ -119,9 +119,9 @@ const BentoSettings = () => {
                     <button
                       key={color.name}
                       onClick={() => changeAccentColor(color.name)}
-                      className={`h-12 w-12 cursor-pointer justify-self-center rounded-lg transition-all duration-200 hover:scale-110 ${
+                      className={`h-10 w-10 cursor-pointer justify-self-center rounded-lg transition-all duration-200 hover:scale-110 lg:h-12 lg:w-12 ${
                         accentColor === color.name
-                          ? 'ring-offset-bg-glass ring-border-app ring-1 ring-offset-2'
+                          ? 'ring-offset-bg-glass ring-border-app z-1 ring-1 ring-offset-2'
                           : ''
                       }`}
                       style={{ backgroundColor: color.hex }}
@@ -197,7 +197,7 @@ const BentoSettings = () => {
                     key={bg}
                     onClick={() => setBackground(bg)}
                     disabled={isDisabled}
-                    className={`rounded-app px-4 py-2 text-center transition-all duration-300 ${
+                    className={`rounded-app px-2.5 py-2 text-center transition-all duration-300 lg:px-4 ${
                       background === bg
                         ? 'border-selected-app bg-selected-btn text-white'
                         : 'border-app text-neutral-400 hover:text-neutral-200'

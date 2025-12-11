@@ -88,26 +88,31 @@ const Footer = () => {
               <>
                 {/* //? no se si me termina de convencer */}
                 {/* <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" /> */}
-                <div className="logo mb-6 flex flex-col justify-end md:mb-0">
+                <div className="logo mb-5 flex flex-col justify-end md:mb-0">
                   <p className="text-4xl">Maximiliano Andres</p>
                 </div>
 
-                <div className="flex flex-row space-x-12">
-                  <div className="menu mb-6 md:mb-0">
+                <div className="flex space-x-4 sm:space-x-8">
+                  <div className="menu md:mb-0">
                     <h3 className="mb-4 text-neutral-300">Stats</h3>
                     <ul className="flex flex-col font-light text-neutral-500">
                       <li>
-                        <div className="flex justify-center">
+                        <div
+                          className="flex gap-1"
+                          title="How long you have been surfing my site"
+                        >
                           <IconClock stroke={1.5} className="w-4" />
-                          <span className="flex w-12 justify-center">
+                          <span className="tabular-nums">
                             {formatTime(timeSpent)}
                           </span>
                         </div>
                       </li>
                       <li>
-                        <span className="">
-                          {visits === null ? '...' : `${visits} views`}
-                        </span>
+                        <div className="" title="View Site Analytics ">
+                          {visits === null
+                            ? '...'
+                            : `${visits.toLocaleString()} views`}
+                        </div>
                       </li>
                     </ul>
                   </div>

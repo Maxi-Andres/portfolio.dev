@@ -23,6 +23,7 @@ import {
   IconBrandGithub,
   IconBrandGit,
   IconBrandAnsible,
+  IconChartLine,
 } from '@tabler/icons-react'
 
 import TechItem from './TechItem'
@@ -49,7 +50,7 @@ const TechStack = () => {
                       development needs.
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
                       <TechItem title="Python" href="https://www.python.org/">
                         <IconBrandPython stroke={1} />
                       </TechItem>
@@ -77,17 +78,31 @@ const TechStack = () => {
                       >
                         <IconBrandTypescript stroke={1} />
                       </TechItem>
-                      <TechItem
-                        title="HTML"
-                        href="https://developer.mozilla.org/en-US/docs/Web/HTML"
-                      >
-                        <IconBrandHtml5 stroke={1} />
+                    </div>
+                  </>
+                }
+              />
+
+              {/* DevOps & Infrastructure */}
+              <GlassCard
+                children={
+                  <>
+                    <h3 className="mb-2 text-xl font-semibold text-white">
+                      DevOps & Infrastructure
+                    </h3>
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                      Managing infrastructure and automation.
+                    </p>
+
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
+                      <TechItem title="GitHub" href="https://github.com/">
+                        <IconBrandGithub stroke={1} />
                       </TechItem>
-                      <TechItem
-                        title="CSS"
-                        href="https://developer.mozilla.org/en-US/docs/Web/CSS"
-                      >
-                        <IconBrandCss3 stroke={1} />
+                      <TechItem title="Git" href="https://git-scm.com/">
+                        <IconBrandGit stroke={1} />
+                      </TechItem>
+                      <TechItem title="Ansible" href="https://www.ansible.com/">
+                        <IconBrandAnsible stroke={1} />
                       </TechItem>
                       <TechItem title="SQL" href="https://www.sql.org/">
                         <IconDatabase stroke={1} />
@@ -108,7 +123,7 @@ const TechStack = () => {
                       Analyzing data and building machine learning models.
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
                       <TechItem
                         title="Jupyter Notebook"
                         href="https://jupyter.org/"
@@ -123,6 +138,12 @@ const TechStack = () => {
                       </TechItem>
                       <TechItem title="NumPy" href="https://numpy.org/">
                         <IconGridDots stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="Matplotlib"
+                        href="https://matplotlib.org/"
+                      >
+                        <IconChartLine stroke={1} />
                       </TechItem>
                       <TechItem
                         title="Scikit-learn"
@@ -152,7 +173,7 @@ const TechStack = () => {
                       Network configuration and enterprise solutions.
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
                       <TechItem
                         title="Cumulus Linux"
                         href="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/"
@@ -181,14 +202,14 @@ const TechStack = () => {
                 children={
                   <>
                     <h3 className="mb-2 text-xl font-semibold text-white">
-                      Frameworks & Libraries
+                      Frameworks & Web Technologies
                     </h3>
                     <p className="mb-4 text-sm leading-relaxed text-neutral-400">
                       Building modern web applications with cutting-edge
                       frameworks.
                     </p>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
                       <TechItem title="React" href="https://react.dev/">
                         <IconBrandReact stroke={1} />
                       </TechItem>
@@ -207,31 +228,17 @@ const TechStack = () => {
                       >
                         <IconLeaf stroke={1} />
                       </TechItem>
-                    </div>
-                  </>
-                }
-              />
-
-              {/* DevOps & Infrastructure */}
-              <GlassCard
-                children={
-                  <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
-                      DevOps & Infrastructure
-                    </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
-                      Managing infrastructure and automation.
-                    </p>
-
-                    <div className="flex flex-wrap items-center gap-3">
-                      <TechItem title="GitHub" href="https://github.com/">
-                        <IconBrandGithub stroke={1} />
+                      <TechItem
+                        title="HTML"
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                      >
+                        <IconBrandHtml5 stroke={1} />
                       </TechItem>
-                      <TechItem title="Git" href="https://git-scm.com/">
-                        <IconBrandGit stroke={1} />
-                      </TechItem>
-                      <TechItem title="Ansible" href="https://www.ansible.com/">
-                        <IconBrandAnsible stroke={1} />
+                      <TechItem
+                        title="CSS"
+                        href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                      >
+                        <IconBrandCss3 stroke={1} />
                       </TechItem>
                     </div>
                   </>
