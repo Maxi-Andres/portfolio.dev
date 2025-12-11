@@ -19,7 +19,7 @@ const Projects = () => {
       description:
         'A comprehensive task management application with real-time collaboration features.',
       tags: ['TypeScript', 'Node.js', 'MongoDB', 'Socket.io'],
-      link: '#',
+      link: '',
     },
   ]
 
@@ -27,7 +27,7 @@ const Projects = () => {
     <>
       <Section
         title="Featured Projects"
-        viewMoreLink="/projects"
+        viewMoreLink="https://github.com/Maxi-Andres"
         children={
           <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
             {projects.map((project, index) => (

@@ -31,12 +31,13 @@ const Section = ({
             {title}
           </h2>
           {viewMoreLink && (
-            <Link
-              to={viewMoreLink}
+            <a
+              href={viewMoreLink}
+              target="_blank"
               className="app-view-more-link mt-2 text-lg hover:text-white lg:text-xl"
             >
               {viewMoreText}
-            </Link>
+            </a>
           )}
         </div>
       )}
