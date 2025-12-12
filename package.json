@@ -7,13 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:styles": "npx tailwindcss -i ./src/index.css -o ./assets/output.css --watch"
   },
   "dependencies": {
     "@react-three/fiber": "^9.4.2",
     "@react-three/postprocessing": "^3.0.4",
     "@tabler/icons-react": "^3.35.0",
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/cli": "^4.1.18",
+    "@tailwindcss/vite": "^4.1.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.555.0",
@@ -24,7 +26,7 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1"
   },

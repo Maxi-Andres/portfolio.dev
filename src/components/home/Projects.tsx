@@ -4,22 +4,28 @@ import Section from '../shared/SectionContainer'
 const Projects = () => {
   const projects = [
     {
-      image:
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-      title: 'Portfolio Website',
+      image: '/img/neural_network.png',
+      title: 'Neural Network for Digit Recognition',
       description:
-        'A modern portfolio showcasing projects and skills with smooth animations and responsive design.',
-      tags: ['React', 'Tailwind', 'Framer Motion', 'Vite'],
-      link: '#',
+        'A deep learning model built from scratch using NumPy to classify handwritten digits from the MNIST dataset. Features a 3-layer architecture and achieves 96.97% test accuracy.',
+      tags: ['Python', 'NumPy', 'Machine Learning', 'MNIST'],
+      link: 'https://github.com/Maxi-Andres/Neural-Network',
     },
     {
-      image:
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      title: 'Task Manager Pro',
+      image: '/img/algo_que_pedir.png',
+      title: 'Food Delivery Platform',
       description:
-        'A comprehensive task management application with real-time collaboration features.',
-      tags: ['TypeScript', 'Node.js', 'MongoDB', 'Socket.io'],
-      link: '',
+        'A full-stack food ordering application with dual interfaces: Svelte for restaurant management and React for customer orders. Features real-time menu updates and order tracking.',
+      tags: ['Svelte', 'React', 'Kotlin', 'Spring Boot', 'TypeScript'],
+      link: 'https://github.com/Maxi-Andres/algo-que-pedir-local',
+    },
+    {
+      image: '/img/space_invaders.png',
+      title: 'Space Invaders',
+      description:
+        'A recreation of the classic arcade game written entirely in x86 Assembly. Features progressive difficulty levels, multiple enemy types, a final boss battle, sound effects and animations.',
+      tags: ['Assembly', 'x86', '16 bits', 'Low-Level'],
+      link: 'https://github.com/Maxi-Andres/TP-Assembly',
     },
   ]
 
