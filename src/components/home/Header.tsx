@@ -1,5 +1,5 @@
 import { IconSend } from '@tabler/icons-react'
-import Links from '../shared/Links'
+import Links from '@/components/shared/Links'
 
 const Header = () => {
   return (
