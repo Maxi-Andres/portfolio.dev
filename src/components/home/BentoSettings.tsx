@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Section from '../shared/SectionContainer'
 import GlassCard from '../shared/GlassCard'
+import music from '@/assets/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3'
 import {
   IconPaint,
   IconInfoCircle,
@@ -134,10 +135,7 @@ const BentoSettings = () => {
 
             {/* Audio player oculto ???*/}
             <audio ref={audioRef} loop>
-              <source
-                src="/music/Comet Observatory 3 - Super Mario Galaxy Music - Extended.mp3"
-                type="audio/mpeg"
-              />
+              <source src={music} type="audio/mpeg" />
             </audio>
 
             <div className="border-app border-hover-app bg-techitem flex items-center justify-center gap-4 rounded-xl px-4 py-3 backdrop-blur-md">
