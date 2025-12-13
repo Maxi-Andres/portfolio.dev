@@ -1,10 +1,13 @@
 import ProjectCard from './ProjectCard'
 import Section from '../shared/SectionContainer'
+import neuralImg from '@/assets/img/neural_network.png'
+import pedirIMmg from '@/assets/img/algo_que_pedir.png'
+import spaceImg from '@/assets/img/space_invaders.png'
 
 const Projects = () => {
   const projects = [
     {
-      image: '/img/neural_network.png',
+      image: neuralImg,
       title: 'Neural Network for Digit Recognition',
       description:
         'A deep learning model built from scratch using NumPy to classify handwritten digits from the MNIST dataset. Features a 3-layer architecture and achieves 96.97% test accuracy.',
@@ -12,7 +15,7 @@ const Projects = () => {
       link: 'https://github.com/Maxi-Andres/Neural-Network',
     },
     {
-      image: '/img/algo_que_pedir.png',
+      image: pedirIMmg,
       title: 'Food Delivery Platform',
       description:
         'A full-stack food ordering application with dual interfaces: Svelte for restaurant management and React for customer orders. Features real-time menu updates and order tracking.',
@@ -20,7 +23,7 @@ const Projects = () => {
       link: 'https://github.com/Maxi-Andres/algo-que-pedir-local',
     },
     {
-      image: '/img/space_invaders.png',
+      image: spaceImg,
       title: 'Space Invaders',
       description:
         'A recreation of the classic arcade game written entirely in x86 Assembly. Features progressive difficulty levels, multiple enemy types, a final boss battle, sound effects and animations.',

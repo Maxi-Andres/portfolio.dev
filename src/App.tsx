@@ -5,7 +5,7 @@ import { BackgroundProvider } from './context/Context'
 function App() {
   return (
     <BackgroundProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/portfolio.dev">
         <AppRouter />
       </BrowserRouter>
     </BackgroundProvider>

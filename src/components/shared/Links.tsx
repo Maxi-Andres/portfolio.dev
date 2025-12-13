@@ -31,8 +31,7 @@ const Links = () => {
         className="rounded-full"
       >
         <button className="glass-effect glass-effect bg-selected-btn border-selected-app flex cursor-pointer items-center gap-2 rounded-full border p-2 text-sm font-medium duration-300 hover:scale-105">
-          <IconFileDownload stroke={1.5} className="app-text-color" />
-          to do!
+          <IconFileDownload stroke={1.5} className="app-text-color" />!
         </button>
       </a>
     </>
