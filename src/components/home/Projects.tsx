@@ -1,6 +1,7 @@
 import ProjectCard from './ProjectCard'
 import Section from '../shared/SectionContainer'
 import neuralImg from '@/assets/img/neural_network.png'
+import openGlImg from '@/assets/img/opengl.png'
 import pedirIMmg from '@/assets/img/algo_que_pedir.png'
 import spaceImg from '@/assets/img/space_invaders.png'
 
@@ -13,6 +14,14 @@ const Projects = () => {
         'A deep learning model built from scratch using NumPy to classify handwritten digits from the MNIST dataset. Features a 3-layer architecture and achieves 96.97% test accuracy.',
       tags: ['Python', 'NumPy', 'Machine Learning', 'MNIST'],
       link: 'https://github.com/Maxi-Andres/Neural-Network',
+    },
+    {
+      image: openGlImg,
+      title: '3D Renderer with OpenGL',
+      description:
+        'Journey through modern graphics programming covering lighting models, rendering pipelines, shader programming, and advanced optimization techniques for real-time 3D rendering.',
+      tags: ['C++', 'OOP', 'OpenGL', 'Shaders', '3D Graphics'],
+      link: 'https://github.com/Maxi-Andres/OpenGL',
     },
     {
       image: pedirIMmg,

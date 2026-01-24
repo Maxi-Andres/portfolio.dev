@@ -24,6 +24,14 @@ import {
   IconBrandGit,
   IconBrandAnsible,
   IconChartLine,
+  // IconBox,
+  // IconBoxModel,
+  IconWindowMaximize,
+  IconBulb,
+  // IconPhoto,
+  IconGeometry,
+  IconCube,
+  IconAntenna,
 } from '@tabler/icons-react'
 
 import TechItem from './TechItem'
@@ -78,6 +86,53 @@ const TechStack = () => {
                       >
                         <IconBrandTypescript stroke={1} />
                       </TechItem>
+                    </div>
+                  </>
+                }
+              />
+
+              {/* Graphics & 3D Programming */}
+              <GlassCard
+                children={
+                  <>
+                    <h3 className="mb-2 text-xl font-semibold text-white">
+                      Graphics & 3D Programming
+                    </h3>
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                      Real-time rendering and advanced graphics techniques.
+                    </p>
+
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
+                      <TechItem title="OpenGL" href="https://www.opengl.org/">
+                        <IconCube stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="GLSL Shaders"
+                        href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language"
+                      >
+                        <IconBulb stroke={1} />
+                      </TechItem>
+                      <TechItem title="GLFW" href="https://www.glfw.org/">
+                        <IconWindowMaximize stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="GLM"
+                        href="https://github.com/g-truc/glm"
+                      >
+                        <IconGeometry stroke={1} />
+                      </TechItem>
+                      {/* <TechItem
+                        title="Model Loading"
+                        href="https://learnopengl.com/Model-Loading/Assimp"
+                      >
+                        <IconBoxModel stroke={1} />
+                      </TechItem> */}
+                      {/* <TechItem
+                        title="ImGui"
+                        href="https://github.com/ocornut/imgui"
+                      >
+                        <IconPhoto stroke={1} />
+                      </TechItem> */}
                     </div>
                   </>
                 }
@@ -170,7 +225,8 @@ const TechStack = () => {
                       Networking
                     </h3>
                     <p className="mb-4 text-sm leading-relaxed text-neutral-400">
-                      Network configuration and enterprise solutions.
+                      Network configuration, wireless systems, and enterprise
+                      solutions.
                     </p>
 
                     <div className="grid grid-cols-[repeat(auto-fit,minmax(48px,48px))] justify-center gap-3">
@@ -191,6 +247,12 @@ const TechStack = () => {
                         href="https://en.wikipedia.org/wiki/Software-defined_networking"
                       >
                         <IconTopologyStar3 stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="Wireless Networks"
+                        href="https://en.wikipedia.org/wiki/Wireless_network"
+                      >
+                        <IconAntenna stroke={1} />
                       </TechItem>
                     </div>
                   </>
