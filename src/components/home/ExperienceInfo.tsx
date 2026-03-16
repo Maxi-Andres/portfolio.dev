@@ -11,6 +11,13 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
       description:
         'Network infrastructure management and maintenance. Configuration and troubleshooting of networking equipment. Support in implementing network security protocols and monitoring network performance.',
     },
+    {
+      period: '2024 - Present',
+      institution: 'Freelance',
+      position: 'Full Stack Developer',
+      description:
+        "End-to-end web development for various clients. From UI/UX design and frontend implementation to backend architecture, REST APIs, and database design. Delivering complete, production-ready web applications tailored to each client's needs.",
+    },
   ]
 
   const studies = [
