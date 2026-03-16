@@ -50,7 +50,7 @@ body {
   width: 100%;
 }
 
-/* ====================== Custom Classes and Theme Variables====================== */
+/* ====================== Custom Classes and Theme Variables ====================== */
 /** se que no se hace esto con tailwind pero asi se puede tener un poco mas general algunas cosas */
 /* 
 esta es la config general de estilo
@@ -78,6 +78,8 @@ hover:bg-white/10
   @apply rounded-2xl;
 }
 
+/* ====================== borders ====================== */
+
 .border-app-t {
   @apply border-border-app/10 border-t;
 }
@@ -89,12 +91,16 @@ hover:bg-white/10
   @apply border-border-app/10 border;
 }
 
+/* ====================== borders selected ====================== */
+
 .border-hover-app {
   @apply hover:border-border-app/40 border;
 }
 .border-selected-app {
   @apply border-border-app border;
 }
+
+/* ====================== extras ====================== */
 
 .bg-selected-btn {
   @apply bg-bg-selected/10;

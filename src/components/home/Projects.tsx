@@ -4,6 +4,7 @@ import neuralImg from '@/assets/img/neural_network.png'
 import openGlImg from '@/assets/img/opengl.png'
 import pedirIMmg from '@/assets/img/algo_que_pedir.png'
 import spaceImg from '@/assets/img/space_invaders.png'
+import Silk from '@/assets/img/silk_tech.png'
 
 const Projects = () => {
   const projects = [
@@ -38,6 +39,14 @@ const Projects = () => {
         'A recreation of the classic arcade game written entirely in x86 Assembly. Features progressive difficulty levels, multiple enemy types, a final boss battle, sound effects and animations.',
       tags: ['Assembly', 'x86', '16 bits', 'Low-Level'],
       link: 'https://github.com/Maxi-Andres/TP-Assembly',
+    },
+    {
+      image: Silk,
+      title: 'Silk Technologies — Corporate Website',
+      description:
+        'Full-stack corporate website developed for Silk Tech srl. Covers UI/UX design, frontend implementation, backend and database setup — delivered as a complete production-ready product.',
+      tags: ['React', 'TypeScript', 'Tailwind CSS', 'Full Stack'],
+      link: 'https://silktech.com.ar', // reemplazá con el link real
     },
   ]
 
