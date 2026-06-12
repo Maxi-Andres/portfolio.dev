@@ -46,7 +46,7 @@ const Projects = () => {
       description:
         'Full-stack corporate website developed for Silk Tech srl. Covers UI/UX design, frontend implementation, backend and database setup — delivered as a complete production-ready product.',
       tags: ['React', 'TypeScript', 'Tailwind CSS', 'Full Stack'],
-      link: 'https://silktech.com.ar', // reemplazá con el link real
+      link: 'https://silk-technologies.com/',
     },
   ]
 
