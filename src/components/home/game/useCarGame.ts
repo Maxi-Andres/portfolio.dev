@@ -5,40 +5,15 @@
  *
  * - Mantiene el `World` en un ref (no re-renderiza por frame).
  * - Corre el loop con requestAnimationFrame.
- * - Expone a React solo lo que la UI necesita: status y score.
+ * - Expone a React solo lo que la UI necesita: status, score y best.
  * - Maneja input de teclado y de puntero (mouse / touch).
+ * - El record personal (best) se persiste en localStorage.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { GAME_CONFIG } from './config'
 import { createPreviewWorld, createWorld, updateWorld } from './engine'
 import { renderWorld } from './render'
 import type { GameStatus, InputState, World } from './types'
-
-/** Lee la tabla de records de localStorage (ordenada desc). */
-function loadScores(): number[] {
-  try {
-    const raw = localStorage.getItem(GAME_CONFIG.leaderboardKey)
-    const arr = raw ? JSON.parse(raw) : []
-    if (!Array.isArray(arr)) return []
-    return arr
-      .filter((n) => typeof n === 'number' && Number.isFinite(n))
-      .sort((a, b) => b - a)
-      .slice(0, GAME_CONFIG.leaderboardSize)
-  } catch {
-    return []
-  }
-}
-
-/** Inserta un score, recorta al top N, lo guarda y lo devuelve. */
-function saveScores(all: number[]): number[] {
-  const next = all.sort((a, b) => b - a).slice(0, GAME_CONFIG.leaderboardSize)
-  try {
-    localStorage.setItem(GAME_CONFIG.leaderboardKey, JSON.stringify(next))
-  } catch {
-    /* ignore */
-  }
-  return next
-}
 
 export function useCarGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -49,9 +24,10 @@ export function useCarGame() {
 
   const [status, setStatus] = useState<GameStatus>('idle')
   const [score, setScore] = useState(0)
-  // Tabla de records persistida en localStorage (orden desc).
-  const [scores, setScores] = useState<number[]>(() => loadScores())
-  const best = scores[0] ?? 0
+  const [best, setBest] = useState(() => {
+    const saved = Number(localStorage.getItem(GAME_CONFIG.bestScoreKey))
+    return Number.isFinite(saved) ? saved : 0
+  })
 
   // ---- Loop principal ----
   // Named function expression: `frame` se referencia a si misma para el
@@ -73,7 +49,11 @@ export function useCarGame() {
     if (over) {
       const final = Math.floor(world.score)
       setScore(final)
-      setScores((prev) => saveScores([...prev, final]))
+      setBest((b) => {
+        if (final <= b) return b
+        localStorage.setItem(GAME_CONFIG.bestScoreKey, String(final))
+        return final
+      })
       setStatus('gameover')
       return
     }
@@ -148,14 +128,5 @@ export function useCarGame() {
     inputRef.current.pointerX = null
   }, [])
 
-  return {
-    canvasRef,
-    status,
-    score,
-    best,
-    scores,
-    start,
-    handlePointer,
-    clearPointer,
-  }
+  return { canvasRef, status, score, best, start, handlePointer, clearPointer }
 }

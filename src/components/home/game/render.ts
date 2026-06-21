@@ -27,7 +27,9 @@ function jitter(rowId: number, seed: number, amp: number): number {
   return Math.round((rand(rowId * 1.13 + seed) * 2 - 1) * amp)
 }
 
-/** Recorre filas que bajan con el scroll. */
+/** Recorre filas que bajan con el scroll. Empieza en k=-1 para que la
+ *  fila de mas arriba cubra desde y<0 (sino queda una tira sin pintar
+ *  arriba de todo segun el offset del scroll). */
 function eachRow(
   scrollY: number,
   spacing: number,
@@ -35,7 +37,7 @@ function eachRow(
 ) {
   const startRow = Math.floor(scrollY / spacing)
   const total = Math.ceil(cfg.view.height / spacing) + 2
-  for (let k = 0; k < total; k++) {
+  for (let k = -1; k < total; k++) {
     const rowId = startRow - k
     cb(rowId, Math.round(scrollY - rowId * spacing))
   }

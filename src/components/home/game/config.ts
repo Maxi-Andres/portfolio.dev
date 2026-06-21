@@ -23,9 +23,8 @@ export const GAME_CONFIG = {
   displayMaxWidth: 460,
 
   /** Persistencia (localStorage). */
-  leaderboardKey: 'car-game-scores',
-  leaderboardSize: 5,
-  collapseKey: 'car-game-collapsed',
+  bestScoreKey: 'car-game-best', // record personal del jugador
+  collapseKey: 'car-game-collapsed', // estado plegado/desplegado
 
   /** Cantidad de carriles de la autopista. */
   lanes: 6,
