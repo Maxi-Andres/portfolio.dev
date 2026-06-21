@@ -69,11 +69,13 @@ export function createPreviewWorld(): World {
   const world = createWorld()
   // [lane, fila relativa (0 arriba - 1 abajo), color]
   const layout: [number, number, string][] = [
-    [0, 0.08, '#e7e9ea'],
-    [3, 0.06, '#c9ccce'],
-    [1, 0.34, '#e7e9ea'],
-    [4, 0.46, '#cf3a33'],
-    [3, 0.62, '#3b7fd4'],
+    [0, 0.1, '#3b7fd4'],
+    [2, 0.04, '#e4b53b'],
+    [4, 0.12, '#e7e9ea'],
+    [1, 0.4, '#cf3a33'],
+    [5, 0.34, '#c9ccce'],
+    [3, 0.56, '#e7e9ea'],
+    [0, 0.66, '#7b4fd0'],
   ]
   for (const [lane, t, color] of layout) {
     world.enemies.push({
@@ -190,10 +192,11 @@ export function updateWorld(
     )
   }
 
-  // --- Enemigos: bajan y se descartan al salir de pantalla ---
+  // --- Enemigos: bajan mas lento que la ruta (sensacion de velocidad) ---
+  const enemySpeed = world.speed * cfg.traffic.enemySpeedFactor
   const alive: Car[] = []
   for (const enemy of world.enemies) {
-    enemy.y += world.speed * dt
+    enemy.y += enemySpeed * dt
     if (collides(player, enemy)) {
       world.status = 'gameover'
       return true

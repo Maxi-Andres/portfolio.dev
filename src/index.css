@@ -78,6 +78,13 @@ hover:bg-white/10
   @apply rounded-2xl;
 }
 
+/* ====================== Pixel art (juego) ====================== */
+.font-pixel {
+  font-family: 'Press Start 2P', ui-monospace, monospace;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
 /* ====================== borders ====================== */
 
 .border-app-t {

@@ -4,93 +4,109 @@
  * ============================================================
  *
  * Todo lo "tuneable" vive aca: tamaños, colores, velocidades,
- * cantidad de carriles, etc. Si queres que el juego sea mas
- * dificil, mas rapido, con otros colores, etc -> cambias aca y
- * el resto del codigo se adapta solo.
+ * cantidad de carriles, decoracion (pasto/arena/flores/arboles), etc.
  *
  * Los sprites (los dibujos de los autos en pixel art) estan en
- * `sprites.ts`, ese es el otro archivo que vas a querer tocar.
+ * `sprites.ts`. La escena (ruta + decoracion) se dibuja en `render.ts`.
  */
 
 export const GAME_CONFIG = {
   /** Resolucion interna del canvas (en px). El canvas se escala solo
-   *  al ancho del contenedor manteniendo este aspecto. */
+   *  al ancho del contenedor manteniendo este aspecto. Ancho > alto
+   *  para que el juego sea bien "ancho". */
   view: {
-    width: 380,
-    height: 400,
+    width: 540,
+    height: 440,
   },
 
-  /** Cantidad de carriles de la autopista. */
-  lanes: 5,
+  /** Ancho maximo del juego en pantalla (px). */
+  displayMaxWidth: 600,
 
-  /** Escala del pixel art: cada "celda" del sprite ocupa N px.
-   *  Mas grande = autos mas grandes y pixelado mas marcado.
-   *  (El sprite del auto es de 14x26 celdas -> auto de 42x78 px.) */
+  /** Cantidad de carriles de la autopista. */
+  lanes: 6,
+
+  /** Escala del pixel art: cada "celda" del sprite ocupa N px. */
   pixelScale: 3,
 
   /** Sombra que proyecta cada auto sobre el asfalto. */
   shadow: {
-    offsetX: 5, // desplazamiento a la derecha (px)
-    offsetY: 6, // desplazamiento hacia abajo (px)
-    alpha: 0.28, // opacidad (0-1)
+    offsetX: 5,
+    offsetY: 6,
+    alpha: 0.28,
   },
 
+  /** Clave de localStorage donde se guarda el record. */
+  bestScoreKey: 'car-game-best',
+
   road: {
-    // --- Pasto: varios verdes para que tenga mas detalle ---
-    grassOuter: '#86a85e', // verde de los bordes externos
-    grassInner: '#74974a', // verde pegado a la ruta
-    grassEdge: '#557a37', // franja oscura contra el asfalto
-    grassTufts: ['#5f7d3d', '#9cbd6e', '#6f9047'], // mechones que se mueven
-    tuftSpacing: 24, // separacion vertical entre mechones
-    tuftSize: 4, // tamaño del mechon (px)
+    // --- Asfalto: centro mas claro, costados mas oscuros ---
+    asphaltCenter: '#5f656b',
+    asphaltEdge: '#4f545a',
+    laneTint: 0.05, // variacion sutil por carril (0-1)
 
-    // --- Asfalto: el centro es mas claro y se oscurece hacia los costados ---
-    asphaltCenter: '#676d72',
-    asphaltEdge: '#565b60',
-    laneTint: 0.05, // cuanto se oscurecen los carriles alternos (0-1)
+    laneLine: '#f1f0ea', // lineas blancas punteadas del medio
+    edgeLine: '#e6e5dd', // lineas solidas del borde de la ruta
 
-    laneLine: '#eceae4', // lineas blancas punteadas del medio
-    edgeLine: '#d7d7d1', // lineas solidas del borde de la ruta
-    grassWidth: 26, // ancho del pasto a cada lado (px)
-    shoulderWidth: 5, // ancho del borde/banquina (px)
+    grassWidth: 88, // ancho TOTAL del costado (pasto + arena) por lado
+    sandWidth: 12, // de ese costado, cuanto es arena pegada a la ruta
+    shoulderWidth: 6, // separacion de la linea de borde
+
+    // Bordes irregulares (dentado pixelado entre pasto/arena/ruta).
+    edgeJitter: 4, // amplitud del dentado (px)
+    edgeStep: 5, // alto de cada "escalon" del dentado (px)
+
     dashLength: 26, // largo de cada raya punteada
-    dashGap: 24, // espacio entre rayas
+    dashGap: 22, // espacio entre rayas
     dashWidth: 5, // grosor de las rayas
   },
 
+  /** Decoracion de los costados (pasto, arena, flores, arboles). */
+  scenery: {
+    grassBase: '#57a23f', // verde principal
+    grassDark: '#478a33', // verde oscuro (textura)
+    grassLight: '#74bd55', // verde claro (textura)
+    sand: '#caa85a', // arena
+    sandDark: '#b08f47', // arena oscura (textura)
+
+    flowerWhite: '#f4f4ee',
+    flowerYellow: '#ffd84a',
+    flowerRed: '#e8443a',
+
+    treeTrunk: '#6b4423',
+    treeLeafDark: '#2f6e25',
+    treeLeaf: '#3f8a30',
+    treeLeafLight: '#5fb046',
+
+    speckleSpacing: 11, // separacion de la textura de pasto
+    decorSpacing: 50, // separacion de flores/arboles
+    treeChance: 0.22, // prob. de que la decoracion sea un arbol
+    flowerChance: 0.55, // prob. de que sea flor (sino, nada)
+  },
+
   player: {
-    color: '#23272e', // color del auto del jugador (negro, como la foto)
-    horizontalSpeed: 4.4, // px por frame (a 60fps) al moverse con flechas
-    bottomMargin: 30, // distancia del auto al borde inferior
-    startLane: 2, // carril inicial (0-indexed, 2 = centro en 5 carriles)
+    color: '#23272e',
+    horizontalSpeed: 4.6,
+    bottomMargin: 30,
+    startLane: 2,
   },
 
   traffic: {
-    /** Velocidad base con la que "baja" el mundo (px/frame a 60fps). */
     baseSpeed: 2.6,
-    /** Cuanto acelera el mundo por cada punto de score (mas alto = se
-     *  vuelve rapido antes). */
-    speedGrowth: 0.0016,
-    /** Tope de velocidad para que no se vuelva imposible. */
-    maxSpeed: 9,
-    /** Cada cuanto (ms) aparece un auto al principio. */
+    speedGrowth: 0.0016, // acelera con el score
+    maxSpeed: 9.5,
+    /** Velocidad de los autos enemigos RELATIVA al scroll de la ruta.
+     *  < 1 => las lineas/pasto se mueven mas rapido que los autos, asi
+     *  parece que el jugador va rapido y los esquiva (no que estan quietos). */
+    enemySpeedFactor: 0.55,
     spawnIntervalMs: 1000,
-    /** Intervalo minimo de aparicion (cuando ya vas rapido). */
-    minSpawnIntervalMs: 340,
-    /** Cuanto se reduce el intervalo por cada punto de score (ms). */
+    minSpawnIntervalMs: 320,
     spawnRampMs: 0.12,
-    /** Probabilidad base (0-1) de que aparezca un 2do auto a la vez. */
     doubleSpawnChance: 0.16,
-    /** Cuanto sube esa probabilidad por punto de score. */
     doubleSpawnGrowth: 0.00008,
-    /** Tope de esa probabilidad. */
-    doubleSpawnMax: 0.7,
-    /** Colores posibles de los autos enemigos (pixel art usa cada uno
-     *  como color de carroceria y deriva sombras/luces solo). */
-    colors: ['#e7e9ea', '#cf3a33', '#3b7fd4', '#c9ccce', '#e4b53b'],
+    doubleSpawnMax: 0.72,
+    colors: ['#e7e9ea', '#cf3a33', '#3b7fd4', '#c9ccce', '#e4b53b', '#7b4fd0'],
   },
 
-  /** Puntos que sumas por segundo sobrevivido. */
   scorePerSecond: 100,
 } as const
 

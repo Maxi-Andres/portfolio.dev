@@ -1,16 +1,17 @@
 /**
  * ============================================================
- *  CarGame (componente visible: canvas + overlays)
+ *  CarGame (componente visible: canvas + overlays pixel-art)
  * ============================================================
  *
- * Toda la logica esta en `useCarGame` / `engine`. Aca solo armamos
- * la UI: el canvas pixel art, el boton de play y el game over.
- * El juego se acelera y mete mas autos solo con el tiempo.
+ * Toda la logica esta en `useCarGame` / `engine`. Aca armamos la UI
+ * estilo arcade: HUD de SCORE / HI-SCORE, pantalla de inicio y de
+ * game over, todo con fuente pixel-art ("Press Start 2P").
  */
-import { type PointerEvent } from 'react'
-import { IconPlayerPlayFilled, IconRotateClockwise } from '@tabler/icons-react'
+import { type PointerEvent, type ReactNode } from 'react'
 import { GAME_CONFIG } from './config'
 import { useCarGame } from './useCarGame'
+
+const TITLE = 'DODGE RACER'
 
 const CarGame = () => {
   const { canvasRef, status, score, best, start, handlePointer, clearPointer } =
@@ -26,10 +27,12 @@ const CarGame = () => {
     handlePointer(e.clientX)
   }
 
+  const pad = (n: number) => n.toLocaleString('en-US')
+
   return (
     <div
-      className="relative w-full overflow-hidden rounded-xl"
-      style={{ maxWidth: 380 }}
+      className="relative w-full overflow-hidden rounded-xl border-2 border-black/60"
+      style={{ maxWidth: GAME_CONFIG.displayMaxWidth }}
     >
       <canvas
         ref={canvasRef}
@@ -44,61 +47,110 @@ const CarGame = () => {
           imageRendering: 'pixelated',
           touchAction: 'none',
           aspectRatio: `${GAME_CONFIG.view.width} / ${GAME_CONFIG.view.height}`,
-          backgroundColor: GAME_CONFIG.road.grassOuter,
+          backgroundColor: GAME_CONFIG.scenery.grassBase,
         }}
       />
 
-      {/* Score arriba a la izquierda mientras jugas */}
+      {/* HUD durante el juego: SCORE (izq) e HI-SCORE (der) */}
       {status === 'playing' && (
-        <div className="pointer-events-none absolute left-3 top-3 rounded-lg bg-black/45 px-3 py-1 font-mono text-sm text-white backdrop-blur-sm">
-          {score.toLocaleString()}
-        </div>
+        <>
+          <HudTag className="left-2 top-2">
+            <span className="text-white/60">SCORE</span> {pad(score)}
+          </HudTag>
+          <HudTag className="right-2 top-2">
+            <span className="text-[#ffd84a]/80">HI</span>{' '}
+            <span className="text-[#ffd84a]">{pad(best)}</span>
+          </HudTag>
+        </>
       )}
 
-      {/* Overlay inicial: boton de play (como la captura) */}
+      {/* Pantalla de inicio */}
       {status === 'idle' && (
         <Overlay>
-          <button
-            onClick={start}
-            aria-label="Play"
-            className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-full bg-white/85 text-black transition-transform duration-200 hover:scale-105"
-          >
-            <IconPlayerPlayFilled size={36} className="ml-1" />
-          </button>
-          <p className="mt-4 text-sm text-white/80">
-            Flechas / A-D o arrastra para esquivar
+          <PixelTitle>{TITLE}</PixelTitle>
+          <HiScore best={pad(best)} />
+          <RetroButton onClick={start}>▶ PLAY</RetroButton>
+          <p className="font-pixel mt-5 text-[7px] leading-relaxed text-white/55">
+            ← → / A D &nbsp;·&nbsp; ARRASTRA PARA ESQUIVAR
           </p>
         </Overlay>
       )}
 
-      {/* Overlay de game over */}
+      {/* Game over */}
       {status === 'gameover' && (
         <Overlay>
-          <p className="text-2xl font-semibold text-white">Game Over</p>
-          <p className="mt-1 font-mono text-white/80">
-            {score.toLocaleString()} pts
-          </p>
-          <p className="mb-4 mt-1 text-xs text-white/55">
-            Best {best.toLocaleString()}
-          </p>
-          <button
-            onClick={start}
-            className="flex cursor-pointer items-center gap-2 rounded-full bg-white/85 px-5 py-2 font-medium text-black transition-transform duration-200 hover:scale-105"
+          <p
+            className="font-pixel text-xl text-[#e8443a] sm:text-2xl"
+            style={{ textShadow: '3px 3px 0 #000' }}
           >
-            <IconRotateClockwise size={18} />
-            Play again
-          </button>
+            GAME OVER
+          </p>
+          <p className="font-pixel mt-5 text-[10px] text-white">
+            SCORE <span className="text-white">{pad(score)}</span>
+          </p>
+          <p className="font-pixel mt-2 text-[10px] text-[#ffd84a]">
+            BEST {pad(best)}
+          </p>
+          <RetroButton onClick={start} className="mt-6">
+            ↻ PLAY AGAIN
+          </RetroButton>
         </Overlay>
       )}
     </div>
   )
 }
 
-/** Capa oscura centrada reutilizable para los estados idle / gameover. */
-const Overlay = ({ children }: { children: React.ReactNode }) => (
-  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/35 backdrop-blur-[1px]">
+/* ---------- piezas de UI pixel-art ---------- */
+
+const Overlay = ({ children }: { children: ReactNode }) => (
+  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/45 px-4 text-center backdrop-blur-[1px]">
     {children}
   </div>
+)
+
+const HudTag = ({
+  children,
+  className = '',
+}: {
+  children: ReactNode
+  className?: string
+}) => (
+  <div
+    className={`font-pixel pointer-events-none absolute rounded-md border-2 border-white/20 bg-black/65 px-2.5 py-1.5 text-[9px] text-white ${className}`}
+  >
+    {children}
+  </div>
+)
+
+const PixelTitle = ({ children }: { children: ReactNode }) => (
+  <h3
+    className="font-pixel text-xl text-[#ffd84a] sm:text-3xl"
+    style={{ textShadow: '3px 3px 0 #cf3a33, 5px 5px 0 #000' }}
+  >
+    {children}
+  </h3>
+)
+
+const HiScore = ({ best }: { best: string }) => (
+  <p className="font-pixel mt-4 text-[10px] text-[#ffd84a]">HI-SCORE {best}</p>
+)
+
+const RetroButton = ({
+  children,
+  onClick,
+  className = '',
+}: {
+  children: ReactNode
+  onClick: () => void
+  className?: string
+}) => (
+  <button
+    onClick={onClick}
+    className={`font-pixel mt-6 cursor-pointer border-b-4 border-[#2a7a2a] bg-[#3fae3f] px-5 py-3 text-[11px] text-white transition-all duration-150 hover:bg-[#48c248] active:translate-y-0.5 active:border-b-2 ${className}`}
+    style={{ textShadow: '2px 2px 0 rgba(0,0,0,0.4)' }}
+  >
+    {children}
+  </button>
 )
 
 export default CarGame

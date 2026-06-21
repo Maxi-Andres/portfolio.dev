@@ -23,7 +23,11 @@ export function useCarGame() {
 
   const [status, setStatus] = useState<GameStatus>('idle')
   const [score, setScore] = useState(0)
-  const [best, setBest] = useState(0)
+  // Record persistido en localStorage.
+  const [best, setBest] = useState(() => {
+    const saved = Number(localStorage.getItem(GAME_CONFIG.bestScoreKey))
+    return Number.isFinite(saved) ? saved : 0
+  })
 
   // ---- Loop principal ----
   // Named function expression: `frame` se referencia a si misma para el
@@ -44,7 +48,12 @@ export function useCarGame() {
 
     if (over) {
       const final = Math.floor(world.score)
-      setBest((b) => Math.max(b, final))
+      setScore(final)
+      setBest((b) => {
+        if (final <= b) return b
+        localStorage.setItem(GAME_CONFIG.bestScoreKey, String(final))
+        return final
+      })
       setStatus('gameover')
       return
     }
