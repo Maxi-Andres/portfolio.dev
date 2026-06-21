@@ -19,8 +19,13 @@ export const GAME_CONFIG = {
     height: 440,
   },
 
-  /** Ancho maximo del juego en pantalla (px). */
-  displayMaxWidth: 600,
+  /** Ancho maximo del canvas dentro del cabinet (px). */
+  displayMaxWidth: 460,
+
+  /** Persistencia (localStorage). */
+  leaderboardKey: 'car-game-scores',
+  leaderboardSize: 5,
+  collapseKey: 'car-game-collapsed',
 
   /** Cantidad de carriles de la autopista. */
   lanes: 6,
@@ -34,9 +39,6 @@ export const GAME_CONFIG = {
     offsetY: 6,
     alpha: 0.28,
   },
-
-  /** Clave de localStorage donde se guarda el record. */
-  bestScoreKey: 'car-game-best',
 
   road: {
     // --- Asfalto: centro mas claro, costados mas oscuros ---
