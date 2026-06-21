@@ -9,7 +9,7 @@
  * `world.scrollY` para dar sensacion de velocidad.
  */
 import { GAME_CONFIG } from './config'
-import { drawCar, drawCarShadow } from './sprites'
+import { VEHICLES, drawCrash, drawVehicle, drawVehicleShadow } from './sprites'
 import type { Car, World } from './types'
 
 const cfg = GAME_CONFIG
@@ -190,8 +190,9 @@ export function renderWorld(ctx: CanvasRenderingContext2D, world: World) {
   const s = cfg.shadow
 
   for (const car of cars) {
-    drawCarShadow(
+    drawVehicleShadow(
       ctx,
+      VEHICLES[car.kind].sprite,
       car.x + car.width / 2,
       car.y,
       cfg.pixelScale,
@@ -201,6 +202,16 @@ export function renderWorld(ctx: CanvasRenderingContext2D, world: World) {
     )
   }
   for (const car of cars) {
-    drawCar(ctx, car.x + car.width / 2, car.y, cfg.pixelScale, car.color)
+    drawVehicle(
+      ctx,
+      VEHICLES[car.kind].sprite,
+      car.x + car.width / 2,
+      car.y,
+      cfg.pixelScale,
+      car.color
+    )
   }
+
+  // Efecto de choque sobre el frame congelado.
+  if (world.crash) drawCrash(ctx, world.crash.x, world.crash.y)
 }

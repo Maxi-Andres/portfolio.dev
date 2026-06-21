@@ -91,19 +91,25 @@ export const GAME_CONFIG = {
     startLane: 2,
   },
 
+  /** Cuanto se queda congelado el frame del choque antes de aparecer
+   *  el cartel de GAME OVER (ms). */
+  crashFreezeMs: 850,
+
   traffic: {
-    baseSpeed: 2.6,
+    baseSpeed: 2.3,
     speedGrowth: 0.0016, // acelera con el score
     maxSpeed: 9.5,
     /** Velocidad de los autos enemigos RELATIVA al scroll de la ruta.
      *  < 1 => las lineas/pasto se mueven mas rapido que los autos, asi
      *  parece que el jugador va rapido y los esquiva (no que estan quietos). */
     enemySpeedFactor: 0.55,
-    spawnIntervalMs: 1000,
-    minSpawnIntervalMs: 320,
-    spawnRampMs: 0.12,
-    doubleSpawnChance: 0.16,
-    doubleSpawnGrowth: 0.00008,
+    /** Arranca con pocos autos: intervalo grande al principio que se va
+     *  achicando con el score. */
+    spawnIntervalMs: 1500,
+    minSpawnIntervalMs: 340,
+    spawnRampMs: 0.13,
+    doubleSpawnChance: 0.06, // casi siempre 1 auto al principio
+    doubleSpawnGrowth: 0.00009,
     doubleSpawnMax: 0.72,
     colors: ['#e7e9ea', '#cf3a33', '#3b7fd4', '#c9ccce', '#e4b53b', '#7b4fd0'],
   },

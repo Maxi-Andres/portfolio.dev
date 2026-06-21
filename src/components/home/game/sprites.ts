@@ -1,28 +1,24 @@
 /**
  * ============================================================
- *  SPRITES (pixel art de los autos)
+ *  SPRITES (pixel art de los vehiculos)
  * ============================================================
  *
- * Un auto es una grilla de caracteres. Cada caracter es un "tono"
- * de la pintura (se derivan del color base del auto) o un detalle fijo:
+ * Cada vehiculo es una grilla de caracteres. Cada caracter es un "tono"
+ * de la pintura (derivado del color base) o un detalle fijo:
  *
- *    .  -> transparente (no se dibuja)
- *    H  -> brillo / highlight de la pintura (lado iluminado)
- *    L  -> pintura clara
- *    B  -> pintura base (EL color del auto)
- *    D  -> pintura oscura (lado en sombra)
- *    o  -> contorno (tono mas oscuro de la pintura)
- *    k  -> negro: ventanas, molduras, parantes
- *    r  -> faros traseros (rojo)
+ *    .  -> transparente        H -> brillo        L -> pintura clara
+ *    B  -> pintura base        D -> pintura sombra o -> contorno
+ *    k  -> negro (ventanas / molduras)            r -> luces traseras
  *
- * El auto "mira hacia arriba" (el frente es la fila de arriba). La luz
- * entra desde la izquierda: por eso la izquierda usa H/L y la derecha D.
- * Como H/L/B/D/o se derivan de UN color, el mismo dibujo queda bien
- * pintado en cualquier color (azul, rojo, blanco, el negro del jugador...).
+ * El vehiculo "mira hacia arriba" (frente = fila de arriba). La luz
+ * entra desde la izquierda. Como H/L/B/D/o se derivan de UN color, el
+ * mismo dibujo queda bien en cualquier color.
  *
- * Para editar el auto: cambia esta grilla (todas las filas con el mismo
- * largo) o los porcentajes de sombreado en `getPalette`.
+ * Para editar un vehiculo: cambia su grilla (filas del mismo largo) o
+ * agrega uno nuevo a VEHICLES.
  */
+import type { VehicleKind } from './types'
+
 export const CAR_SPRITE = [
   '....oooooo....',
   '..oHLBBBBDDo..',
@@ -52,8 +48,15 @@ export const CAR_SPRITE = [
   '....oooooo....',
 ]
 
-export const SPRITE_COLS = CAR_SPRITE[0].length
-export const SPRITE_ROWS = CAR_SPRITE.length
+export interface Vehicle {
+  sprite: string[]
+  cols: number
+  rows: number
+}
+
+export const VEHICLES: Record<VehicleKind, Vehicle> = {
+  car: { sprite: CAR_SPRITE, cols: CAR_SPRITE[0].length, rows: CAR_SPRITE.length },
+}
 
 interface Palette {
   H: string
@@ -76,46 +79,41 @@ function shade(hex: string, percent: number): string {
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`
 }
 
-// Cache de paletas: misma key de color -> mismo objeto, no recalcula por frame.
 const paletteCache = new Map<string, Palette>()
 
 function getPalette(color: string): Palette {
   let p = paletteCache.get(color)
   if (!p) {
     p = {
-      H: shade(color, 0.4), // brillo
-      L: shade(color, 0.16), // pintura clara
-      B: color, // base
-      D: shade(color, -0.16), // pintura en sombra
-      o: shade(color, -0.34), // contorno
-      k: '#16181d', // negro de ventanas / molduras
-      r: '#ff3b30', // faros traseros
+      H: shade(color, 0.4),
+      L: shade(color, 0.16),
+      B: color,
+      D: shade(color, -0.16),
+      o: shade(color, -0.34),
+      k: '#16181d',
+      r: '#ff3b30',
     }
     paletteCache.set(color, p)
   }
   return p
 }
 
-/**
- * Dibuja un auto en el canvas usando el sprite de pixel art.
- * @param cx  centro X del auto (px del mundo)
- * @param topY  borde superior del auto (px del mundo)
- * @param scale  px por celda del sprite
- */
-export function drawCar(
+/** Dibuja un vehiculo en el canvas. cx = centro X, topY = borde superior. */
+export function drawVehicle(
   ctx: CanvasRenderingContext2D,
+  sprite: string[],
   cx: number,
   topY: number,
   scale: number,
   color: string
 ): void {
   const palette = getPalette(color)
-  const width = SPRITE_COLS * scale
+  const width = sprite[0].length * scale
   const left = Math.round(cx - width / 2)
   const top = Math.round(topY)
 
-  for (let row = 0; row < SPRITE_ROWS; row++) {
-    const line = CAR_SPRITE[row]
+  for (let row = 0; row < sprite.length; row++) {
+    const line = sprite[row]
     for (let col = 0; col < line.length; col++) {
       const ch = line[col]
       if (ch === '.') continue
@@ -125,12 +123,10 @@ export function drawCar(
   }
 }
 
-/**
- * Dibuja la silueta del auto en negro semitransparente, desplazada, para
- * simular la sombra proyectada sobre el asfalto.
- */
-export function drawCarShadow(
+/** Sombra del vehiculo (silueta negra semitransparente, desplazada). */
+export function drawVehicleShadow(
   ctx: CanvasRenderingContext2D,
+  sprite: string[],
   cx: number,
   topY: number,
   scale: number,
@@ -138,16 +134,48 @@ export function drawCarShadow(
   offsetY: number,
   alpha: number
 ): void {
-  const width = SPRITE_COLS * scale
+  const width = sprite[0].length * scale
   const left = Math.round(cx - width / 2) + offsetX
   const top = Math.round(topY) + offsetY
 
   ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`
-  for (let row = 0; row < SPRITE_ROWS; row++) {
-    const line = CAR_SPRITE[row]
+  for (let row = 0; row < sprite.length; row++) {
+    const line = sprite[row]
     for (let col = 0; col < line.length; col++) {
       if (line[col] === '.') continue
       ctx.fillRect(left + col * scale, top + row * scale, scale, scale)
     }
   }
+}
+
+/** Efecto de choque: un "destello" pixelado de impacto en (x, y). */
+export function drawCrash(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number
+): void {
+  const cx = Math.round(x)
+  const cy = Math.round(y)
+  // Rayos del impacto (blanco / amarillo / naranja).
+  const spikes: [number, number, number][] = [
+    [0, -16, 5],
+    [0, 14, 5],
+    [-16, 0, 5],
+    [15, 0, 5],
+    [-11, -11, 4],
+    [11, -11, 4],
+    [-11, 11, 4],
+    [11, 11, 4],
+  ]
+  ctx.fillStyle = '#ffd84a'
+  for (const [dx, dy, s] of spikes) {
+    ctx.fillRect(cx + dx - s / 2, cy + dy - s / 2, s, s)
+  }
+  // Nucleo blanco/naranja.
+  ctx.fillStyle = '#ff7a2f'
+  ctx.fillRect(cx - 9, cy - 9, 18, 18)
+  ctx.fillStyle = '#ffe98a'
+  ctx.fillRect(cx - 6, cy - 6, 12, 12)
+  ctx.fillStyle = '#ffffff'
+  ctx.fillRect(cx - 3, cy - 3, 6, 6)
 }

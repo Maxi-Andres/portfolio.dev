@@ -21,6 +21,7 @@ export function useCarGame() {
   const inputRef = useRef<InputState>({ left: false, right: false, pointerX: null })
   const rafRef = useRef<number>(0)
   const lastTimeRef = useRef<number>(0)
+  const crashTimerRef = useRef<number>(0)
 
   const [status, setStatus] = useState<GameStatus>('idle')
   const [score, setScore] = useState(0)
@@ -54,13 +55,19 @@ export function useCarGame() {
         localStorage.setItem(GAME_CONFIG.bestScoreKey, String(final))
         return final
       })
-      setStatus('gameover')
+      // Congela el frame del choque y recien despues muestra GAME OVER.
+      setStatus('crashed')
+      crashTimerRef.current = window.setTimeout(
+        () => setStatus('gameover'),
+        GAME_CONFIG.crashFreezeMs
+      )
       return
     }
     rafRef.current = requestAnimationFrame(frame)
   }, [])
 
   const start = useCallback(() => {
+    clearTimeout(crashTimerRef.current)
     worldRef.current = createWorld()
     inputRef.current = { left: false, right: false, pointerX: null }
     lastTimeRef.current = performance.now()
@@ -70,11 +77,18 @@ export function useCarGame() {
     rafRef.current = requestAnimationFrame(loop)
   }, [loop])
 
-  useEffect(() => () => cancelAnimationFrame(rafRef.current), [])
+  useEffect(
+    () => () => {
+      cancelAnimationFrame(rafRef.current)
+      clearTimeout(crashTimerRef.current)
+    },
+    []
+  )
 
-  // Escena de muestra detras del boton de play (estados idle / gameover).
+  // Escena de muestra detras del boton de play. SOLO en 'idle': en
+  // 'crashed' / 'gameover' dejamos el frame del choque congelado.
   useEffect(() => {
-    if (status === 'playing') return
+    if (status !== 'idle') return
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
     if (ctx) renderWorld(ctx, createPreviewWorld())

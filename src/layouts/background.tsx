@@ -1,12 +1,20 @@
+import { Suspense, lazy } from 'react'
 import NeonBackgroundEffect from '../components/backgrounds/NeonBackground'
-import LightPillar from '@/components/backgrounds/LightPillar'
 import { ShootingStars } from '@/components/backgrounds/shooting-stars'
 import { StarsBackground } from '@/components/backgrounds/stars-background'
 import { useBackground } from '@/context/Context'
 import LetterGlitch from '@/components/backgrounds/LetterGlitch'
-import ColorBends from '@/components/backgrounds/ColorBends'
-import Dither from '@/components/backgrounds/Dither'
-import FaultyTerminal from '@/components/backgrounds/FaultyTerminal'
+
+// Estos fondos arrastran librerias pesadas (three.js / ogl / postprocessing).
+// Se cargan de forma diferida -> NO van en el bundle inicial, solo se
+// descargan si el usuario elige ese fondo. El default (Neon Glow) y los
+// demas fondos livianos quedan eager para que la pagina cargue rapido.
+const LightPillar = lazy(() => import('@/components/backgrounds/LightPillar'))
+const ColorBends = lazy(() => import('@/components/backgrounds/ColorBends'))
+const Dither = lazy(() => import('@/components/backgrounds/Dither'))
+const FaultyTerminal = lazy(
+  () => import('@/components/backgrounds/FaultyTerminal')
+)
 
 export const MainBackground = () => {
   // este es el background de el context
@@ -51,6 +59,7 @@ export const MainBackground = () => {
         )
       case 'Light Pillar':
         return (
+          <Suspense fallback={null}>
           <LightPillar
             topColor="#5227FF"
             bottomColor="#FF9FFC"
@@ -65,6 +74,7 @@ export const MainBackground = () => {
             mixBlendMode="normal"
             className=""
           />
+          </Suspense>
         )
       case 'Letter Glitch':
         return (
@@ -79,6 +89,7 @@ export const MainBackground = () => {
         )
       case 'Color Bends':
         return (
+          <Suspense fallback={null}>
           <ColorBends
             rotation={0}
             speed={0.1}
@@ -93,9 +104,11 @@ export const MainBackground = () => {
             className="z-10"
             style={{}}
           />
+          </Suspense>
         )
       case 'Dither':
         return (
+          <Suspense fallback={null}>
           <div className="fixed top-0 left-0 h-full w-full">
             <Dither
               waveSpeed={0.01}
@@ -109,9 +122,11 @@ export const MainBackground = () => {
               mouseRadius={0.01}
             />
           </div>
+          </Suspense>
         )
       case 'Faulty Terminal':
         return (
+          <Suspense fallback={null}>
           <div className="fixed top-0 left-0 h-full w-full">
             <FaultyTerminal
               scale={5}
@@ -135,6 +150,7 @@ export const MainBackground = () => {
               style={{}}
             />
           </div>
+          </Suspense>
         )
       default:
         return <NeonBackgroundEffect />

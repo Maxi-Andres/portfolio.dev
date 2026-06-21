@@ -1,6 +1,8 @@
-export type GameStatus = 'idle' | 'playing' | 'gameover'
+export type GameStatus = 'idle' | 'playing' | 'crashed' | 'gameover'
 
-/** Un auto (jugador o enemigo). x/y son la esquina superior izquierda. */
+export type VehicleKind = 'car'
+
+/** Un vehiculo (jugador o enemigo). x/y son la esquina superior izquierda. */
 export interface Car {
   x: number
   y: number
@@ -8,6 +10,7 @@ export interface Car {
   height: number
   color: string
   lane: number
+  kind: VehicleKind
 }
 
 /** Estado del input en un frame dado. */
@@ -34,4 +37,7 @@ export interface World {
   spawnTimer: number
   lastSpawnLane: number
   status: GameStatus
+  /** Punto del impacto (centro del solape) cuando chocas, para dibujar
+   *  el efecto de choque sobre el frame congelado. */
+  crash: { x: number; y: number } | null
 }

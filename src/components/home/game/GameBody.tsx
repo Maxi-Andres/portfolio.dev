@@ -69,7 +69,7 @@ export default function GameBody({
       {/* Panel derecho: marcador + leaderboard */}
       <SidePanel className="lg:w-64">
         <div className="grid grid-cols-2 gap-2">
-          <Stat label="SCORE" value={fmt(status === 'playing' ? score : 0)} />
+          <Stat label="SCORE" value={fmt(status === 'idle' ? 0 : score)} />
           <Stat label="YOUR BEST" value={fmt(best)} accent />
         </div>
         <PanelTitle className="mt-4">
@@ -145,26 +145,31 @@ const Stage = ({ game }: { game: ReturnType<typeof useCarGame> }) => {
         </Overlay>
       )}
 
+      {/* GAME OVER: cartel centrado SOBRE el frame del choque (que queda
+          congelado y visible alrededor). */}
       {status === 'gameover' && (
-        <Overlay>
-          <p
-            className="font-pixel text-xl text-[#e8443a] sm:text-2xl"
-            style={{ textShadow: '3px 3px 0 #000' }}
-          >
-            GAME OVER
-          </p>
-          <p className="font-pixel mt-4 text-[10px] text-white">
-            SCORE {fmt(score)}
-          </p>
-          {score > 0 && score >= best && (
-            <p className="font-pixel mt-2 text-[9px] text-[#ffd84a]">
-              ★ NEW BEST ★
+        <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
+          <div className="rounded-xl border-2 border-black/70 bg-black/75 px-6 py-5">
+            <p
+              className="font-pixel text-xl text-[#e8443a] sm:text-2xl"
+              style={{ textShadow: '3px 3px 0 #000' }}
+            >
+              GAME OVER
             </p>
-          )}
-          <RetroButton onClick={start} className="mt-5">
-            <IconRotateClockwise size={14} className="mr-1 inline" /> PLAY AGAIN
-          </RetroButton>
-        </Overlay>
+            <p className="font-pixel mt-4 text-[10px] text-white">
+              SCORE {fmt(score)}
+            </p>
+            {score > 0 && score >= best && (
+              <p className="font-pixel mt-2 text-[9px] text-[#ffd84a]">
+                ★ NEW BEST ★
+              </p>
+            )}
+            <RetroButton onClick={start} className="mt-5">
+              <IconRotateClockwise size={14} className="mr-1 inline" /> PLAY
+              AGAIN
+            </RetroButton>
+          </div>
+        </div>
       )}
     </div>
   )

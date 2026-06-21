@@ -7,14 +7,19 @@
  * como se leen las teclas: recibe input + delta de tiempo y avanza.
  */
 import { GAME_CONFIG } from './config'
-import { SPRITE_COLS, SPRITE_ROWS } from './sprites'
-import type { Car, InputState, World } from './types'
+import { VEHICLES } from './sprites'
+import type { Car, InputState, VehicleKind, World } from './types'
 
 const cfg = GAME_CONFIG
 
-// Tamaño del auto derivado del sprite + escala.
-const CAR_WIDTH = SPRITE_COLS * cfg.pixelScale
-const CAR_HEIGHT = SPRITE_ROWS * cfg.pixelScale
+// Tamaño de cada vehiculo derivado de su sprite + escala.
+function dims(kind: VehicleKind) {
+  return {
+    width: VEHICLES[kind].cols * cfg.pixelScale,
+    height: VEHICLES[kind].rows * cfg.pixelScale,
+  }
+}
+const CAR = dims('car')
 
 // Frame de referencia: las velocidades estan pensadas a 60fps.
 const FRAME_MS = 1000 / 60
@@ -38,12 +43,13 @@ export function createWorld(): World {
   const startX = laneCenters[cfg.player.startLane] ?? laneCenters[0]
 
   const player: Car = {
-    x: startX - CAR_WIDTH / 2,
-    y: cfg.view.height - cfg.player.bottomMargin - CAR_HEIGHT,
-    width: CAR_WIDTH,
-    height: CAR_HEIGHT,
+    x: startX - CAR.width / 2,
+    y: cfg.view.height - cfg.player.bottomMargin - CAR.height,
+    width: CAR.width,
+    height: CAR.height,
     color: cfg.player.color,
     lane: cfg.player.startLane,
+    kind: 'car',
   }
 
   return {
@@ -52,39 +58,41 @@ export function createWorld(): World {
     laneCenters,
     roadLeft,
     roadRight,
-    carWidth: CAR_WIDTH,
-    carHeight: CAR_HEIGHT,
+    carWidth: CAR.width,
+    carHeight: CAR.height,
     scrollY: 0,
     speed: cfg.traffic.baseSpeed,
     score: 0,
     spawnTimer: cfg.traffic.spawnIntervalMs,
     lastSpawnLane: -1,
     status: 'playing',
+    crash: null,
   }
 }
 
-/** Mundo "de muestra" con autos quietos para mostrar detras del boton
- *  de play (estado idle), parecido a la captura de referencia. */
+/** Mundo "de muestra" con vehiculos quietos para mostrar detras del
+ *  boton de play (estado idle). */
 export function createPreviewWorld(): World {
   const world = createWorld()
   // [lane, fila relativa (0 arriba - 1 abajo), color]
   const layout: [number, number, string][] = [
     [0, 0.1, '#3b7fd4'],
-    [2, 0.04, '#e4b53b'],
-    [4, 0.12, '#e7e9ea'],
-    [1, 0.4, '#cf3a33'],
-    [5, 0.34, '#c9ccce'],
-    [3, 0.56, '#e7e9ea'],
-    [0, 0.66, '#7b4fd0'],
+    [2, 0.02, '#e4b53b'],
+    [4, 0.18, '#e7e9ea'],
+    [1, 0.42, '#cf3a33'],
+    [5, 0.36, '#c9ccce'],
+    [3, 0.6, '#e7e9ea'],
+    [0, 0.7, '#7b4fd0'],
   ]
   for (const [lane, t, color] of layout) {
     world.enemies.push({
-      x: world.laneCenters[lane] - CAR_WIDTH / 2,
+      x: world.laneCenters[lane] - CAR.width / 2,
       y: t * cfg.view.height,
-      width: CAR_WIDTH,
-      height: CAR_HEIGHT,
+      width: CAR.width,
+      height: CAR.height,
       color,
       lane,
+      kind: 'car',
     })
   }
   world.status = 'idle'
@@ -95,22 +103,21 @@ function spawnEnemy(world: World, lane: number) {
   const color =
     cfg.traffic.colors[Math.floor(Math.random() * cfg.traffic.colors.length)]
   world.enemies.push({
-    x: world.laneCenters[lane] - CAR_WIDTH / 2,
-    y: -CAR_HEIGHT,
-    width: CAR_WIDTH,
-    height: CAR_HEIGHT,
+    x: world.laneCenters[lane] - CAR.width / 2,
+    y: -CAR.height,
+    width: CAR.width,
+    height: CAR.height,
     color,
     lane,
+    kind: 'car',
   })
 }
 
 /**
  * Elige carriles para el proximo spawn. Con mas score aparecen mas
- * autos a la vez, pero SIEMPRE quedan al menos 2 carriles libres para
- * que sea esquivable.
+ * vehiculos a la vez, pero SIEMPRE quedan al menos 2 carriles libres.
  */
 function spawnTraffic(world: World) {
-  // Carriles candidatos: todos menos el ultimo usado, barajados.
   const lanes = [...Array(cfg.lanes).keys()].filter(
     (l) => l !== world.lastSpawnLane
   )
@@ -119,7 +126,6 @@ function spawnTraffic(world: World) {
     ;[lanes[i], lanes[j]] = [lanes[j], lanes[i]]
   }
 
-  // Cuantos autos en esta tanda (crece con el score).
   const doubleChance = Math.min(
     cfg.traffic.doubleSpawnMax,
     cfg.traffic.doubleSpawnChance + world.score * cfg.traffic.doubleSpawnGrowth
@@ -127,7 +133,7 @@ function spawnTraffic(world: World) {
   let count = 1
   if (Math.random() < doubleChance) count++
   if (Math.random() < doubleChance * 0.4) count++
-  count = Math.min(count, cfg.lanes - 2, lanes.length) // deja 2 libres
+  count = Math.min(count, cfg.lanes - 2, lanes.length)
 
   for (let i = 0; i < count; i++) spawnEnemy(world, lanes[i])
   world.lastSpawnLane = lanes[0]
@@ -143,6 +149,15 @@ function collides(a: Car, b: Car): boolean {
     a.y + my < b.y + b.height - my &&
     a.y + a.height - my > b.y + my
   )
+}
+
+/** Centro del rectangulo de solape entre a y b (punto del impacto). */
+function overlapCenter(a: Car, b: Car) {
+  const x1 = Math.max(a.x, b.x)
+  const x2 = Math.min(a.x + a.width, b.x + b.width)
+  const y1 = Math.max(a.y, b.y)
+  const y2 = Math.min(a.y + a.height, b.y + b.height)
+  return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 }
 }
 
 /**
@@ -169,7 +184,6 @@ export function updateWorld(
   const maxX = world.roadRight - player.width
 
   if (input.pointerX != null) {
-    // Seguimiento del dedo/mouse, limitado por velocidad para que no teletransporte.
     const targetX = input.pointerX - player.width / 2
     const maxStep = cfg.player.horizontalSpeed * 2.2 * dt
     const diff = targetX - player.x
@@ -198,6 +212,9 @@ export function updateWorld(
   for (const enemy of world.enemies) {
     enemy.y += enemySpeed * dt
     if (collides(player, enemy)) {
+      // No reasignamos world.enemies: queda el frame del choque tal cual
+      // (con el vehiculo que choco encima del jugador) para congelarlo.
+      world.crash = overlapCenter(player, enemy)
       world.status = 'gameover'
       return true
     }
