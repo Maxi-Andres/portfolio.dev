@@ -5,6 +5,7 @@ import BentoSettings from '@/components/home/BentoSettings'
 import Footer from '@/components/home/Footer'
 import TechStack from '@/components/home/TechStack'
 import About from '../../components/home/About'
+import Game from '@/components/home/Game'
 
 const Home = () => {
   return (
@@ -20,6 +21,8 @@ const Home = () => {
       <Projects />
 
       <BentoSettings />
+
+      <Game />
 
       <section id="about" />
       <About />

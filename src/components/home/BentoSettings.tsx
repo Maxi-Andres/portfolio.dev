@@ -207,20 +207,6 @@ const BentoSettings = () => {
               })}
             </div>
           </GlassCard>
-
-          {/* Recent Commits con música */}
-          <GlassCard className="overflow-hidden md:col-span-2">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <h3 className="text-xl font-semibold text-white">
-                  Play a game
-                </h3>
-              </div>
-            </div>
-
-            {/* Contenido de commits - placeholder */}
-            <p className="text-neutral-400">coming soon...</p>
-          </GlassCard>
         </div>
       }
     />
