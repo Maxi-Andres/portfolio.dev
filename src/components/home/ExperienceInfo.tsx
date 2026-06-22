@@ -53,13 +53,13 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
           {data.map((item, index) => (
             <div key={index} className="flex p-6 pt-3 pb-3">
               <div className="flex flex-col">
-                <div className="text-sm text-neutral-500">{item.period}</div>
-                <h3 className="text-xl font-semibold text-neutral-200">
+                <div className="app-text-faint text-sm">{item.period}</div>
+                <h3 className="app-text-color text-xl font-semibold">
                   {item.institution}
                 </h3>
-                <div className="text-neutral-200">{item.position}</div>
+                <div className="app-text-body">{item.position}</div>
                 {item.description && (
-                  <p className="leading-relaxed text-neutral-400">
+                  <p className="app-text-muted leading-relaxed">
                     {item.description}
                   </p>
                 )}

@@ -50,13 +50,13 @@ const CarGame = () => {
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="font-pixel text-[9px] text-neutral-400">
+          <span className="font-pixel app-text-muted text-[9px]">
             HI <span className="text-[#ffd84a]">{fmt(best)}</span>
           </span>
           <button
             onClick={() => setCollapsed((c) => !c)}
             aria-label={collapsed ? 'Open game' : 'Collapse game'}
-            className="border-app border-hover-app bg-techitem-hover flex h-8 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 text-neutral-300"
+            className="border-app border-hover-app bg-techitem-hover app-text-body flex h-8 cursor-pointer items-center gap-1.5 rounded-lg px-2.5"
           >
             <span className="font-pixel text-[8px]">
               {collapsed ? 'PLAY' : 'HIDE'}
@@ -74,7 +74,7 @@ const CarGame = () => {
       {!collapsed && (
         <Suspense
           fallback={
-            <div className="font-pixel mt-4 py-10 text-center text-[9px] text-neutral-500">
+            <div className="font-pixel app-text-faint mt-4 py-10 text-center text-[9px]">
               LOADING…
             </div>
           }

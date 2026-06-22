@@ -87,24 +87,21 @@ const BentoSettings = () => {
               <span className="text-2xl">
                 <IconPaint stroke={1.5} />
               </span>
-              <h3 className="text-xl font-semibold text-white">Theme</h3>
+              <h3 className="app-text-color text-xl font-semibold">Theme</h3>
             </div>
 
             {/*//? Themes ver si dejarlo o no */}
             <div className="mb-4 grid grid-cols-2 gap-2">
               {themeNames.map((theme) => {
-                const isDisabled = theme.key === 'light_mode'
-
                 return (
                   <button
                     key={theme.key}
-                    onClick={() => !isDisabled && changeTheme(theme.key)}
-                    disabled={isDisabled}
-                    className={`rounded-app px-4 py-2 text-center transition-all duration-300 ${
-                      themeName === theme.key && !isDisabled
-                        ? 'border-selected-app bg-selected-btn text-white'
-                        : 'border-app text-neutral-400 hover:text-neutral-200'
-                    } ${isDisabled ? 'cursor-default opacity-40 hover:text-neutral-400' : 'border-hover-app cursor-pointer'} `}
+                    onClick={() => changeTheme(theme.key)}
+                    className={`rounded-app border-hover-app cursor-pointer px-4 py-2 text-center transition-all duration-300 ${
+                      themeName === theme.key
+                        ? 'border-selected-app bg-selected-btn app-button-text-active'
+                        : 'border-app app-button-text-inactive'
+                    }`}
                   >
                     {theme.label}
                   </button>
@@ -153,7 +150,7 @@ const BentoSettings = () => {
 
               {/* Volume Slider */}
               <div className="flex items-center gap-3 px-1">
-                <span className="text-xs text-neutral-400">Vol</span>
+                <span className="app-text-muted text-xs">Vol</span>
                 <input
                   type="range"
                   min="0"
@@ -183,12 +180,17 @@ const BentoSettings = () => {
                   </div>
                 </div>
               </span>
-              <h3 className="text-xl font-semibold text-white">Background</h3>
+              <h3 className="app-text-color text-xl font-semibold">Background</h3>
             </div>
 
             <div className="mb-4 grid grid-cols-2 gap-2">
               {BACKGROUND_TYPES.map((bg) => {
-                const isDisabled = bg === 'White'
+                // Fondos claros (van con el tema claro). En light mode solo se
+                // permiten estos; en dark mode quedan deshabilitados.
+                const lightBackgrounds = ['White', 'Boxes']
+                const isLightBg = lightBackgrounds.includes(bg)
+                const isDisabled =
+                  themeName === 'light_mode' ? !isLightBg : isLightBg
 
                 return (
                   <button
@@ -197,9 +199,9 @@ const BentoSettings = () => {
                     disabled={isDisabled}
                     className={`rounded-app px-2.5 py-2 text-center transition-all duration-300 lg:px-4 ${
                       background === bg
-                        ? 'border-selected-app bg-selected-btn text-white'
-                        : 'border-app text-neutral-400 hover:text-neutral-200'
-                    } ${isDisabled ? 'cursor-default opacity-40 hover:text-neutral-400' : 'border-hover-app cursor-pointer'} `}
+                        ? 'border-selected-app bg-selected-btn app-button-text-active'
+                        : 'border-app app-button-text-inactive'
+                    } ${isDisabled ? 'cursor-default opacity-40' : 'border-hover-app cursor-pointer'} `}
                   >
                     {bg}
                   </button>

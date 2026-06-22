@@ -29,10 +29,10 @@ const ProjectCard = ({
 
         <div className="p-6">
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-white">{title}</h3>
+            <h3 className="app-text-color text-xl font-semibold">{title}</h3>
           </div>
 
-          <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+          <p className="app-text-muted mb-4 text-sm leading-relaxed">
             {description}
           </p>
 
@@ -40,7 +40,7 @@ const ProjectCard = ({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="border-app glass-effect bg-selected-btn rounded-full px-3 py-1 text-xs text-neutral-300"
+                className="border-app glass-effect bg-selected-btn app-text-body rounded-full px-3 py-1 text-xs"
               >
                 {tag}
               </span>

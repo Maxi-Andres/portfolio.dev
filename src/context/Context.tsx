@@ -8,7 +8,6 @@ import {
 
 export type BackgroundType =
   | 'White'
-  | 'Black'
   | 'Neon Glow'
   | 'Shooting Stars'
   | 'Light Pillar'
@@ -16,10 +15,11 @@ export type BackgroundType =
   | 'Color Bends'
   | 'Dither'
   | 'Faulty Terminal'
+  | 'Boxes'
+  | 'Ascii Roses'
 
 export const BACKGROUND_TYPES: BackgroundType[] = [
   'White',
-  'Black',
   'Neon Glow',
   'Shooting Stars',
   'Light Pillar',
@@ -27,6 +27,8 @@ export const BACKGROUND_TYPES: BackgroundType[] = [
   'Color Bends',
   'Dither',
   'Faulty Terminal',
+  'Boxes',
+  'Ascii Roses',
 ]
 
 export type AccentColor =
@@ -143,27 +145,47 @@ export const BackgroundProvider = ({ children }: BackgroundProviderProps) => {
     return saved || 'white'
   })
 
+  // Aplica el tema (light/dark) + accent color en un solo lugar.
+  // Depende de ambos porque el accent pisa el color del borde/seleccion,
+  // y el "white" tiene que resolver al default del tema (negro en light,
+  // blanco en dark) para que no quede invisible sobre fondo blanco.
   useEffect(() => {
     const root = document.documentElement
+    const theme = themes[themeName]
+
+    // dark mode = clase .dark en <html> (la usa la variante dark: de Tailwind)
+    root.classList.toggle('dark', themeName === 'dark_mode')
+    root.style.colorScheme = themeName === 'dark_mode' ? 'dark' : 'light'
+
+    // Fondo de los glass cards segun el tema
+    root.style.setProperty('--color-bg-glass', theme['--color-bg-glass'])
+
+    // Borde / seleccion: si el accent es "white" usamos el default del tema,
+    // si no, el hex del accent elegido.
     const colorData = ACCENT_COLORS.find((c) => c.name === accentColor)
+    const appColor =
+      accentColor === 'white'
+        ? (theme['--color-border-app'] ?? 'white')
+        : (colorData?.hex ?? 'white')
 
-    if (colorData) {
-      root.style.setProperty('--color-bg-selected', colorData.hex)
-      root.style.setProperty('--color-border-app', colorData.hex)
-    }
+    root.style.setProperty('--color-border-app', appColor)
+    root.style.setProperty('--color-bg-selected', appColor)
 
+    localStorage.setItem('theme', themeName)
     localStorage.setItem('accentColor', accentColor)
-  }, [accentColor])
+  }, [themeName, accentColor])
 
   useEffect(() => {
     localStorage.setItem('background', background)
   }, [background])
 
   const changeTheme = (newTheme: ThemeName) => {
-    if (themes[newTheme]) {
-      setThemeName(newTheme)
-    }
+    if (!themes[newTheme]) return
+    setThemeName(newTheme)
     setAccentColor('white')
+    // En light mode solo tiene sentido el fondo blanco; al volver a dark
+    // restauramos el fondo por defecto.
+    setBackground(newTheme === 'light_mode' ? 'White' : 'Neon Glow')
   }
 
   const changeAccentColor = (color: AccentColor) => {

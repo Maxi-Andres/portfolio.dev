@@ -34,7 +34,7 @@ const Section = ({
             <a
               href={viewMoreLink}
               target="_blank"
-              className="app-view-more-link mt-2 text-lg hover:text-white lg:text-xl"
+              className="app-view-more-link mt-2 text-lg lg:text-xl"
             >
               {viewMoreText}
             </a>

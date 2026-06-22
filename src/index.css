@@ -35,7 +35,7 @@ html {
   justify-content: center;
   overflow-x: hidden; /* esto saca el scroll lateral que me da la linea */
   scrollbar-width: none;
-  color-scheme: dark !important; /*! ESTO ES PARA QUE NO IMPORTA COMO TENGA LA CONFIG MI PAGINA SIEMPRE ESTE EN MODO OSCURO  */
+  /*! el color-scheme ahora lo maneja el Context (light/dark) via JS */
   /* font-family: sans-serif; */
 }
 
@@ -120,10 +120,33 @@ hover:bg-white/10
   @apply bg-bg-selected/5;
 }
 
-/* ================================ Texto para poder tener modo claro y oscuro (sin terminar)  ================================ */
-/* hay que hacer que las clases sean mas reutilizables, es una mierda*/
+/* ================================ Texto para poder tener modo claro y oscuro  ================================ */
+/* clases semanticas reutilizables: en light mode el texto es oscuro/negro,
+   en dark mode claro/blanco. Asi no hay colores hardcodeados sueltos. */
+
+/* titulos / texto fuerte */
 .app-text-color {
   @apply text-black dark:text-white;
+}
+
+/* parrafos / cuerpo */
+.app-text-body {
+  @apply text-neutral-700 dark:text-neutral-300;
+}
+
+/* texto secundario / descripciones */
+.app-text-muted {
+  @apply text-neutral-600 dark:text-neutral-400;
+}
+
+/* meta / stats (lo mas tenue) */
+.app-text-faint {
+  @apply text-neutral-500 dark:text-neutral-500;
+}
+
+/* links tenues con hover (footer) */
+.app-link-muted {
+  @apply text-neutral-600 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-300;
 }
 
 .app-nav-text-color {
@@ -183,16 +206,27 @@ hover:bg-white/10
   -webkit-appearance: none;
   /* width: 100%; */
   /* height: 6px; */
-  background: rgba(255, 255, 255, 0.1);
+  /* colores adaptables al tema: default (light) = oscuro sobre fondo claro */
+  --slider-track: rgba(0, 0, 0, 0.18);
+  --slider-track-hover: rgba(0, 0, 0, 0.3);
+  --slider-thumb: #1e1e2e;
+  background: var(--slider-track);
   border-radius: 9999px;
   outline: none;
   cursor: pointer;
   /* transition: background 0.3s ease; */
 }
 
+/* dark mode = claro sobre fondo oscuro */
+.dark .volume-slider {
+  --slider-track: rgba(255, 255, 255, 0.1);
+  --slider-track-hover: rgba(255, 255, 255, 0.2);
+  --slider-thumb: #ffffff;
+}
+
 /* Hover background */
 .volume-slider:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--slider-track-hover);
 }
 
 /* Track (Chrome) */
@@ -206,7 +240,7 @@ hover:bg-white/10
   -webkit-appearance: none;
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); */
   transition:
@@ -231,7 +265,7 @@ hover:bg-white/10
 .volume-slider::-moz-range-thumb {
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   border: none;
   /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); */

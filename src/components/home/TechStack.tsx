@@ -50,10 +50,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       Programming Languages
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Proficient in multiple programming languages for diverse
                       development needs.
                     </p>
@@ -95,10 +95,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       Graphics & 3D Programming
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Real-time rendering and advanced graphics techniques.
                     </p>
 
@@ -142,10 +142,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       DevOps & Infrastructure
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Managing infrastructure and automation.
                     </p>
 
@@ -171,10 +171,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       Data Science & ML
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Analyzing data and building machine learning models.
                     </p>
 
@@ -221,10 +221,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       Networking
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Network configuration, wireless systems, and enterprise
                       solutions.
                     </p>
@@ -263,10 +263,10 @@ const TechStack = () => {
               <GlassCard
                 children={
                   <>
-                    <h3 className="mb-2 text-xl font-semibold text-white">
+                    <h3 className="app-text-color mb-2 text-xl font-semibold">
                       Frameworks & Web Technologies
                     </h3>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-400">
+                    <p className="app-text-muted mb-4 text-sm leading-relaxed">
                       Building modern web applications with cutting-edge
                       frameworks.
                     </p>

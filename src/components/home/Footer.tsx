@@ -89,13 +89,13 @@ const Footer = () => {
                 {/* //? no se si me termina de convencer */}
                 {/* <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" /> */}
                 <div className="logo mb-5 flex flex-col justify-end md:mb-0">
-                  <p className="text-4xl">Maximiliano Andres</p>
+                  <p className="app-text-color text-4xl">Maximiliano Andres</p>
                 </div>
 
                 <div className="flex space-x-4 sm:space-x-8">
                   <div className="menu md:mb-0">
-                    <h3 className="mb-4 text-neutral-300">Stats</h3>
-                    <ul className="flex flex-col font-light text-neutral-500">
+                    <h3 className="app-text-body mb-4">Stats</h3>
+                    <ul className="app-text-faint flex flex-col font-light">
                       <li>
                         <div
                           className="flex gap-1"
@@ -118,12 +118,12 @@ const Footer = () => {
                   </div>
 
                   <div className="menu mb-6 md:mb-0">
-                    <h3 className="mb-4 text-neutral-300">Explore</h3>
-                    <ul className="flex flex-col font-light text-neutral-500">
+                    <h3 className="app-text-body mb-4">Explore</h3>
+                    <ul className="app-text-faint flex flex-col font-light">
                       <li>
                         <a
                           onClick={() => scrollToSection('home')}
-                          className="cursor-pointer hover:text-neutral-300 hover:underline"
+                          className="app-link-muted cursor-pointer hover:underline"
                         >
                           Home
                         </a>
@@ -131,7 +131,7 @@ const Footer = () => {
                       <li>
                         <a
                           onClick={() => scrollToSection('projects')}
-                          className="cursor-pointer hover:text-neutral-300 hover:underline"
+                          className="app-link-muted cursor-pointer hover:underline"
                         >
                           Projects
                         </a>
@@ -139,7 +139,7 @@ const Footer = () => {
                       <li>
                         <a
                           onClick={() => scrollToSection('about')}
-                          className="cursor-pointer hover:text-neutral-300 hover:underline"
+                          className="app-link-muted cursor-pointer hover:underline"
                         >
                           About
                         </a>
@@ -148,13 +148,13 @@ const Footer = () => {
                   </div>
 
                   <div className="contacts">
-                    <h3 className="mb-4 text-neutral-300">Let's Connect</h3>
-                    <ul className="flex flex-col font-light text-neutral-500">
+                    <h3 className="app-text-body mb-4">Let's Connect</h3>
+                    <ul className="app-text-faint flex flex-col font-light">
                       <li>
                         <a
                           href="mailto:max.bianchimano@gmail.com"
                           target="_blank"
-                          className="hover:text-neutral-300 hover:underline"
+                          className="app-link-muted hover:underline"
                         >
                           Email
                         </a>
@@ -164,7 +164,7 @@ const Footer = () => {
                         <a
                           href="https://www.linkedin.com/in/maximiliano-andres-bianchimano/"
                           target="_blank"
-                          className="hover:text-neutral-300 hover:underline"
+                          className="app-link-muted hover:underline"
                         >
                           LinkedIn
                         </a>
@@ -174,7 +174,7 @@ const Footer = () => {
                         <a
                           href="https://github.com/Maxi-Andres"
                           target="_blank"
-                          className="hover:text-neutral-300 hover:underline"
+                          className="app-link-muted hover:underline"
                         >
                           GitHub
                         </a>

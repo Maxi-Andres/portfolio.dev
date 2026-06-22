@@ -1,6 +1,6 @@
 /*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
 /*! si sacas esta linea deja de funcionar dark mode y ligth mode, solo queda el default que es DARK MODE  */
-/*! ESTO ES PARA QUE NO IMPORTA COMO TENGA LA CONFIG MI PAGINA SIEMPRE ESTE EN MODO OSCURO  */
+/*! el color-scheme ahora lo maneja el Context (light/dark) via JS */
 /*! ====================== IMPORTANT ====================== */
 /*! hacer que estos colores los puedan elegir las personas  */
 @layer properties;
@@ -11,6 +11,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-neutral-200: oklch(92.2% 0 0);
     --color-neutral-300: oklch(87% 0 0);
@@ -19,6 +20,7 @@
     --color-neutral-600: oklch(43.9% 0 0);
     --color-neutral-700: oklch(37.1% 0 0);
     --color-neutral-800: oklch(26.9% 0 0);
+    --color-neutral-900: oklch(20.5% 0 0);
     --color-neutral-950: oklch(14.5% 0 0);
     --color-black: #000;
     --color-white: #fff;
@@ -216,6 +218,9 @@
   .pointer-events-none {
     pointer-events: none;
   }
+  .invisible {
+    visibility: hidden;
+  }
   .visible {
     visibility: visible;
   }
@@ -231,11 +236,17 @@
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
+  .-top-1\/4 {
+    top: calc(calc(1/4 * 100%) * -1);
+  }
   .-top-12 {
     top: calc(var(--spacing) * -12);
   }
   .-top-18 {
     top: calc(var(--spacing) * -18);
+  }
+  .-top-\[14px\] {
+    top: calc(14px * -1);
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
@@ -297,6 +308,9 @@
   .-left-120 {
     left: calc(var(--spacing) * -120);
   }
+  .-left-\[22px\] {
+    left: calc(22px * -1);
+  }
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
@@ -305,6 +319,9 @@
   }
   .left-1\/2 {
     left: calc(1/2 * 100%);
+  }
+  .left-1\/4 {
+    left: calc(1/4 * 100%);
   }
   .-z-10 {
     z-index: calc(10 * -1);
@@ -411,6 +428,9 @@
   .inline-block {
     display: inline-block;
   }
+  .h-6 {
+    height: calc(var(--spacing) * 6);
+  }
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
@@ -446,6 +466,9 @@
   }
   .w-11 {
     width: calc(var(--spacing) * 11);
+  }
+  .w-16 {
+    width: calc(var(--spacing) * 16);
   }
   .w-47 {
     width: calc(var(--spacing) * 47);
@@ -490,6 +513,10 @@
   }
   .translate-x-\[10\] {
     --tw-translate-x: 10;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-y-\[-5\%\] {
@@ -730,9 +757,21 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-r {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
+  }
   .border-b-4 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 4px;
+  }
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
   }
   .border-\[\#2a7a2a\] {
     border-color: #2a7a2a;
@@ -758,6 +797,9 @@
   .border-neutral-800 {
     border-color: var(--color-neutral-800);
   }
+  .border-slate-300 {
+    border-color: var(--color-slate-300);
+  }
   .bg-\[\#1c1c1c\]\/96 {
     background-color: color-mix(in oklab, #1c1c1c 96%, transparent);
   }
@@ -770,8 +812,8 @@
   .bg-\[\#89b4fa\] {
     background-color: #89b4fa;
   }
-  .bg-\[\#171717\] {
-    background-color: #171717;
+  .bg-\[\#f8fafc\] {
+    background-color: #f8fafc;
   }
   .bg-\[\#fafafa\] {
     background-color: #fafafa;
@@ -814,6 +856,9 @@
   }
   .\[mask-repeat\:no-repeat\] {
     mask-repeat: no-repeat;
+  }
+  .stroke-\[1px\] {
+    stroke-width: 1px;
   }
   .object-cover {
     object-fit: cover;
@@ -982,9 +1027,6 @@
   .text-gray-500 {
     color: var(--color-gray-500);
   }
-  .text-neutral-200 {
-    color: var(--color-neutral-200);
-  }
   .text-neutral-300 {
     color: var(--color-neutral-300);
   }
@@ -993,6 +1035,9 @@
   }
   .text-neutral-500 {
     color: var(--color-neutral-500);
+  }
+  .text-slate-300 {
+    color: var(--color-slate-300);
   }
   .text-white {
     color: var(--color-white);
@@ -1177,27 +1222,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: color-mix(in oklab, #89b4fa 90%, transparent);
-      }
-    }
-  }
-  .hover\:text-neutral-200 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-200);
-      }
-    }
-  }
-  .hover\:text-neutral-300 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-300);
-      }
-    }
-  }
-  .hover\:text-neutral-400 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-400);
       }
     }
   }
@@ -1433,7 +1457,6 @@ html {
   justify-content: center;
   overflow-x: hidden;
   scrollbar-width: none;
-  color-scheme: dark !important;
 }
 html, body {
   overflow-x: hidden !important;
@@ -1525,6 +1548,42 @@ body {
   color: var(--color-black);
   &:where(.dark, .dark *) {
     color: var(--color-white);
+  }
+}
+.app-text-body {
+  color: var(--color-neutral-700);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-300);
+  }
+}
+.app-text-muted {
+  color: var(--color-neutral-600);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-400);
+  }
+}
+.app-text-faint {
+  color: var(--color-neutral-500);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-500);
+  }
+}
+.app-link-muted {
+  color: var(--color-neutral-600);
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-neutral-900);
+    }
+  }
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-500);
+  }
+  &:where(.dark, .dark *) {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-300);
+      }
+    }
   }
 }
 .app-nav-text-color {
@@ -1630,13 +1689,21 @@ body {
 }
 .volume-slider {
   -webkit-appearance: none;
-  background: rgba(255, 255, 255, 0.1);
+  --slider-track: rgba(0, 0, 0, 0.18);
+  --slider-track-hover: rgba(0, 0, 0, 0.3);
+  --slider-thumb: #1e1e2e;
+  background: var(--slider-track);
   border-radius: 9999px;
   outline: none;
   cursor: pointer;
 }
+.dark .volume-slider {
+  --slider-track: rgba(255, 255, 255, 0.1);
+  --slider-track-hover: rgba(255, 255, 255, 0.2);
+  --slider-thumb: #ffffff;
+}
 .volume-slider:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--slider-track-hover);
 }
 .volume-slider::-webkit-slider-runnable-track {
   height: 6px;
@@ -1646,7 +1713,7 @@ body {
   -webkit-appearance: none;
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   margin-top: -4px;
@@ -1661,7 +1728,7 @@ body {
 .volume-slider::-moz-range-thumb {
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   border: none;
   transition: transform 0.15s ease, box-shadow 0.3s ease;
