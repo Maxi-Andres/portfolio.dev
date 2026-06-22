@@ -185,10 +185,12 @@ const BentoSettings = () => {
 
             <div className="mb-4 grid grid-cols-2 gap-2">
               {BACKGROUND_TYPES.map((bg) => {
-                // En light mode solo se permite el fondo 'White'; en dark mode
-                // 'White' queda deshabilitado (el resto disponibles).
+                // Fondos claros (van con el tema claro). En light mode solo se
+                // permiten estos; en dark mode quedan deshabilitados.
+                const lightBackgrounds = ['White', 'Boxes']
+                const isLightBg = lightBackgrounds.includes(bg)
                 const isDisabled =
-                  themeName === 'light_mode' ? bg !== 'White' : bg === 'White'
+                  themeName === 'light_mode' ? !isLightBg : isLightBg
 
                 return (
                   <button
