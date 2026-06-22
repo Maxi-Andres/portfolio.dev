@@ -1,34 +1,36 @@
 import { useEffect, useRef } from 'react'
-import rose1 from '../../../assets/Rose-main-771x1024.webp'
-import rose2 from '../../../assets/7655a146674904d597902eee0f898520.jpg'
-import rose3 from '../../../assets/images.jpg'
-import rose4 from '../../../assets/images2.jpg'
+import rose1 from '../../../assets/imgs/rose1.png'
+import rose2 from '../../../assets/imgs/rose2.png'
 
 /**
  * Fondo "Ascii Roses" — convierte fotos reales de rosas a ASCII de barras
  * verticales (tan sobre fondo oscuro), apiladas en los costados como en el
  * ejemplo de referencia.
  *
- * Clave: la intensidad de cada celda NO es el brillo sino la "rojez"
- * (cuanto domina el rojo sobre verde/azul). Asi los petalos rojos se
- * encienden y las hojas/fondo verdes quedan oscuros -> rosa limpia.
+ * Clave: la intensidad de cada celda NO es el brillo sino la "rojez" (petalos)
+ * + el "verdor" atenuado (tallo/hojas). El fondo gris/blanco (R=G=B) da 0 en
+ * ambos -> no dibuja barras -> rosa limpia.
  *
  * Render estatico (solo se redibuja al cargar y al hacer resize): liviano.
  */
 
-const SRCS = [rose4, rose1]
+const SRCS = [rose2, rose1]
 
 const BG = '#211c16' // marron casi negro (calido)
 const TAN = '#c2ac82' // color de las barras
 const CW = 4 // ancho de celda (px)
 const CH = 7 // alto de celda (px)
-const SIDE_RATIO = 0.38 // ancho de cada columna lateral (fraccion del viewport)
-const THRESHOLD = 0.14 // por debajo de esto no se dibuja barra
+const SIDE_RATIO = 0.415 // ancho de cada columna lateral (fraccion del viewport)
+const THRESHOLD = 0.02 // por debajo de esto no se dibuja barra
 
-// rojez del pixel: resalta petalos, apaga hojas/fondo verdes
-const redness = (r: number, g: number, b: number) => {
-  const v = (r - (g + b) / 2) / 255
-  return v < 0 ? 0 : v > 1 ? 1 : v
+const GREEN_WEIGHT = 0.95 // el tallo/hojas se ven, pero mas tenue que la rosa
+
+// intensidad del pixel: rojez (petalos) + verdor (tallo/hojas) atenuado.
+const intensity = (r: number, g: number, b: number) => {
+  const red = (r - (g + b) / 2) / 255 // petalos rojos
+  const green = (g - (r + b) / 2) / 255 // tallo / hojas verdes
+  const v = Math.max(0, red) + Math.max(0, green) * GREEN_WEIGHT
+  return v > 1 ? 1 : v
 }
 
 const AsciiRoses = () => {
@@ -67,7 +69,7 @@ const AsciiRoses = () => {
         for (let cx = 0; cx < cols; cx++) {
           const sx = mirror ? cols - 1 - cx : cx
           const i = (cy * cols + sx) * 4
-          let v = redness(px[i], px[i + 1], px[i + 2])
+          let v = intensity(px[i], px[i + 1], px[i + 2])
           v = Math.pow(v, 0.75) * 1.3 // contraste / ganancia
           if (v > THRESHOLD) {
             if (v > 1) v = 1

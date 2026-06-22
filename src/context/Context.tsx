@@ -8,7 +8,6 @@ import {
 
 export type BackgroundType =
   | 'White'
-  | 'Black'
   | 'Neon Glow'
   | 'Shooting Stars'
   | 'Light Pillar'
@@ -21,7 +20,6 @@ export type BackgroundType =
 
 export const BACKGROUND_TYPES: BackgroundType[] = [
   'White',
-  'Black',
   'Neon Glow',
   'Shooting Stars',
   'Light Pillar',
