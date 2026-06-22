@@ -1,6 +1,6 @@
 /*! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */
 /*! si sacas esta linea deja de funcionar dark mode y ligth mode, solo queda el default que es DARK MODE  */
-/*! ESTO ES PARA QUE NO IMPORTA COMO TENGA LA CONFIG MI PAGINA SIEMPRE ESTE EN MODO OSCURO  */
+/*! el color-scheme ahora lo maneja el Context (light/dark) via JS */
 /*! ====================== IMPORTANT ====================== */
 /*! hacer que estos colores los puedan elegir las personas  */
 @layer properties;
@@ -19,6 +19,7 @@
     --color-neutral-600: oklch(43.9% 0 0);
     --color-neutral-700: oklch(37.1% 0 0);
     --color-neutral-800: oklch(26.9% 0 0);
+    --color-neutral-900: oklch(20.5% 0 0);
     --color-neutral-950: oklch(14.5% 0 0);
     --color-black: #000;
     --color-white: #fff;
@@ -215,6 +216,9 @@
 @layer utilities {
   .pointer-events-none {
     pointer-events: none;
+  }
+  .invisible {
+    visibility: hidden;
   }
   .visible {
     visibility: visible;
@@ -982,9 +986,6 @@
   .text-gray-500 {
     color: var(--color-gray-500);
   }
-  .text-neutral-200 {
-    color: var(--color-neutral-200);
-  }
   .text-neutral-300 {
     color: var(--color-neutral-300);
   }
@@ -1177,27 +1178,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: color-mix(in oklab, #89b4fa 90%, transparent);
-      }
-    }
-  }
-  .hover\:text-neutral-200 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-200);
-      }
-    }
-  }
-  .hover\:text-neutral-300 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-300);
-      }
-    }
-  }
-  .hover\:text-neutral-400 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-neutral-400);
       }
     }
   }
@@ -1433,7 +1413,6 @@ html {
   justify-content: center;
   overflow-x: hidden;
   scrollbar-width: none;
-  color-scheme: dark !important;
 }
 html, body {
   overflow-x: hidden !important;
@@ -1525,6 +1504,42 @@ body {
   color: var(--color-black);
   &:where(.dark, .dark *) {
     color: var(--color-white);
+  }
+}
+.app-text-body {
+  color: var(--color-neutral-700);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-300);
+  }
+}
+.app-text-muted {
+  color: var(--color-neutral-600);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-400);
+  }
+}
+.app-text-faint {
+  color: var(--color-neutral-500);
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-500);
+  }
+}
+.app-link-muted {
+  color: var(--color-neutral-600);
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-neutral-900);
+    }
+  }
+  &:where(.dark, .dark *) {
+    color: var(--color-neutral-500);
+  }
+  &:where(.dark, .dark *) {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-300);
+      }
+    }
   }
 }
 .app-nav-text-color {
@@ -1630,13 +1645,21 @@ body {
 }
 .volume-slider {
   -webkit-appearance: none;
-  background: rgba(255, 255, 255, 0.1);
+  --slider-track: rgba(0, 0, 0, 0.18);
+  --slider-track-hover: rgba(0, 0, 0, 0.3);
+  --slider-thumb: #1e1e2e;
+  background: var(--slider-track);
   border-radius: 9999px;
   outline: none;
   cursor: pointer;
 }
+.dark .volume-slider {
+  --slider-track: rgba(255, 255, 255, 0.1);
+  --slider-track-hover: rgba(255, 255, 255, 0.2);
+  --slider-thumb: #ffffff;
+}
 .volume-slider:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--slider-track-hover);
 }
 .volume-slider::-webkit-slider-runnable-track {
   height: 6px;
@@ -1646,7 +1669,7 @@ body {
   -webkit-appearance: none;
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   margin-top: -4px;
@@ -1661,7 +1684,7 @@ body {
 .volume-slider::-moz-range-thumb {
   height: 14px;
   width: 14px;
-  background: white;
+  background: var(--slider-thumb);
   border-radius: 9999px;
   border: none;
   transition: transform 0.15s ease, box-shadow 0.3s ease;

@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="en" class="dark">
   <head>
+    <!-- Aplica el tema guardado ANTES del primer paint para evitar flash
+         (light <-> dark). El default es dark. El Context luego toma el control. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme')
+          var isDark = t !== 'light_mode'
+          document.documentElement.classList.toggle('dark', isDark)
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
+        } catch (e) {}
+      })()
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 

@@ -7,11 +7,11 @@ const About = () => {
         title="About Me"
         children={
           <div className="flex flex-col items-start gap-10 px-4">
-            <div className="border-app-l glass-effect w-full space-y-4 rounded-r-2xl leading-relaxed text-neutral-300">
+            <div className="border-app-l glass-effect app-text-body w-full space-y-4 rounded-r-2xl leading-relaxed">
               <div className="px-6 py-4">
                 <p>
                   Hey! I'm{' '}
-                  <span className="font-semibold text-white">
+                  <span className="app-text-color font-semibold">
                     Maximiliano Andres
                   </span>
                   , a programmer and network engineer from Buenos Aires,

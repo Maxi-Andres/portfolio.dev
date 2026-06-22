@@ -51,12 +51,12 @@ export default function GameBody({
         <PanelTitle>
           <IconDeviceGamepad2 size={14} /> CONTROLS
         </PanelTitle>
-        <ul className="font-pixel mt-3 space-y-2 text-[8px] leading-relaxed text-neutral-300">
+        <ul className="font-pixel app-text-body mt-3 space-y-2 text-[8px] leading-relaxed">
           <li>&larr; &rarr; MOVE</li>
           <li>A &middot; D MOVE</li>
           <li>DRAG ON SCREEN</li>
         </ul>
-        <p className="font-pixel mt-4 text-[7px] leading-relaxed text-neutral-500">
+        <p className="font-pixel app-text-faint mt-4 text-[7px] leading-relaxed">
           DODGE THE TRAFFIC AND RACK UP POINTS. IT KEEPS GETTING FASTER.
         </p>
       </SidePanel>
@@ -80,11 +80,11 @@ export default function GameBody({
             <li
               key={row.name}
               className={`flex items-center justify-between gap-2 rounded px-1.5 py-1 ${
-                i === 0 ? 'text-[#ffd84a]' : 'text-neutral-300'
+                i === 0 ? 'text-[#ffd84a]' : 'app-text-body'
               }`}
             >
               <span className="flex min-w-0 items-center gap-1.5">
-                <span className="text-neutral-500">#{i + 1}</span>
+                <span className="app-text-faint">#{i + 1}</span>
                 <span className="truncate">{row.name}</span>
               </span>
               <span className="shrink-0">{fmt(row.score)}</span>
@@ -199,7 +199,7 @@ const PanelTitle = ({
   className?: string
 }) => (
   <div
-    className={`font-pixel flex items-center gap-1.5 text-[9px] text-neutral-400 ${className}`}
+    className={`font-pixel app-text-muted flex items-center gap-1.5 text-[9px] ${className}`}
   >
     {children}
   </div>
@@ -215,9 +215,9 @@ const Stat = ({
   accent?: boolean
 }) => (
   <div className="border-app rounded-lg bg-black/25 px-2 py-2">
-    <p className="font-pixel text-[7px] text-neutral-500">{label}</p>
+    <p className="font-pixel app-text-faint text-[7px]">{label}</p>
     <p
-      className={`font-pixel mt-1 text-[11px] ${accent ? 'text-[#ffd84a]' : 'text-white'}`}
+      className={`font-pixel mt-1 text-[11px] ${accent ? 'text-[#ffd84a]' : 'app-text-color'}`}
     >
       {value}
     </p>
