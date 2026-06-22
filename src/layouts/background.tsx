@@ -4,6 +4,7 @@ import { ShootingStars } from '@/components/backgrounds/shooting-stars'
 import { StarsBackground } from '@/components/backgrounds/stars-background'
 import { useBackground } from '@/context/Context'
 import LetterGlitch from '@/components/backgrounds/LetterGlitch'
+import AsciiRoses from '@/components/backgrounds/AsciiRoses'
 
 // Estos fondos arrastran librerias pesadas (three.js / ogl / postprocessing).
 // Se cargan de forma diferida -> NO van en el bundle inicial, solo se
@@ -164,6 +165,8 @@ export const MainBackground = () => {
             </div>
           </Suspense>
         )
+      case 'Ascii Roses':
+        return <AsciiRoses />
       default:
         return <NeonBackgroundEffect />
     }

@@ -17,6 +17,7 @@ export type BackgroundType =
   | 'Dither'
   | 'Faulty Terminal'
   | 'Boxes'
+  | 'Ascii Roses'
 
 export const BACKGROUND_TYPES: BackgroundType[] = [
   'White',
@@ -29,6 +30,7 @@ export const BACKGROUND_TYPES: BackgroundType[] = [
   'Dither',
   'Faulty Terminal',
   'Boxes',
+  'Ascii Roses',
 ]
 
 export type AccentColor =
