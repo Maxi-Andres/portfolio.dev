@@ -22,21 +22,28 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
 
   const studies = [
     {
-      period: '2023 - Present',
+      period: 'Aug 2026 - Present',
+      institution: 'UNSAM',
+      position: 'Telecommunications Engineering',
+      description:
+        'Engineering degree focused on telecommunications, networks, signal processing, and electronics, building on my programming and networking background.',
+    },
+    {
+      period: 'Aug 2023 - Jul 2026',
       institution: 'UNSAM',
       position: 'University Technician in Computer Programming',
       description:
         'Studies focused on software development, programming paradigms, data structures, algorithms, databases, low-level concepts, and web technologies',
     },
     {
-      period: '2025 - Present',
+      period: 'Jul 2026',
       institution: 'Cisco Networking Academy',
       position: 'CCNA (Cisco Certified Network Associate)',
       description:
-        'Studying for CCNA certification - Network fundamentals, routing and switching, network security, and automation.',
+        'Certified network professional. Network fundamentals, routing and switching, network security, and automation.',
     },
     {
-      period: 'Completed',
+      period: 'Mar 2024',
       institution: 'University of Cambridge',
       position: 'First Certificate in English (FCE)',
       description:
