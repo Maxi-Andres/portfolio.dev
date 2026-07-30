@@ -1,5 +1,23 @@
+import { AnimatePresence, motion, type Variants } from 'motion/react'
+
 type ExperienceInfoProps = {
   active: 'work' | 'studies'
+}
+
+// Transicion sutil al cambiar entre Work / Studies: fade + leve
+// desplazamiento, con un stagger corto entre cada entrada.
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { duration: 0.2, staggerChildren: 0.06 },
+  },
+  exit: { opacity: 0, transition: { duration: 0.15 } },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.25, ease: 'easeOut' } },
 }
 
 const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
@@ -56,24 +74,37 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
   return (
     <div className="w-full rounded-r-2xl p-4 pt-8">
       <div className="border-app-l">
-        <div className="glass-effect rounded-r-2xl">
-          {data.map((item, index) => (
-            <div key={index} className="flex p-6 pt-3 pb-3">
-              <div className="flex flex-col">
-                <div className="app-text-faint text-sm">{item.period}</div>
-                <h3 className="app-text-color text-xl font-semibold">
-                  {item.institution}
-                </h3>
-                <div className="app-text-body">{item.position}</div>
-                {item.description && (
-                  <p className="app-text-muted leading-relaxed">
-                    {item.description}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="glass-effect rounded-r-2xl"
+          >
+            {data.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="flex p-6 pt-3 pb-3"
+              >
+                <div className="flex flex-col">
+                  <div className="app-text-faint text-sm">{item.period}</div>
+                  <h3 className="app-text-color text-xl font-semibold">
+                    {item.institution}
+                  </h3>
+                  <div className="app-text-body">{item.position}</div>
+                  {item.description && (
+                    <p className="app-text-muted leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   )

@@ -57,14 +57,29 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       starsRef.current = arr
     }
 
-    const resize = () => {
+    const applySize = () => {
       const { width, height } = canvas.getBoundingClientRect()
       canvas.width = width
       canvas.height = height
-      generate(width, height)
+      return { width, height }
     }
-    resize()
-    const ro = new ResizeObserver(resize)
+
+    // Las estrellas se generan UNA sola vez. En resizes chicos (p. ej. cuando
+    // aparece/desaparece la scrollbar al cambiar de seccion) NO se regeneran:
+    // solo se ajusta el canvas, asi el fondo queda quieto. Se regeneran unicamente
+    // si el area cambia mucho (rotar el telefono, redimensionar la ventana en serio).
+    let { width: lastW, height: lastH } = applySize()
+    generate(lastW, lastH)
+
+    const ro = new ResizeObserver(() => {
+      const { width, height } = applySize()
+      const prevArea = lastW * lastH
+      if (Math.abs(width * height - prevArea) > prevArea * 0.25) {
+        generate(width, height)
+        lastW = width
+        lastH = height
+      }
+    })
     ro.observe(canvas)
 
     const frame = 1000 / FPS
@@ -108,7 +123,10 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={cn('absolute inset-0 h-full w-full', className)}
+      className={cn(
+        'pointer-events-none fixed inset-0 h-full w-full',
+        className
+      )}
     />
   )
 }
