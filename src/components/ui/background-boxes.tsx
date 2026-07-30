@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo, useSyncExternalStore } from 'react'
 import { cn } from '@/lib/utils'
 
 // Paleta completa de acentos Catppuccin (los mismos del selector de la pagina)
@@ -22,9 +22,59 @@ const COLORS = [
 
 const randomColor = () => COLORS[Math.floor(Math.random() * COLORS.length)]
 
+// --- Grilla responsiva -----------------------------------------------------
+// La grilla se escala con scale(0.675) + skew, asi que una cantidad fija de
+// celdas cubre bien una pantalla "normal" (~1080p) pero deja huecos en
+// monitores grandes / de mas resolucion. En vez de fijar 120x80, calculamos
+// cuantas celdas hacen falta segun el viewport: mantenemos el minimo actual
+// (que ya se ve bien) y crecemos en pantallas mas grandes, con un tope para
+// no reventar el rendimiento en 4K/5K.
+const REF_W = 1920 // viewport de referencia donde 120x80 ya llena bien
+const REF_H = 1080
+const MIN_H = 120 // baseline actual: nunca bajamos de aca
+const MIN_V = 80
+const MAX_H = 220 // techo de seguridad para el rendimiento
+const MAX_V = 150
+
+const clamp = (v: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, v))
+
+const getGridSize = () => {
+  // SSR / primer render sin window: usamos el baseline.
+  if (typeof window === 'undefined') return { h: MIN_H, v: MIN_V }
+  const w = window.innerWidth
+  const hpx = window.innerHeight
+  return {
+    h: clamp(Math.ceil((MIN_H * w) / REF_W), MIN_H, MAX_H),
+    v: clamp(Math.ceil((MIN_V * hpx) / REF_H), MIN_V, MAX_V),
+  }
+}
+
+// Nos suscribimos a resize una sola vez para toda la app (via
+// useSyncExternalStore) y solo re-renderizamos si cambia la cantidad de celdas.
+let cachedSize = getGridSize()
+const subscribe = (onChange: () => void) => {
+  const handler = () => {
+    const next = getGridSize()
+    if (next.h !== cachedSize.h || next.v !== cachedSize.v) {
+      cachedSize = next
+      onChange()
+    }
+  }
+  window.addEventListener('resize', handler)
+  return () => window.removeEventListener('resize', handler)
+}
+const getSnapshot = () => cachedSize
+const getServerSnapshot = () => ({ h: MIN_H, v: MIN_V })
+
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(120).fill(1)
-  const cols = new Array(80).fill(1)
+  const { h, v } = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  )
+  const rows = useMemo(() => new Array(h).fill(1), [h])
+  const cols = useMemo(() => new Array(v).fill(1), [v])
 
   // Delegacion de eventos: 2 listeners para toda la grilla en lugar de uno
   // por celda. Al entrar pinta la celda (instantaneo); al salir, transicion
