@@ -1,7 +1,16 @@
+import { IconExternalLink } from '@tabler/icons-react'
 import { AnimatePresence, motion, type Variants } from 'motion/react'
 
 type ExperienceInfoProps = {
   active: 'work' | 'studies'
+}
+
+type Entry = {
+  period: string
+  institution: string
+  position: string
+  description: string
+  link?: { href: string; label: string }
 }
 
 // Transicion sutil al cambiar entre Work / Studies: fade + leve
@@ -21,24 +30,31 @@ const itemVariants: Variants = {
 }
 
 const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
-  const workExperience = [
+  const workExperience: Entry[] = [
     {
       period: 'Sep 2025 - Present',
       institution: 'Silk Technologies',
       position: 'Network Engineer & Software Developer',
       description:
-        "I configure, maintain and troubleshoot our clients' networks, including security and monitoring. My role also includes software development, currently robotics and AI: the software that makes Unitree Go2 and G1 robots operable remotely, and a real-time vision AI system for industrial inspection.",
+        'I configure, maintain and troubleshoot client networks in industrial (OT) and critical sectors such as mining, oil and gas, banking and government, and surveyed a 7-site oil and gas network of 600+ devices with SolarWinds. My role also includes software development, currently robotics and AI: the software that makes Unitree Go2 and G1 robots operable remotely, and a real-time vision AI system for industrial inspection.',
     },
     {
-      period: '2024 - Present',
-      institution: 'Freelance',
-      position: 'Full Stack Developer',
+      period: 'Jan 2025 - Oct 2025',
+      institution: 'Sabores Express',
+      position: 'Claims Analyst',
       description:
-        'Design and build websites end to end: UI/UX, frontend, backend, REST APIs and database.',
+        'Handled store claims and order incidents, and coordinated with other departments to resolve them.',
+    },
+    {
+      period: 'Aug 2023 - Nov 2023',
+      institution: 'Correo Argentino',
+      position: 'Electoral Operator',
+      description:
+        'Operator at the Electoral Transmission Center during the 2023 presidential elections, digitizing and transmitting polling-station results.',
     },
   ]
 
-  const studies = [
+  const studies: Entry[] = [
     {
       period: 'Aug 2026 - Present',
       institution: 'UNSAM',
@@ -66,6 +82,11 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
       position: 'CCNA (Cisco Certified Network Associate)',
       description:
         'Certified network associate. Network fundamentals, routing and switching, network security, and automation.',
+      // Lives in public/ so the URL stays stable (the CV links to it too)
+      link: {
+        href: `${import.meta.env.BASE_URL}certificates/CCNA-certificate.pdf`,
+        label: 'View certificate',
+      },
     },
     {
       period: 'Mar 2024',
@@ -106,6 +127,17 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
                     <p className="app-text-muted leading-relaxed">
                       {item.description}
                     </p>
+                  )}
+                  {item.link && (
+                    <a
+                      href={item.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="app-text-color mt-2 flex w-fit items-center gap-1 text-sm font-medium hover:underline"
+                    >
+                      {item.link.label}
+                      <IconExternalLink size={16} stroke={1.5} />
+                    </a>
                   )}
                 </div>
               </motion.div>

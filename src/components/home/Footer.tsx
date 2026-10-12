@@ -89,7 +89,7 @@ const Footer = () => {
                 {/* //? no se si me termina de convencer */}
                 {/* <BackgroundBeams className="scale-[1.5] translate-y-[-5%] -z-10" /> */}
                 <div className="logo mb-5 flex flex-col justify-end md:mb-0">
-                  <p className="app-text-color text-4xl">Maximiliano Andres</p>
+                  <p className="app-text-color text-4xl">Maximiliano Andrés</p>
                 </div>
 
                 <div className="flex space-x-4 sm:space-x-8">

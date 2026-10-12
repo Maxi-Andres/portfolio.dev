@@ -12,7 +12,7 @@ const About = () => {
                 <p>
                   Hey! I'm{' '}
                   <span className="app-text-color font-semibold">
-                    Maximiliano Andres
+                    Maximiliano Andrés
                   </span>
                   , a network engineer and programmer from Buenos Aires,
                   Argentina. At Silk Technologies I work on our clients'

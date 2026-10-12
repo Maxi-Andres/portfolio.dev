@@ -15,6 +15,9 @@ import {
   IconBrain,
   IconCloud,
   IconRouter,
+  IconCloudNetwork,
+  IconActivityHeartbeat,
+  IconDeviceAnalytics,
   IconTopologyStar3,
   IconBrandReact,
   IconBrandSvelte,
@@ -241,6 +244,24 @@ const TechStack = () => {
                         href="https://www.cisco.com/c/en/us/products/ios-nx-os-software/ios-technologies/index.html"
                       >
                         <IconRouter stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="Cisco Meraki"
+                        href="https://meraki.cisco.com/"
+                      >
+                        <IconCloudNetwork stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="ThousandEyes"
+                        href="https://www.thousandeyes.com/"
+                      >
+                        <IconActivityHeartbeat stroke={1} />
+                      </TechItem>
+                      <TechItem
+                        title="SolarWinds"
+                        href="https://www.solarwinds.com/"
+                      >
+                        <IconDeviceAnalytics stroke={1} />
                       </TechItem>
                       <TechItem
                         title="SDN"
