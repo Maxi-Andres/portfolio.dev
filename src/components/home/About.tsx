@@ -14,18 +14,21 @@ const About = () => {
                   <span className="app-text-color font-semibold">
                     Maximiliano Andres
                   </span>
-                  , a programmer and network engineer from Buenos Aires,
-                  Argentina. I'm passionate about everything related to
-                  hardware, software, and networking, and I love continuously
-                  learning, improving, and exploring new technologies.
+                  , a network engineer and programmer from Buenos Aires,
+                  Argentina. At Silk Technologies I work on our clients'
+                  networks and also develop software, which these days means
+                  robotics and AI for Unitree robots. I'm CCNA certified,
+                  preparing for the CCNP, and studying Telecommunications
+                  Engineering.
                 </p>
 
                 <p>
-                  In my free time, I enjoy building personal projects of all
-                  kinds — from low-level programming in C and assembly, to
-                  creating artificial intelligences, developing websites, and
-                  even designing small video games. Anything that challenges my
-                  mind and lets me create something new is always welcome.
+                  I'm passionate about everything related to hardware,
+                  software, and networking. In my free time I build personal
+                  projects of all kinds: from low-level programming in C and
+                  Assembly to neural networks, robotics, websites, Android apps
+                  and small video games. Anything that challenges my mind and
+                  lets me create something new is always welcome.
                 </p>
 
                 <p>

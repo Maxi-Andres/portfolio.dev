@@ -7,6 +7,7 @@ import spaceImg from '@/assets/img/space_invaders.png'
 import Silk from '@/assets/img/silk_tech.png'
 import solarImg from '@/assets/img/solar_system.png'
 import musicImg from '@/assets/img/music_player.png'
+import bookLibreImg from '@/assets/img/booklibre.png'
 
 const Projects = () => {
   const projects = [
@@ -41,10 +42,11 @@ const Projects = () => {
       link: 'https://github.com/Maxi-Andres/music-player',
     },
     {
+      image: bookLibreImg,
       title: 'BookLibre',
       description:
         'A book-lending platform built by a team of five: a Kotlin and Spring Boot API (REST and GraphQL) with role-based JWT auth, PostgreSQL, MongoDB and Redis caching, and a React frontend with catalog search, a reservation calendar and an admin dashboard.',
-      tags: ['Kotlin', 'Spring Boot', 'React', 'GraphQL', 'PostgreSQL'],
+      tags: ['Kotlin', 'Spring Boot', 'React', 'GraphQL', 'PostgreSQL', 'MongoDB', 'Redis'],
       link: 'https://github.com/Maxi-Andres/booklibre-backend',
     },
     {
