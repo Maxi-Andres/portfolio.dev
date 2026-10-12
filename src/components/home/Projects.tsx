@@ -5,14 +5,46 @@ import openGlImg from '@/assets/img/opengl.png'
 import pedirIMmg from '@/assets/img/algo_que_pedir.png'
 import spaceImg from '@/assets/img/space_invaders.png'
 import Silk from '@/assets/img/silk_tech.png'
+import solarImg from '@/assets/img/solar_system.png'
+import musicImg from '@/assets/img/music_player.png'
 
 const Projects = () => {
   const projects = [
     {
+      title: 'Unitree G1 — Vision AI',
+      description:
+        'Real-time vision AI for the Unitree G1 humanoid. A phone streams live video to a gateway, where YOLO and a vision-language model running locally on Ollama detect and describe industrial equipment.',
+      tags: ['Python', 'YOLO', 'Ollama', 'React', 'Unitree G1'],
+      link: 'https://github.com/Maxi-Andres/AI-VL-ecosystem',
+    },
+    {
+      title: 'Unitree Go2 — Robot Operations',
+      description:
+        "Software that runs on the Go2's onboard computer so it can be operated from anywhere: telemetry to Splunk, a safety-first command relay (auth, speed clamp, dead-man switch) and a low-latency camera pipeline with NVR recording.",
+      tags: ['Python', 'DDS', 'Splunk', 'Unitree Go2'],
+      link: 'https://github.com/Maxi-Andres/robot-ecosystem',
+    },
+    {
+      image: solarImg,
+      title: 'Solar System Simulator',
+      description:
+        'A real-time, to-scale simulation of the Solar System built on NASA/JPL ephemerides: real distances, sizes, rotations and orbits, with time controls and free camera navigation.',
+      tags: ['TypeScript', 'React', 'Three.js', 'NASA/JPL Data'],
+      link: 'https://maxi-andres.github.io/Solar-System-Simulator/',
+    },
+    {
+      image: musicImg,
+      title: 'Music Player for Android',
+      description:
+        'An Android music player for local files: folder browsing, queue, equalizer, lock-screen and notification controls, and automatic updates from GitHub Releases.',
+      tags: ['Kotlin', 'Jetpack Compose', 'Media3', 'Android'],
+      link: 'https://github.com/Maxi-Andres/music-player',
+    },
+    {
       image: neuralImg,
       title: 'Neural Network for Digit Recognition',
       description:
-        'A deep learning model built from scratch using NumPy to classify handwritten digits from the MNIST dataset. Features a 3-layer architecture and achieves 96.97% test accuracy.',
+        'A neural network built from scratch with NumPy, with hand-written backpropagation, that classifies handwritten MNIST digits with 96.96% test accuracy.',
       tags: ['Python', 'NumPy', 'Machine Learning', 'MNIST'],
       link: 'https://github.com/Maxi-Andres/Neural-Network',
     },
@@ -38,7 +70,7 @@ const Projects = () => {
       description:
         'A recreation of the classic arcade game written entirely in x86 Assembly. Features progressive difficulty levels, multiple enemy types, a final boss battle, sound effects and animations.',
       tags: ['Assembly', 'x86', '16 bits', 'Low-Level'],
-      link: 'https://github.com/Maxi-Andres/TP-Assembly',
+      link: 'https://github.com/Maxi-Andres/Space-Invaders',
     },
     {
       image: Silk,

@@ -1,7 +1,7 @@
 import GlassCard from '../shared/GlassCard'
 
 type ProjectCardProps = {
-  image: string
+  image?: string
   title: string
   description: string
   tags: string[]
@@ -19,12 +19,18 @@ const ProjectCard = ({
     <a href={link} target="_blank" rel="noopener noreferrer" className="group">
       <GlassCard noPadding className="relative overflow-hidden">
         <div className="relative h-48 overflow-hidden">
-          <img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
+          {image ? (
+            <img
+              src={image}
+              alt={title}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+            />
+          ) : (
+            <div className="glass-effect app-text-muted flex h-full w-full items-center justify-center px-6 text-center text-lg font-semibold">
+              {title}
+            </div>
+          )}
         </div>
 
         <div className="p-6">

@@ -7,6 +7,8 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: '/portfolio.dev/',
+  // Open the dev server in the system's default browser instead of VS Code's
+  server: { open: true },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
