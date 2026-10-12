@@ -24,17 +24,17 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
   const workExperience = [
     {
       period: 'Sep 2025 - Present',
-      institution: 'Silk Tech srl',
-      position: 'Junior Network Engineer',
+      institution: 'Silk Technologies',
+      position: 'Network Engineer & Software Developer',
       description:
-        'Network infrastructure management and maintenance. Configuration and troubleshooting of networking equipment. Support in implementing network security protocols and monitoring network performance.',
+        "I configure, maintain and troubleshoot our clients' networks, including security and monitoring. My role also includes software development, currently robotics and AI: the software that makes Unitree Go2 and G1 robots operable remotely, and a real-time vision AI system for industrial inspection.",
     },
     {
       period: '2024 - Present',
       institution: 'Freelance',
       position: 'Full Stack Developer',
       description:
-        "End-to-end web development for various clients. From UI/UX design and frontend implementation to backend architecture, REST APIs, and database design. Delivering complete, production-ready web applications tailored to each client's needs.",
+        'Design and build websites end to end: UI/UX, frontend, backend, REST APIs and database.',
     },
   ]
 
@@ -54,11 +54,18 @@ const ExperienceInfo = ({ active }: ExperienceInfoProps) => {
         'Studies focused on software development, programming paradigms, data structures, algorithms, databases, low-level concepts, and web technologies',
     },
     {
+      period: 'In progress',
+      institution: 'Cisco',
+      position: 'CCNP Enterprise (ENCOR exam)',
+      description:
+        'Preparing the core exam of the CCNP Enterprise certification: enterprise network architecture, virtualization, infrastructure, assurance, security, and automation.',
+    },
+    {
       period: 'Jul 2026',
-      institution: 'Cisco Networking Academy',
+      institution: 'Cisco',
       position: 'CCNA (Cisco Certified Network Associate)',
       description:
-        'Certified network professional. Network fundamentals, routing and switching, network security, and automation.',
+        'Certified network associate. Network fundamentals, routing and switching, network security, and automation.',
     },
     {
       period: 'Mar 2024',

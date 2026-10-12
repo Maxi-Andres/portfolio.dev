@@ -41,6 +41,13 @@ const Projects = () => {
       link: 'https://github.com/Maxi-Andres/music-player',
     },
     {
+      title: 'BookLibre',
+      description:
+        'A book-lending platform built by a team of five: a Kotlin and Spring Boot API (REST and GraphQL) with role-based JWT auth, PostgreSQL, MongoDB and Redis caching, and a React frontend with catalog search, a reservation calendar and an admin dashboard.',
+      tags: ['Kotlin', 'Spring Boot', 'React', 'GraphQL', 'PostgreSQL'],
+      link: 'https://github.com/Maxi-Andres/booklibre-backend',
+    },
+    {
       image: neuralImg,
       title: 'Neural Network for Digit Recognition',
       description:
@@ -52,7 +59,7 @@ const Projects = () => {
       image: openGlImg,
       title: '3D Renderer with OpenGL',
       description:
-        'Journey through modern graphics programming covering lighting models, rendering pipelines, shader programming, and advanced optimization techniques for real-time 3D rendering.',
+        'Modern OpenGL (3.3 core) in C++, following LearnOpenGL: shaders, textures, transformations, a free-moving camera and Phong lighting with lighting maps, wrapped in my own C++ abstractions.',
       tags: ['C++', 'OOP', 'OpenGL', 'Shaders', '3D Graphics'],
       link: 'https://github.com/Maxi-Andres/OpenGL',
     },
@@ -60,7 +67,7 @@ const Projects = () => {
       image: pedirIMmg,
       title: 'Food Delivery Platform',
       description:
-        'A full-stack food ordering application with dual interfaces: Svelte for restaurant management and React for customer orders. Features real-time menu updates and order tracking.',
+        'A food ordering platform in the style of PedidosYa: a Kotlin and Spring Boot REST API, a React app where customers browse restaurants and order, and a Svelte app where restaurants manage orders, menus and ingredients.',
       tags: ['Svelte', 'React', 'Kotlin', 'Spring Boot', 'TypeScript'],
       link: 'https://github.com/Maxi-Andres/algo-que-pedir-local',
     },
@@ -68,7 +75,7 @@ const Projects = () => {
       image: spaceImg,
       title: 'Space Invaders',
       description:
-        'A recreation of the classic arcade game written entirely in x86 Assembly. Features progressive difficulty levels, multiple enemy types, a final boss battle, sound effects and animations.',
+        'The classic arcade game written entirely in 16-bit x86 Assembly for DOS: four levels, a mystery ship, a final boss, and custom interrupt handlers for sound and random numbers.',
       tags: ['Assembly', 'x86', '16 bits', 'Low-Level'],
       link: 'https://github.com/Maxi-Andres/Space-Invaders',
     },
