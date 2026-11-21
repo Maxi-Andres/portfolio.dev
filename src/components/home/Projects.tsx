@@ -8,10 +8,13 @@ import Silk from '@/assets/img/silk_tech.png'
 import solarImg from '@/assets/img/solar_system.png'
 import musicImg from '@/assets/img/music_player.png'
 import bookLibreImg from '@/assets/img/booklibre.png'
+import g1Img from '@/assets/img/unitree_g1.jpg'
+import go2Img from '@/assets/img/unitree_go2.jpg'
 
 const Projects = () => {
   const projects = [
     {
+      image: g1Img,
       title: 'Unitree G1 — Vision AI',
       description:
         'Real-time vision AI for the Unitree G1 humanoid. A phone streams live video to a gateway, where YOLO and a vision-language model running locally on Ollama detect and describe industrial equipment.',
@@ -19,6 +22,7 @@ const Projects = () => {
       link: 'https://github.com/Maxi-Andres/AI-VL-ecosystem',
     },
     {
+      image: go2Img,
       title: 'Unitree Go2 — Robot Operations',
       description:
         "Software that runs on the Go2's onboard computer so it can be operated from anywhere: telemetry to Splunk, a safety-first command relay (auth, speed clamp, dead-man switch) and a low-latency camera pipeline with NVR recording.",
